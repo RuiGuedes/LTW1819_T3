@@ -1,0 +1,166 @@
+body {
+    /* Layout */
+    margin: 0%;
+    display: grid;
+
+    grid-template-columns: auto 6fr 1.5fr;
+    grid-template-rows: auto 100%;
+
+    grid-template-areas:    "header toolBar toolBar"
+                            "menu stories aside";
+
+    /* Style */
+    background-color: rgb(226, 226, 226);
+}
+
+body > header {
+    /* Layout */
+    display: flex;
+    grid-area: header;
+
+    /* Style */
+    background-color: rgb(37, 91, 107);
+}
+
+body > header h1 {
+    /* Layout */
+    margin: 0.5em 0em 0em 0em;
+    padding-left: 0.25em;
+    padding-right: 0.5em;
+}
+
+body > header img {
+    /* Layout */
+    max-width: 3em;
+    max-height: 3em;
+    padding: 0.5em;
+}
+
+#menu {
+    /* Layout */
+    grid-area: menu;
+   
+    /* Style */
+    list-style-type: none;
+    background-color: rgb(78, 113, 124);
+}
+
+#menu > nav ul{
+    /* Layout */
+    margin: 0%;
+    padding: 0%;
+
+    /* Style */
+    list-style-type: none;
+}
+
+#menu > nav ul li{
+    /* Layout */
+    padding: 0.5em 0.5em;
+    
+    /* Style */
+    font-size: 1.5em;
+}
+
+#menu > nav ul i{
+    /* Layout */
+    padding-right: 1em;
+}
+
+#userInfo * {
+    /* Layout */
+    margin-right: 1em;
+}
+
+#toolBar {
+    /* Layout */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    grid-area: toolBar;
+
+    /* Style */
+    background-color: rgb(243, 243, 243);
+}
+
+#toolBar > section {
+    /* Layout */
+    display: inherit;
+    align-items: inherit;
+}
+
+#filters > p {
+    /* Layout */
+    padding-right: 1em;
+}
+
+#filters > select {
+    /* Layout */
+    margin-right: 0.5em;
+    border-radius: 5px;  
+}
+
+#search {
+    /* Layout */
+    padding-right: 1em;
+}
+
+#search > input {
+    /* Layout */
+    border-radius: 5px;
+    width: 20em;
+}
+
+#stories {
+    /* Layout */
+    grid-area: stories;
+    margin: 0%;
+    height: 100%;
+}
+
+#stories > article {
+    /* Layout */
+    margin: 3.5em auto;
+    width: 75%;
+    max-height: 25%;
+    
+    /* Style */
+    border-radius: 10px;
+    border-style: solid;
+    border-color: black;
+    background-color: white;
+}   
+
+#stories > article header {
+    /* Layout */
+    margin: 0em;
+    display: flex;
+    justify-content: space-between;
+}
+
+#stories > article header h1 {
+    /* Layout */
+    margin: 1em 0em 1em 1em;
+}
+
+#stories > article header section {
+    /* Layout */
+    margin: 1em 1em 0em 0em;
+}
+
+aside {
+    /* Layout */
+    grid-area: aside;
+}
+
+aside > section {
+    /* Layout */
+    margin: 3.5em 3.5em 0em 0em;
+    min-height: 20em;
+
+    /* Style */
+    border-radius: 10px;
+    border-style: solid;
+    border-color: black;
+    background-color: white;
+}
