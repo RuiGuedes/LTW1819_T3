@@ -1,9 +1,17 @@
 :root {
     --background-color: rgb(231, 231, 231);
+    --background-input-color: whitesmoke;
 
     --site-name-color: white; 
     --site-name-font: 'Exo', sans-serif;
     --site-name-font-size: 7.5em;
+
+    --input-font: 'Montserrat', sans-serif;
+    --input-font-size: 2.5em;
+
+    --button-background-color: rgb(3, 173, 192);
+
+    --border-color: rgb(58, 58, 58);
 }
 
 body {  
@@ -56,7 +64,8 @@ body > header h1 {
 
 #form > form {
     padding: 2em;
-    border: solid black;
+    
+    border: solid var(--border-color) 1px;
 }
 
 #input {
@@ -67,11 +76,15 @@ body > header h1 {
 }
 
 #input > * {
+    /* Layout */
     margin-bottom: 0.5em;
     padding: 0em 0em;
 
+    /* Style */
+    background-color: var(--background-input-color);
     text-align: center;
-    font-size: 2.5em;
+    font-family: var(--input-font);
+    font-size: var(--input-font-size);
 }
 
 #buttons {
@@ -82,9 +95,24 @@ body > header h1 {
 }
 
 #buttons > * {
+    margin: 0em;
+    border-style: ridge;
     padding: 1em 2em 1em 2em;
+    
+    background-color: var(--background-input-color);
+    font-family: var(--input-font);
+    font-weight: bold;
 }
 
+#buttons > button:hover {
+    background-color: var(--button-background-color);
+    border-color: var(--border-color);
+}
+
+#buttons > input:hover {
+    background-color: var(--button-background-color);
+    border-color: var(--border-color);
+}
 
 
 
