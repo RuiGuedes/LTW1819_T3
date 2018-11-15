@@ -1,0 +1,214 @@
+:root {
+    --background-color: rgb(231, 231, 231);
+    --background-header-color: rgb(3, 173, 192);
+    --background-menu-color: rgb(53, 140, 151);
+    --background-toolBar-color: rgb(245, 243, 243);
+
+    --site-name-color: white; 
+    --site-name-font: 'Exo', sans-serif;
+
+    --menu-color: white;
+    --menu-icons-color: black;
+    --menu-font: 'Montserrat', sans-serif;
+
+    --toolBar-font: 'Montserrat', sans-serif;
+    --toolBar-info-font-size: 1.5em;
+    --toolBar-filter-font-size: 1em;   
+
+    --border-color: rgb(177, 177, 177);
+}
+
+body {
+    /* Layout */
+    margin: 0em;
+    display: grid;
+    height: 100%;
+    overflow: hidden;
+
+    grid-template-columns: auto 5.5fr 2fr;
+    grid-template-rows: 4em 100%;
+
+    grid-template-areas:    "header toolBar toolBar"
+                            "menu stories aside";
+
+    /* Style */
+    background-color: var(--background-color);
+}
+
+#dynamicBar {
+    width: 3.5em;
+    transition: 1.5s;
+}
+
+#dynamicBar:hover {
+    width: 13.5em;
+}
+
+#dynamicBar:hover #header h1{
+    opacity: 1;
+}
+
+#dynamicBar:hover #menu div a{
+    opacity: 1;
+}
+
+#header {
+    /* Layout */
+    grid-area: header;
+    display: flex;
+
+    /* Style */
+    background-color: var(--background-header-color);
+}
+
+#header > img {
+    /* Layout */
+    max-width: 3em;
+    max-height: 3em;
+    padding: 0.5em 0.5em 0.5em 0.55em;
+}
+
+#header > h1 {
+    /* Layout */
+    margin: 0em;
+    padding: 0.5em 0.5em 0em 0em; 
+    height: 1.5em;
+    display: flex;
+
+    /* Style */
+    font-family: var(--site-name-font);
+    color: var(--site-name-color);
+    opacity: 0;
+    transition: 1.5s;
+}
+
+#menu {
+    /* Layout */
+    grid-area: menu;
+    height: 100%;
+
+    /* Style */
+    background-color: var(--background-menu-color);
+}
+
+#menu {
+    /* Layout */
+    margin: 0%;
+    padding: 0.5em 0.5em;
+    flex-direction: column;
+    display: flex;
+
+    /* Style */
+    font-size: 1.5em;
+    color: var(--menu-icons-color);
+}
+
+#menu div {
+    /* Layout */
+    margin-bottom: 0.5em;
+    height: 1.5em;
+    display: flex;
+}
+
+#menu div a{
+    /* Layout */
+    font-family: var(--menu-font);
+    color: var(--menu-color);
+    opacity: 0;
+    transition: 1.5s;
+}
+
+#menu div i{
+    /* Layout */
+    padding-right: 0.5em;
+
+    /* Style */
+    color: var(--menu-icons-color);
+}
+
+#toolBar {
+    /* Layout */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    grid-area: toolBar;
+    
+
+    /* Style */
+    background-color: var(--background-toolBar-color);
+    font-family: var(--toolBar-font);
+}
+
+#toolBar div {
+    /* Layout */
+    display: inherit;
+    align-items: inherit;
+}
+
+#info {
+    /* Layout */
+    display: flex;
+    margin: 0em;
+}
+
+#info > img {
+    /* Layout */
+    margin: 0em 1em;
+    width: 2.5em;
+    height: 2.5em;
+
+    /* Style */
+    border: solid var(--border-color) 1px;
+    border-radius: 50%;
+}
+
+#info > h5 {
+    /* Layout */
+    margin: 0em;
+
+    /* Style */
+    font-size: var(--toolBar-info-font-size);
+    font-family: var(--toolBar-font);
+}
+
+#filters > h5 {
+    /* Layout */
+    padding-right: 0.5em;
+    margin: 0em;
+
+    /* Style */
+    font-size: var(--toolBar-info-font-size);
+    font-family: var(--toolBar-font);
+}
+
+#filters > select {
+    /* Layout */
+    margin: 0.5em;
+    padding: 0.5em 1em;
+    
+
+    /* Style */
+    outline: none;
+    font-size: var(--toolBar-filter-font-size);
+    font-family: var(--toolBar-font);
+    border: none;
+    border: solid var(--border-color) 1px;
+    border-radius: 15px;
+    background-color: transparent;
+}
+
+#filters > select:hover {
+    /* Style */
+    background-color: var(--background-header-color);
+}
+
+#search {
+    /* Layout */
+    padding-right: 1em;
+}
+
+#search > input {
+    /* Layout */
+    border-radius: 5px;
+    width: 20em;
+}

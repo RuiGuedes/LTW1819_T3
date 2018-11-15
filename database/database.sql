@@ -41,5 +41,3 @@ CREATE TABLE Comment(
     comment_content TEXT NOT NULL,
     comment_points INTEGER NOT NULL
 );
-
------ Insert info on database

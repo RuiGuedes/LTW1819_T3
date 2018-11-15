@@ -1,54 +1,6 @@
-<!DOCTYPE <!DOCTYPE html>
-<html>
+<?php function draw_feed() {
+    ?>
 
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title> Site Name </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="../css/feed.css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
-        crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Exo:700|Montserrat|Muli|PT+Sans|Permanent+Marker|Poppins:500"
-        rel="stylesheet">
-    <script src="../js/dynamicMenu.js" async></script>
-</head>
-
-<body>
-    <header id="header">
-        <img src="../resources/images/logo.png" alt="Profile Picture">
-        <h1>Site Name</h1>
-    </header>
-    <nav id="menu">
-        <ul>
-            <li><i class="fa fa-home"></i>Feed</li>
-            <li><i class="fa fa-th-list"></i>Channels</li>
-            <li><i class="fa fa-user-alt"></i>Profile</li>
-            <li><i class="fa fa-sign-out-alt"></i><a href="index.html">Logout</a></li>
-        </ul>
-    </nav>
-    <div id="toolBar">
-        <div id="info">
-            <img src="../resources/images/profile.jpg" alt="Profile Picture">
-            <h5>Username</h5>
-        </div>
-        <div id="filters">
-            <h5>Filter:</h5>
-            <select name="Votes" id="VotesFilterID">
-                <option value="">Votes</option>
-                <option value="MostVoted">Most Voted</option>
-                <option value="LessVoted">Less Voted</option>
-            </select>
-            <select name="Time" id="TimeFilterID">
-                <option value="">Time</option>
-                <option value="MoreRecente">More Recent</option>
-                <option value="LessRecente">Less Recent</option>
-            </select>
-        </div>
-        <div id="search">
-            <input type="search" name="Search" placeholder="Search">
-        </div>
-    </div>
     <div id="masterStories">
         <section id="stories">
             <article>
@@ -261,7 +213,7 @@
             </article>
         </section>
     </div>
-    <aside>
+    <aside> <!-- TODO -->
         <section>
             <h1>Main Stories</h1>
             <ol>
@@ -276,7 +228,5 @@
             <img src="" alt="Advertisement">
         </section>
     </aside>
-    <footer></footer>
-</body>
 
-</html>
+<?php } ?>

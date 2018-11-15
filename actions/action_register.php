@@ -11,7 +11,7 @@
         try {
             insert_user($email, $username, $password);
             $_SESSION['username'] = $username;
-            die(header('Location: ../templates/feed.html'));
+            die(header('Location: ../pages/feed.php'));
           } catch (PDOException $e) {
             header('Location: ../pages/register.php');
           }
