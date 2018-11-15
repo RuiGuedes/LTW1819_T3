@@ -1,0 +1,131 @@
+:root {
+    --background-color: rgb(231, 231, 231);
+    --background-input-color: whitesmoke;
+
+    --site-name-color: white; 
+    --site-name-font: 'Exo', sans-serif;
+    --site-name-font-size: 7.5em;
+
+    --input-font: 'Montserrat', sans-serif;
+    --input-font-size: 2.5em;
+
+    --button-background-color: rgb(3, 173, 192);
+
+    --border-color: rgb(58, 58, 58);
+}
+
+html, body {
+    /* Layout */
+    height: 100%;
+}
+
+body {  
+    /* Layout */
+    margin: 0em;
+    display: grid;
+
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 100%;
+
+    grid-template-areas: "header form";
+
+    /* Style */ 
+    background-color: var(--background-color);
+}
+
+body > header {
+    /* Layout */
+    grid-area: header; 
+    flex-direction: column;
+    justify-content: center;
+    display: flex;
+}
+
+body > header img {
+    /* Layout */
+    margin: 0em auto;
+    width: 35em;
+    height: 35em;
+}
+
+body > header h1 {
+    /* Layout */
+    margin-top: 0em;
+    text-align: center;
+
+    /* Style */
+    font-size: var(--site-name-font-size);
+    font-family: var(--site-name-font);
+}
+
+#form {
+    /* Layout */
+    grid-area: form;
+    flex-direction: column;
+    justify-content: center;
+    display: flex;
+    margin: 0em 10em;
+}
+
+#form > form {
+    /* Layout */
+    padding: 2em;
+
+    /* Style */
+    border: solid var(--border-color) 1px;
+}
+
+#input {
+    /* Layout */
+    flex-direction: column;
+    justify-content: center;
+    display: flex;
+}
+
+#input > * {
+    /* Layout */
+    margin-bottom: 0.5em;
+    padding: 0em;
+
+    /* Style */
+    background-color: var(--background-input-color);
+    text-align: center;
+    font-family: var(--input-font);
+    font-size: var(--input-font-size);
+}
+
+#buttons {
+    /* Layout */
+    display: flex;
+    justify-content: space-between;
+    margin: 0em;
+}
+
+#buttons > * {
+    /* Layout */
+    margin: 0em;
+    border-style: ridge;
+    padding: 1em 2em 1em 2em;
+    
+    /* Style */
+    border: solid var(--border-color) 2px;
+    border-radius: 10px;
+    font-family: var(--input-font);
+    font-weight: bold;
+    background-color: var(--background-input-color);
+}
+
+#buttons > button:hover {
+    /* Style */
+    background-color: var(--button-background-color);
+    border-color: var(--border-color);
+}
+
+#buttons > input:hover {
+    /* Style */
+    background-color: var(--button-background-color);
+    border-color: var(--border-color);
+}
+
+
+
