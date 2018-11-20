@@ -17,7 +17,7 @@
      */
     function insert_user($email, $username, $password) {
       $db = Database::instance()->db();
-      $stmt = $db->prepare('INSERT INTO User VALUES(?, ?, ?)');
-      $stmt->execute(array($username, sha1($password), $email));
+      $stmt = $db->prepare('INSERT INTO User VALUES(?, ?, ?, ?)');
+      $stmt->execute(array($username, sha1($password), $email, ""));
     }
 ?>

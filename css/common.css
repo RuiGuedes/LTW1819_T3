@@ -46,10 +46,12 @@ body {
 
 #dynamicBar:hover #header h1{
     opacity: 1;
+    visibility: visible;
 }
 
 #dynamicBar:hover #menu div a{
     opacity: 1;
+    visibility: visible;
 }
 
 #header {
@@ -80,6 +82,7 @@ body {
     color: var(--site-name-color);
     opacity: 0;
     transition: 1.5s;
+    visibility: hidden;
 }
 
 #menu {
@@ -116,6 +119,7 @@ body {
     color: var(--menu-color);
     opacity: 0;
     transition: 1.5s;
+    visibility: hidden;
 }
 
 #menu div i{

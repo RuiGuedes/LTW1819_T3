@@ -6,7 +6,7 @@
     $username = $_POST['username'];
     $password = $_POST['password'];
     $passwordCheck = $_POST['passwordCheck'];
-    
+
     if($password === $passwordCheck) {
         try {
             insert_user($email, $username, $password);

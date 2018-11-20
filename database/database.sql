@@ -2,6 +2,7 @@ PRAGMA foreign_keys = ON;
 
 DROP TABLE IF EXISTS User;
 DROP TABLE IF EXISTS Channel;
+DROP TABLE IF EXISTS Subscription;
 DROP TABLE IF EXISTS Story;
 DROP TABLE IF EXISTS Comment;
 
@@ -10,34 +11,47 @@ DROP TABLE IF EXISTS Comment;
 CREATE TABLE User(
     username TEXT NOT NULL PRIMARY KEY,
     password TEXT NOT NULL,
-    email TEXT NOT NULL
-    -- channels REFERENCES Channel
-    -- Ainda faltam algumas foreign keys
+    email TEXT NOT NULL,
+    biography TEXT
 );
 
 ----- Channel 
 
 CREATE TABLE Channel(
-    channel_id INTEGER PRIMARY KEY, -- Poderá ser mudado mas integer poderá dar jeito
-    channel_name TEXT NOT NULL,
-    channel_owner TEXT NOT NULL,
-    channel_bar_color TEXT NOT NULL,
-    channel_bg_color TEXT NOT NULL
+    name TEXT NOT NULL PRIMARY KEY,
+    owner TEXT NOT NULL REFERENCES User(username),
+    description TEXT        
+    --channel_bar_color TEXT NOT NULL,
+    --channel_bg_color TEXT NOT NULL
+);
+
+----- Subscription
+
+CREATE TABLE Subscription(
+    username TEXT NOT NULL REFERENCES User(username),
+    channelName TEXT NOT NULL REFERENCES Channel(name),
+    CONSTRAINT Subscription PRIMARY KEY (username, channelName)
 );
 
 ----- Story 
 
 CREATE TABLE Story(
-    story_id INTEGER PRIMARY KEY,
-    story_title TEXT NOT NULL,
-    story_content TEXT NOT NULL,
-    story_points INTEGER NOT NULL
+    storyID INTEGER NOT NULL PRIMARY KEY,
+    title TEXT NOT NULL,
+    storyContent TEXT NOT NULL,
+    storyPoints INTEGER NOT NULL,
+    storyAuthor TEXT NOT NULL REFERENCES User(username),
+    channelName TEXT NOT NULL REFERENCES Channel(name)
 );
 
 ----- Comment 
 
 CREATE TABLE Comment(
-    comment_id INTEGER PRIMARY KEY,
-    comment_content TEXT NOT NULL,
-    comment_points INTEGER NOT NULL
+    commentID INTEGER PRIMARY KEY,
+    commentContent TEXT NOT NULL,
+    commentPoints INTEGER NOT NULL,
+    commentAuthor TEXT NOT NULL REFERENCES User(username),
+    storyID INTEGER REFERENCES Story,
+    parentID INTEGER REFERENCES Comment(commentID)
 );
+
