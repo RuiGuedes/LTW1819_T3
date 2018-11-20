@@ -1,0 +1,90 @@
+:root {
+    --background-color: rgb(231, 231, 231);
+    --background-story-color: whitesmoke;
+
+    --story-title-font: 'Montserrat', sans-serif;
+    --story-header-font: 'Montserrat', sans-serif;
+    --story-text-font: 'Montserrat', sans-serif;
+
+    --border-color: rgb(177, 177, 177);
+}
+
+#content {
+    /* Layout */
+    grid-area: content;
+
+    margin: auto auto;
+    padding: 2rem 2rem;
+}
+
+#story {
+    /* Layout */
+    width: 80%;
+    height: auto;
+
+    margin: 0 auto;
+    padding: 1rem 1rem;
+    
+    /* Style */ 
+    border: solid var(--border-color) 1px;
+    background-color: var(--background-story-color);
+}
+
+header div {
+    /* Layout */
+    display: flex;
+    justify-content: space-between;
+}
+
+header > div > :first-child {
+    /* Style */
+    font-family: var(--story-header-font);
+}
+
+header h3 {
+    /* Layout */
+    margin: 0 auto;
+}
+
+header > div a {
+    margin: 0 .5em;
+}
+
+header > div a:first-child {
+    margin-left: 0em;
+}
+
+header > div i {
+    margin: 0 .2em;
+}
+
+#story h1 {
+    /* Layout */
+    margin: 1rem .2rem;
+
+    /* Style */
+    font-size: 2rem;
+    font-family: var(--story-title-font);
+}
+
+header > img {
+    /* Layout */
+    width: 100%;
+}
+
+#story p {
+    /* Layout */
+    margin-bottom: 0;
+    
+    /* Style */
+    text-align: justify;
+    font-family: var(--story-text-font);
+}
+
+aside {
+    /* Layout */
+    grid-area: aside;
+
+    /* Style */
+    border-left: solid var(--border-color);
+}

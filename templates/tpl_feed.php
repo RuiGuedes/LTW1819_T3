@@ -17,12 +17,13 @@
                         </div>
                     </div>
                     <div>
-                        <img src="../resources/images/thumb.jpg" alt="Storie Image">
+                        <img src="../resources/images/thumb.jpg" alt="Story Image">
                         <h1>Title of the Story. It can be pretty big, as long as it doesn't take more than two lines !</h1>
                     </div>
                 </header>
                 <div id="storySinopse">
-                    <p>Etiam massa magna, condimentum eu facilisis sit amet, dictum ac purus. Curabitur semper nisl vel
+                    <p>
+                        Etiam massa magna, condimentum eu facilisis sit amet, dictum ac purus. Curabitur semper nisl vel
                         libero
                         pulvinar ultricies. Proin dignissim dolor nec scelerisque bibendum. Maecenas a sem euismod,
                         iaculis

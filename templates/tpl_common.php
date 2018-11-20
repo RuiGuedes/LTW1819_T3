@@ -23,7 +23,7 @@
                 </div>
                 <nav id="menu">
                     <div>
-                        <i class="fa fa-home"></i><a>Feed</a>
+                        <i class="fa fa-home"></i><a href="../pages/feed.php">Feed</a>
                     </div>
                     <div>
                         <i class="fa fa-th-list"></i><a>Channels</a>
@@ -50,8 +50,8 @@
                     </select>
                     <select name="Time" id="TimeFilterID">
                         <option value="">Time</option>
-                        <option value="MoreRecente">More Recent</option>
-                        <option value="LessRecente">Less Recent</option>
+                        <option value="MoreRecent">More Recent</option>
+                        <option value="LessRecent">Less Recent</option>
                     </select>
                 </div>
                 <div id="search">
