@@ -7,7 +7,7 @@
     if (!isset($_SESSION['username']))
       die(header('Location: login.php'));
 
-    draw_common($_SESSION['username']);
+    draw_common($_SESSION['username'], ['feed.css']);
     draw_feed();
     draw_footer();
 ?>
