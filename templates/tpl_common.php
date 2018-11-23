@@ -1,4 +1,4 @@
-<?php function draw_common($username, $css_files) { ?>
+<?php function draw_common($username, $css_files, $js_files) { ?>
     <!DOCTYPE <!DOCTYPE html>
     <html>
         <head>
@@ -13,6 +13,10 @@
             <?php foreach($css_files as $css_file) { ?>
                 <link rel="stylesheet" type="text/css" media="screen" href="../css/<?=$css_file?>" />
             <?php } ?>
+
+            <?php foreach($js_files as $js_file) { ?>
+                <script src="../js/<?=$js_file?>" async></script>
+            <?php } ?>
         </head>
 
         <body>
@@ -22,16 +26,25 @@
                     <h1>SiteName</h1>
                 </div>
                 <nav id="menu">
-                    <div>
+                    <div class="mainMenu">
                         <i class="fa fa-home"></i><a href="../pages/feed.php">Feed</a>
                     </div>
-                    <div>
-                        <i class="fa fa-th-list"></i><a>Channels</a>
+                    <div id="channelsMenu">
+                        <div class="mainMenu">
+                            <i class="fa fa-th-list"></i><a>Channels</a>
+                        </div>
+                        <ul>
+                            <li><img src="../resources/images/profile.jpg" alt=""><a href="../pages/channel.php">LTW</a></li>
+                            <li><img src="../resources/images/profile.jpg" alt=""><a href="../pages/channel.php">ESOF</a></li>
+                            <li><img src="../resources/images/profile.jpg" alt=""><a href="../pages/channel.php">PLOG</a></li>
+                            <li><img src="../resources/images/profile.jpg" alt=""><a href="../pages/channel.php">RCOM</a></li>
+                            <li><img src="../resources/images/profile.jpg" alt=""><a href="../pages/channel.php">LAIG</a></li>
+                        </ul>
                     </div>
-                    <div>
+                    <div class="mainMenu">
                         <i class="fa fa-user-alt"></i><a>Profile</a>
                     </div>
-                    <div>
+                    <div class="mainMenu">
                         <i class="fa fa-sign-out-alt"></i><a href="../actions/action_logout.php">Logout</a>
                     </div>
                 </nav>

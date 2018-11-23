@@ -26,7 +26,7 @@ body {
     overflow: hidden;
 
     grid-template-columns: auto 5.5fr 2fr;
-    grid-template-rows: 4em 1fr;
+    grid-template-rows: 4em 100%;
 
     grid-template-areas:    "header toolBar toolBar"
                             "menu   content aside";
@@ -49,9 +49,41 @@ body {
     visibility: visible;
 }
 
-#dynamicBar:hover #menu div a{
+#dynamicBar:hover #menu .mainMenu a{
     opacity: 1;
     visibility: visible;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+
+#channelsMenu:hover {
+    height: 12em;
+}
+
+#channelsMenu:hover img {
+    opacity: 1;
+    visibility: visible;
+}
+
+#channelsMenu:hover li {
+    opacity: 1;
+    visibility: visible;
+}
+
+#channelsMenu:hover ul {
+    overflow-y: scroll; 
 }
 
 #header {
@@ -97,7 +129,6 @@ body {
 #menu {
     /* Layout */
     margin: 0%;
-    padding: 0.5em 0.5em;
     flex-direction: column;
     display: flex;
 
@@ -108,12 +139,12 @@ body {
 
 #menu div {
     /* Layout */
-    margin-bottom: 0.5em;
+    padding: 0.5em 0.5em;
     height: 1.5em;
     display: flex;
 }
 
-#menu div a{
+#menu .mainMenu a{
     /* Layout */
     font-family: var(--menu-font);
     color: var(--menu-color);
@@ -130,13 +161,65 @@ body {
     color: var(--menu-icons-color);
 }
 
+#menu > #channelsMenu {
+    /* Layout */
+    flex-direction: column;
+    display: flex;
+    
+    transition: 1.5s;
+}
+
+#channelsMenu > div {
+    /* Layout */
+    padding: 0em;
+    display: flex;
+}
+
+#channelsMenu ul {
+    /* Layout */
+    margin: 0em;
+    flex-direction: column;
+    height: 15em;
+    display: flex;
+    
+    /* Style */
+    list-style-type: none;
+    overflow: hidden;  
+}
+
+#channelsMenu ul li {
+    /* Layout */
+    margin: 0em;
+    padding: 0.5em 0em;
+    display: flex;
+    
+    /* Style */
+    opacity: 0;  
+    font-family: var(--menu-font);
+    list-style-type: none;
+    visibility: hidden;
+    transition: 1.5s;
+}
+
+#channelsMenu img {
+    /* Layout */
+    width: 1em;
+    height: 1em;
+    margin-right: 0.5em; 
+
+    /* Style */
+    border-radius: 50%;
+    opacity: 0;
+    visibility: hidden;
+    transition: 1.5s;
+}
+
 #toolBar {
     /* Layout */
     display: flex;
     align-items: center;
     justify-content: space-between;
     grid-area: toolBar;
-    
 
     /* Style */
     background-color: var(--background-toolBar-color);
@@ -204,6 +287,7 @@ body {
 #filters > select:hover {
     /* Style */
     background-color: var(--background-header-color);
+    cursor: pointer;
 }
 
 #search {

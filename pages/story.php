@@ -7,7 +7,7 @@
     if (!isset($_SESSION['username']))
       die(header('Location: login.php'));
 
-    draw_common($_SESSION['username'], ['story.css']);
+    draw_common($_SESSION['username'], ['story.css'], []);
     draw_story();
     draw_footer();
 ?>

@@ -6,6 +6,15 @@
     --story-header-font: 'Montserrat', sans-serif;
     --story-text-font: 'Montserrat', sans-serif;
 
+    --aside-img-font-size: 15em;
+    --aside-channel-font: 'Exo', sans-serif;
+    --aside-channel-font-size: 2em;
+    --aside-text-font: 'Montserrat', sans-serif;
+    --aside-button-font-size: 1em;
+    --aside-button-background-color: rgb(245, 243, 243);
+    --aside-button-background-color-hover: rgb(3, 173, 192);
+    
+
     --border-color: rgb(177, 177, 177);
 }
 
@@ -138,17 +147,83 @@
 aside {
     /* Layout */
     grid-area: aside;
-    padding: 0em 0em 0em 4em;
-
-    border-left: solid var(--border-color);
-}
-
-aside > section {
-    /* Layout */
-    margin: 3.5em 3.5em 0em 0em;
-    min-height: 20em;
+    flex-direction: column;
+    display: flex;
 
     /* Style */
-    border: solid var(--border-color) 1px;
-    background-color: var(--background-story-color);
+    border-left: solid var(--border-color);
+    font-family: var(--aside-text-font);
 }
+
+#channelImg {
+    /* Layout */
+    margin: 3em auto 0em auto;
+    width: var(--aside-img-font-size);
+    height: var(--aside-img-font-size);
+
+    /* Style */
+    border-radius: 50%;
+}
+
+#channelName {
+     /* Layout */
+     margin: 1em auto;
+ 
+     /* Style */
+    text-align: center;
+    font-size: var(--aside-channel-font-size);
+    font-family: var(--aside-channel-font);
+}
+
+#addPost {
+    /* Layout */
+    margin: 0em auto;
+    width: 6em;
+    height: 2em;
+
+    /* Style */
+    outline: none;
+    border: solid var(--border-color) 1px;
+    border-radius: 15px;
+    background-color: var(--aside-button-background-color);
+    text-align: center;
+    font-style: italic;
+    font-size: var(--aside-button-font-size);
+    font-family: var(--aside-text-font);
+}
+
+#addPost:hover {
+    /* Style */
+    background-color: var(--aside-button-background-color-hover);
+    cursor: pointer;
+}
+
+#biography > textarea {
+    /* Layout */
+    margin: 2.5em 2em;
+    padding: 1em;
+    height: 10em;
+    width: auto;
+
+    /* Style */
+    outline: none;
+    resize: none;
+    text-align: start;
+    text-indent: 1.5em;
+    font-family: var(--aside-text-font);
+    border: solid var(--border-color) 2px;
+    border-radius: 15px;
+    background-color: var(--aside-button-background-color);
+}
+
+.statistics {
+    margin: 1em auto 0em auto;   
+    display: flex;
+
+    font-size: 1.5em; 
+}
+
+.statistics > p {
+    margin: 0em;
+    padding: 0em 1em;
+} 
