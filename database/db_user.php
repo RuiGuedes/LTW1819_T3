@@ -17,7 +17,26 @@
      */
     function insert_user($email, $username, $password) {
       $db = Database::instance()->db();
-      $stmt = $db->prepare('INSERT INTO User VALUES(?, ?, ?, ?)');
-      $stmt->execute(array($username, sha1($password), $email, ""));
+      $stmt = $db->prepare('INSERT INTO User VALUES(?, ?, ?, ?, ?)');
+      $stmt->execute(array($username, sha1($password), $email, "", "profile.jpg"));
+    }
+
+    /**
+     * Adds a new channel to the user subscriptions
+     */
+    function add_new_subscription($username, $channelName) {
+      $db = Database::instance()->db();
+      $stmt = $db->prepare('INSERT INTO Subscription VALUES(?, ?)');
+      $stmt->execute(array($username, $channelName));
+    }
+
+    /**
+     * Get's all user subscriptions
+     */
+    function get_user_subscriptions($username) {
+      $db = Database::instance()->db();
+      $stmt = $db->prepare('SELECT * FROM Subscription JOIN Channel ON Subscription.channelName = Channel.name WHERE username = ?');
+      $stmt->execute(array($username));
+      return $stmt->fetchAll();  
     }
 ?>

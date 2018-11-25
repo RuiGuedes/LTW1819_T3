@@ -54,20 +54,6 @@ body {
     visibility: visible;
 }
 
-::-webkit-scrollbar {
-    width: 12px;
-}
- 
-::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
-    border-radius: 10px;
-}
- 
-::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
-}
-
 #channelsMenu:hover {
     height: 12em;
 }
@@ -249,7 +235,7 @@ body {
     border-radius: 50%;
 }
 
-#info > h5 {
+#info > a h5 {
     /* Layout */
     margin: 0em;
 
@@ -258,7 +244,7 @@ body {
     font-family: var(--toolBar-font);
 }
 
-#filters > h5 {
+#filters > a h5 {
     /* Layout */
     padding-right: 0.5em;
     margin: 0em;
@@ -299,4 +285,8 @@ body {
     /* Layout */
     border-radius: 5px;
     width: 20em;
+}
+
+a {
+    text-decoration: none;
 }

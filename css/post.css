@@ -1,0 +1,162 @@
+:root {
+    --background-color: rgb(231, 231, 231);
+    --background-form-color: rgb(223, 223, 223);
+    --background-input-color: whitesmoke;
+    --background-button-color: rgb(3, 173, 192);
+
+    --story-title-font: 'Montserrat', sans-serif;
+    --story-header-font: 'Montserrat', sans-serif;
+    --story-text-font: 'Montserrat', sans-serif;
+
+    --aside-img-font-size: 15em;
+    --aside-channel-font: 'Exo', sans-serif;
+    --aside-channel-font-size: 2em;
+    --aside-text-font: 'Montserrat', sans-serif;
+    --aside-button-font-size: 1em;
+    --aside-button-background-color: rgb(245, 243, 243);
+    --aside-button-background-color-hover: rgb(3, 173, 192);
+
+    --input-font: 'Montserrat', sans-serif;
+    --input-font-size: 2em;
+
+    --button-background-color: rgb(3, 173, 192);
+    
+    --border-color: rgb(177, 177, 177);
+}
+
+#form {
+    margin: 0em;
+    justify-content: center;
+    display: flex;
+    grid-area: content;
+}
+
+#form > form {
+    /* Layout */
+    margin: 5em;
+    padding: 3em;
+    height: 30em;
+    width: 50em;
+
+    /* Style */
+    border-radius: 0.75em;
+    border: solid var(--border-color) 1px;
+    background-color: var(--background-form-color);
+}
+
+#input {
+    /* Layout */
+    flex-direction: column; 
+    justify-content: center;
+    display: flex;
+}
+
+#input > * {
+    /* Layout */
+    margin-bottom: 0.5em;
+    padding: 0em 0.5em;
+
+    /* Style */    
+    text-align: start;
+    font-style: italic;
+    font-family: var(--input-font);
+    font-size: var(--input-font-size);
+    background-color: var(--background-input-color);
+}
+
+#storyImg {
+    /* Layout */
+    padding-left: 0em;
+}
+
+#storyContent {
+    /* Layout */
+    height: 10em;
+    padding: 0.5em;
+}
+
+#button {
+    /* Layout */
+    margin: 0em;
+    justify-content: center;
+    display: flex;
+}
+
+#button > * {
+    /* Layout */
+    padding: 1em;
+
+    /* Style */
+    border: solid var(--border-color) 2px;
+    border-radius: 10px;
+    font-family: var(--input-font);
+    font-weight: bold;
+}
+
+#button > button:hover {
+    /* Style */
+    background-color: var(--background-button-color);
+    border-color: var(--border-color);
+}
+
+aside {
+    /* Layout */
+    grid-area: aside;
+    flex-direction: column;
+    display: flex;
+
+    /* Style */
+    border-left: solid var(--border-color);
+    font-family: var(--aside-text-font);
+}
+
+#channelImg {
+    /* Layout */
+    margin: 3em auto 0em auto;
+    width: var(--aside-img-font-size);
+    height: var(--aside-img-font-size);
+
+    /* Style */
+    border-radius: 50%;
+}
+
+#channelName {
+     /* Layout */
+     margin: 1em auto;
+ 
+     /* Style */
+    text-align: center;
+    font-size: var(--aside-channel-font-size);
+    font-family: var(--aside-channel-font);
+}
+
+#biography > p {
+    /* Layout */
+    margin: 2em;
+    padding: 1em;
+    height: 10em;
+    max-height: 10em;
+    width: auto;
+
+    /* Style */
+    outline: none;
+    resize: none;
+    text-align: start;
+    text-indent: 1.5em;
+    font-family: var(--aside-text-font);
+    border: solid var(--border-color) 2px;
+    border-radius: 15px;
+    background-color: var(--aside-button-background-color);
+}
+
+.statistics {
+    margin: 1em auto 0em auto;   
+    display: flex;
+
+    font-size: 1.5em; 
+}
+
+.statistics > p {
+    margin: 0em;
+    padding: 0em 1em;
+} 

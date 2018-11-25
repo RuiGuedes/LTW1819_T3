@@ -17,6 +17,7 @@
 html, body {
     /* Layout */
     height: 100%;
+    max-height: 100%;
 }
 
 body {  
@@ -43,7 +44,7 @@ body > header {
 
 body > header img {
     /* Layout */
-    margin: 0em auto;
+    margin: 0.5em auto;
     width: 35em;
     height: 35em;
 }

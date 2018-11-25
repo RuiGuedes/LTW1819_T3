@@ -1,4 +1,6 @@
-<?php function draw_channel_feed() {
+<?php function draw_profile($username) {
+    include_once('../database/db_user.php');
+
     ?>
 
     <div id="masterStories">
@@ -216,17 +218,26 @@
     </div>
 
     <aside> 
-        <img id="channelImg" src="../resources/images/profile.jpg" alt="Channel Image">
-        <h3 id="channelName">Channel Name</h3>
-        <input id="addPost" type="button" value="Add post" onclick="window.location.href='../pages/post.php'">
+        <img id="profileImg" src="../resources/images/profile.jpg" alt="Channel Image">
+        <h3 id="username"><?php echo $username ?></h3>
+        <form>
+            <input type="text" name="channelName" placeholder="Channel Name" required="true" maxlength="18">
+            <button id="newChannel" type="submit" formaction="../actions/action_add_new_channel.php" formmethod="POST">Create</button>
+        </form>
         <div id="biography">
             <textarea id="biographyContent" maxlength="240" cols="55" rows="1" placeholder="Short Description"></textarea>
         </div>        
-        <div class="statistics">
-            <i class="far fa-newspaper"></i><p>Y Stories</p>    
-        </div>
-        <div class="statistics">
-            <i class="fas fa-users"></i><p>X Followers</p>
+        <div class="myChannels">
+            <p>My Channels</p> <!-- If dont own channels display message like <You dont own any channel> -->
+            <ul>
+                <?php 
+                    $myChannels = get_user_subscriptions($username);
+
+                    foreach($myChannels as $channel) {
+                        ?> <li><a href="../pages/channel.php"><img src="../resources/images/<?php echo $channel['channelPic'] ?>" alt=""></a></li> <?php
+                    }
+                ?>            
+            </ul>
         </div>
     </aside>
 

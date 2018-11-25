@@ -34,15 +34,15 @@
                             <i class="fa fa-th-list"></i><a>Channels</a>
                         </div>
                         <ul>
-                            <li><img src="../resources/images/profile.jpg" alt=""><a href="../pages/channel.php">LTW</a></li>
-                            <li><img src="../resources/images/profile.jpg" alt=""><a href="../pages/channel.php">ESOF</a></li>
-                            <li><img src="../resources/images/profile.jpg" alt=""><a href="../pages/channel.php">PLOG</a></li>
-                            <li><img src="../resources/images/profile.jpg" alt=""><a href="../pages/channel.php">RCOM</a></li>
-                            <li><img src="../resources/images/profile.jpg" alt=""><a href="../pages/channel.php">LAIG</a></li>
+                            <li><img src="../resources/images/profile.jpg" alt=""><a href="../pages/story.php">LTW</a></li>
+                            <li><img src="../resources/images/profile.jpg" alt=""><a href="../pages/story.php">ESOF</a></li>
+                            <li><img src="../resources/images/profile.jpg" alt=""><a href="../pages/story.php">PLOG</a></li>
+                            <li><img src="../resources/images/profile.jpg" alt=""><a href="../pages/story.php">RCOM</a></li>
+                            <li><img src="../resources/images/profile.jpg" alt=""><a href="../pages/story.php">LAIG</a></li>
                         </ul>
                     </div>
                     <div class="mainMenu">
-                        <i class="fa fa-user-alt"></i><a>Profile</a>
+                        <i class="fa fa-user-alt"></i><a href="../pages/profile.php">Profile</a>
                     </div>
                     <div class="mainMenu">
                         <i class="fa fa-sign-out-alt"></i><a href="../actions/action_logout.php">Logout</a>
@@ -52,7 +52,7 @@
             <div id="toolBar">
                 <div id="info">
                     <img src="../resources/images/profile.jpg" alt="Profile Picture">
-                    <h5><?php echo $username ?></h5>
+                    <a href="../pages/profile.php"><h5><?php echo $username ?></h5></a>
                 </div>
                 <div id="filters">
                     <h5>Filter:</h5>

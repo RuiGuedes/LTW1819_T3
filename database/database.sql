@@ -12,7 +12,8 @@ CREATE TABLE User(
     username TEXT NOT NULL PRIMARY KEY,
     password TEXT NOT NULL,
     email TEXT NOT NULL,
-    biography TEXT
+    biography TEXT,
+    userPic TEXT
 );
 
 ----- Channel 
@@ -20,7 +21,8 @@ CREATE TABLE User(
 CREATE TABLE Channel(
     name TEXT NOT NULL PRIMARY KEY,
     owner TEXT NOT NULL REFERENCES User(username),
-    description TEXT        
+    description TEXT,
+    channelPic TEXT        
     --channel_bar_color TEXT NOT NULL,
     --channel_bg_color TEXT NOT NULL
 );
@@ -41,7 +43,8 @@ CREATE TABLE Story(
     storyContent TEXT NOT NULL,
     storyPoints INTEGER NOT NULL,
     storyAuthor TEXT NOT NULL REFERENCES User(username),
-    channelName TEXT NOT NULL REFERENCES Channel(name)
+    channelName TEXT NOT NULL REFERENCES Channel(name),
+    storyPic TEXT        
 );
 
 ----- Comment 
