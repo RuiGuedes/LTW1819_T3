@@ -11,6 +11,7 @@
     --aside-username-font-size: 2em;
     --aside-text-font: 'Montserrat', sans-serif;
     --aside-button-font-size: 1em;
+
     --aside-button-background-color: rgb(245, 243, 243);
     --aside-button-background-color-hover: rgb(3, 173, 192);
 
@@ -288,7 +289,7 @@ aside > form input {
     color: var(--success-fg-color);
 }
 
-#biography > textarea {
+#description textarea {
     /* Layout */
     margin: 2.5em 2em;
     padding: 1em;
@@ -306,6 +307,24 @@ aside > form input {
     background-color: var(--aside-button-background-color);
 }
 
+#editDescription, #applyDescription{
+    /* Layout */
+    vertical-align: middle;
+    height: 2em;
+    width:  2em;
+    margin: auto .5em;
+
+    /* Style */
+    border: solid var(--border-color) 1px;
+    border-radius: 50%;
+    background-color: var(--background-color);
+}
+
+#editDescription:hover, #applyDescription:hover {
+    /* Style */
+    color: var(--aside-button-background-color-hover);
+}
+
 .myChannels {
     /* Layout */
     margin: 1em auto 0em auto;   
@@ -317,14 +336,14 @@ aside > form input {
     font-size: 1.5em; 
 }
 
-.myChannels > p {
+.myChannels > p, #description > p {
     /* Layout */
     margin: 0em;
-    padding: 0em 1em 0.5em 1em;
+    padding: 0.5em 1em;
     
     /* Style */
     text-align: center;
-    font-size: 1.5em;
+    font-size: 2.2rem;
     font-family: var(--aside-username-font);
 } 
 

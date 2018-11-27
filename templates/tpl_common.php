@@ -60,10 +60,10 @@
                 
                     <form method="post" action="<?= $_SERVER['PHP_SELF']?>">
                         <select name="filter" id="filterID"> 
-                            <option <?php echo $filter == 0 ? 'selected ' : '' ?>value="0">Most Voted</option>
-                            <option <?php echo $filter == 1 ? 'selected ' : '' ?>value="1">Less Voted</option>
-                            <option <?php echo $filter == 2 ? 'selected ' : '' ?>value="2">More Recent</option>
-                            <option <?php echo $filter == 3 ? 'selected ' : '' ?>value="3">Less Recent</option>
+                            <option <? echo $filter == 0 ? 'selected ' : '' ?>value="0">Most Voted</option>
+                            <option <? echo $filter == 1 ? 'selected ' : '' ?>value="1">Less Voted</option>
+                            <option <? echo $filter == 2 ? 'selected ' : '' ?>value="2">More Recent</option>
+                            <option <? echo $filter == 3 ? 'selected ' : '' ?>value="3">Less Recent</option>
                         </select>
                     </form>
                 </div>

@@ -57,8 +57,8 @@
             <input type="text" name="channelName" placeholder="Channel Name" required="true" maxlength="18">
             <button id="newChannel" type="submit" formaction="../actions/action_add_new_channel.php" formmethod="POST">Create</button>
         </form>
-        <div id="biography">
-            <textarea id="biographyContent" maxlength="240" cols="55" rows="1" placeholder="Short Description"></textarea>
+        <div id="description">
+            <p>Biography<button id="editDescription" type="button"><i class="fas fa-pen"></i></button></p>
         </div>        
         <div class="myChannels">
             <p>My Channels</p>

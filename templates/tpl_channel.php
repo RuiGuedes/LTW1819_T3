@@ -219,7 +219,7 @@
         <img id="channelImg" src="../resources/images/profile.jpg" alt="Channel Image">
         <h3 id="channelName">Channel Name</h3>
         <input id="addPost" type="button" value="Add post" onclick="window.location.href='../pages/post.php'">
-        <div id="biography">
+        <div id="description">
             <textarea id="biographyContent" maxlength="240" cols="55" rows="1" placeholder="Short Description"></textarea>
         </div>        
         <div class="statistics">
