@@ -1,4 +1,4 @@
-<?php function draw_common($username, $css_files, $js_files) { ?>
+<?php function draw_common($username, $css_files, $js_files, $filter = 2) { ?>
     <!DOCTYPE <!DOCTYPE html>
     <html>
         <head>
@@ -14,6 +14,7 @@
                 <link rel="stylesheet" type="text/css" media="screen" href="../css/<?=$css_file?>" />
             <?php } ?>
 
+            <script src="../js/common.js" defer></script>
             <?php foreach($js_files as $js_file) { ?>
                 <script src="../js/<?=$js_file?>" defer></script>
             <?php } ?>
@@ -57,12 +58,12 @@
                 <div id="filters">
                     <h5>Filter:</h5>
                 
-                    <form method="post" action="profile.php">
+                    <form method="post" action="<?= $_SERVER['PHP_SELF']?>">
                         <select name="filter" id="filterID"> 
-                            <option value="0">Most Voted</option>
-                            <option value="1">Less Voted</option>
-                            <option value="2">More Recent</option>
-                            <option value="3">Less Recent</option>
+                            <option <?php echo $filter == 0 ? 'selected ' : '' ?>value="0">Most Voted</option>
+                            <option <?php echo $filter == 1 ? 'selected ' : '' ?>value="1">Less Voted</option>
+                            <option <?php echo $filter == 2 ? 'selected ' : '' ?>value="2">More Recent</option>
+                            <option <?php echo $filter == 3 ? 'selected ' : '' ?>value="3">Less Recent</option>
                         </select>
                     </form>
                 </div>
