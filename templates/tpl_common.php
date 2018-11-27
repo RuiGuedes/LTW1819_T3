@@ -15,7 +15,7 @@
             <?php } ?>
 
             <?php foreach($js_files as $js_file) { ?>
-                <script src="../js/<?=$js_file?>" async></script>
+                <script src="../js/<?=$js_file?>" defer></script>
             <?php } ?>
         </head>
 
@@ -56,16 +56,15 @@
                 </div>
                 <div id="filters">
                     <h5>Filter:</h5>
-                    <select name="Votes" id="VotesFilterID">
-                        <option value="">Votes</option>
-                        <option value="MostVoted">Most Voted</option>
-                        <option value="LessVoted">Less Voted</option>
-                    </select>
-                    <select name="Time" id="TimeFilterID">
-                        <option value="">Time</option>
-                        <option value="MoreRecent">More Recent</option>
-                        <option value="LessRecent">Less Recent</option>
-                    </select>
+                
+                    <form method="post" action="profile.php">
+                        <select name="filter" id="filterID"> 
+                            <option value="0">Most Voted</option>
+                            <option value="1">Less Voted</option>
+                            <option value="2">More Recent</option>
+                            <option value="3">Less Recent</option>
+                        </select>
+                    </form>
                 </div>
                 <div id="search">
                     <input type="search" name="Search" placeholder="Search">

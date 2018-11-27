@@ -17,8 +17,8 @@
      */
     function insert_user($email, $username, $password) {
       $db = Database::instance()->db();
-      $stmt = $db->prepare('INSERT INTO User VALUES(?, ?, ?, ?, ?)');
-      $stmt->execute(array($username, sha1($password), $email, "", "profile.jpg"));
+      $stmt = $db->prepare('INSERT INTO User VALUES(?, ?, ?, ?)');
+      $stmt->execute(array($username, sha1($password), $email, ""));
     }
 
     /**
@@ -38,5 +38,35 @@
       $stmt = $db->prepare('SELECT * FROM Subscription JOIN Channel ON Subscription.channelName = Channel.name WHERE username = ?');
       $stmt->execute(array($username));
       return $stmt->fetchAll();  
+    }
+
+    /**
+     * Get's user stories order by parameters set on filter
+     */
+    function get_user_stories($username, $filter) {
+      $db = Database::instance()->db();
+      $stmt = $db->prepare('SELECT * FROM Story WHERE storyAuthor = ? ORDER BY ' . orderBy($filter));
+      $stmt->execute(array($username));
+      return $stmt->fetchAll(); 
+    }
+
+    /**
+     * Convert filter elements to their respective value
+     */
+    function orderBy($value) {
+      switch($value) {
+        case 0:
+          return 'storyPoints DESC';
+        break;
+        case 1:
+          return 'storyPoints ASC';
+        break;
+        case 3:
+          return 'storyID ASC';
+        break;
+        default:        
+          return 'storyID DESC';
+        break;
+      }
     }
 ?>

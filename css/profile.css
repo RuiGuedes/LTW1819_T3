@@ -14,6 +14,9 @@
     --aside-button-background-color: rgb(245, 243, 243);
     --aside-button-background-color-hover: rgb(3, 173, 192);
 
+    --success-fg-color: rgb(86, 155, 13);
+    --error-fg-color: rgb(218, 2, 13);
+
     --border-color: rgb(177, 177, 177);
 }
 
@@ -141,8 +144,6 @@
     background: var(--background-story-color);
 }
 
-/* Aside not done */
-
 aside {
     /* Layout */
     grid-area: aside;
@@ -154,6 +155,14 @@ aside {
     font-family: var(--aside-text-font);
 }
 
+#profilePicture {
+    margin: 0em auto;
+    position: relative;
+
+    border-radius: 50%;
+    text-align: center;
+}
+
 #profileImg {
     /* Layout */
     margin: 3em auto 0em auto;
@@ -162,11 +171,50 @@ aside {
 
     /* Style */
     border-radius: 50%;
+    object-fit: cover;
+    transition: 1s;
+}
+
+#profilePicture > div {
+    /* Layout */
+    margin: 0em auto;
+    position: absolute;
+    top: 50%;
+    left: 35%;
+
+    /* Style */
+    opacity: 0;
+    transition: 1s;
+}
+
+#profilePicture > div > i { 
+    /* Style */
+    font-size: 2em;
+}
+
+#profilePicture > div > p {
+    /* Layout */
+    margin: 0.5em;
+
+    /* Style */
+    font-weight: bold;
+}
+
+#profilePicture:hover #profileImg {
+    /* Style */
+    opacity: 0.25;
+    cursor: pointer;
+}
+
+#profilePicture:hover div {
+    /* Style */
+    opacity: 1;
+    cursor: pointer;
 }
 
 #username {
      /* Layout */
-     margin: 1em auto;
+     margin: 1em auto 0.5em auto;
  
      /* Style */
     text-align: center;
@@ -218,6 +266,26 @@ aside > form input {
     /* Style */
     background-color: var(--aside-button-background-color-hover);
     cursor: pointer;
+}
+
+#messages div {
+    /* Layout */
+    margin: 0em auto 1em auto;
+    padding: 0.5em 2em;
+
+    /* Style */
+    text-align: center;
+    font-style: italic;
+}
+  
+#messages .error {
+     /* Style */
+    color: var(--error-fg-color);
+}
+  
+#messages .success {
+    /* Style */
+    color: var(--success-fg-color);
 }
 
 #biography > textarea {
@@ -282,5 +350,16 @@ aside > form input {
     height: 1.5em;
 
     /* Style */
-    border-radius: 0.75em;
+    border-radius: 50%;
+    object-fit: cover;
 } 
+
+#noChannels {
+    /* Layout */
+    margin: 0em;
+
+    /* Style */
+    opacity: 0.5;
+    font-style: italic;
+    font-family: var(--story-text-font);
+}

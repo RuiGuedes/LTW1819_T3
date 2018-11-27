@@ -16,8 +16,8 @@
      */
     function add_new_channel($channelName, $owner) {
         $db = Database::instance()->db();
-        $stmt = $db->prepare('INSERT INTO Channel VALUES(?, ?, ?, ?)');
-        $stmt->execute(array($channelName, $owner, "", "NoImage.png"));
+        $stmt = $db->prepare('INSERT INTO Channel VALUES(?, ?, ?)');
+        $stmt->execute(array($channelName, $owner, ""));
     }
 
 ?>

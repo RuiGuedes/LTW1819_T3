@@ -12,8 +12,7 @@ CREATE TABLE User(
     username TEXT NOT NULL PRIMARY KEY,
     password TEXT NOT NULL,
     email TEXT NOT NULL,
-    biography TEXT,
-    userPic TEXT
+    biography TEXT
 );
 
 ----- Channel 
@@ -21,10 +20,7 @@ CREATE TABLE User(
 CREATE TABLE Channel(
     name TEXT NOT NULL PRIMARY KEY,
     owner TEXT NOT NULL REFERENCES User(username),
-    description TEXT,
-    channelPic TEXT        
-    --channel_bar_color TEXT NOT NULL,
-    --channel_bg_color TEXT NOT NULL
+    description TEXT      
 );
 
 ----- Subscription
@@ -39,12 +35,13 @@ CREATE TABLE Subscription(
 
 CREATE TABLE Story(
     storyID INTEGER NOT NULL PRIMARY KEY,
-    title TEXT NOT NULL,
+    storyTitle TEXT NOT NULL,
     storyContent TEXT NOT NULL,
     storyPoints INTEGER NOT NULL,
     storyAuthor TEXT NOT NULL REFERENCES User(username),
-    channelName TEXT NOT NULL REFERENCES Channel(name),
-    storyPic TEXT        
+    storyComments INTEGER NOT NULL,
+    storyTime DATETIME NOT NULL,
+    channelName TEXT NOT NULL REFERENCES Channel(name)       
 );
 
 ----- Comment 

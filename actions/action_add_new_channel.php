@@ -10,8 +10,8 @@
         add_new_channel($channelName, $username);
         add_new_subscription($username, $channelName);
     }
-    else
-        echo "<script type='text/javascript'>alert('channel already exists!')</script>";
-
+    else 
+        $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Channel already exists !');
+    
     header('Location: ../pages/profile.php');
 ?>

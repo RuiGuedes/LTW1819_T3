@@ -254,7 +254,11 @@ body {
     font-family: var(--toolBar-font);
 }
 
-#filters > select {
+#filters > form {
+    margin: 0em;
+}
+
+#filters > form > select {
     /* Layout */
     margin: 0.5em;
     padding: 0.5em 1em;
@@ -270,7 +274,7 @@ body {
     background-color: transparent;
 }
 
-#filters > select:hover {
+#filters > form > select:hover {
     /* Style */
     background-color: var(--background-header-color);
     cursor: pointer;
