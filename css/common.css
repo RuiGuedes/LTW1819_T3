@@ -37,7 +37,7 @@ body {
 
 #dynamicBar {
     width: 3.5em;
-    transition: 1.5s;
+    transition: 1s;
 }
 
 #dynamicBar:hover {
@@ -52,24 +52,6 @@ body {
 #dynamicBar:hover #menu .mainMenu a{
     opacity: 1;
     visibility: visible;
-}
-
-#channelsMenu:hover {
-    height: 12em;
-}
-
-#channelsMenu:hover img {
-    opacity: 1;
-    visibility: visible;
-}
-
-#channelsMenu:hover li {
-    opacity: 1;
-    visibility: visible;
-}
-
-#channelsMenu:hover ul {
-    overflow-y: scroll; 
 }
 
 #header {
@@ -99,7 +81,7 @@ body {
     font-family: var(--site-name-font);
     color: var(--site-name-color);
     opacity: 0;
-    transition: 1.5s;
+    transition: 0.75s;
     visibility: hidden;
 }
 
@@ -132,72 +114,24 @@ body {
 
 #menu .mainMenu a{
     /* Layout */
+    padding-top: 0.25em;
     font-family: var(--menu-font);
     color: var(--menu-color);
     opacity: 0;
-    transition: 1.5s;
+    transition: 0.75s;
     visibility: hidden;
 }
 
 #menu div i{
     /* Layout */
-    padding-right: 0.5em;
+    padding: 0.25em 0.5em 0em 0em;
 
     /* Style */
     color: var(--menu-icons-color);
 }
 
-#menu > #channelsMenu {
-    /* Layout */
-    flex-direction: column;
-    display: flex;
-    
-    transition: 1.5s;
-}
-
-#channelsMenu > div {
-    /* Layout */
-    padding: 0em;
-    display: flex;
-}
-
-#channelsMenu ul {
-    /* Layout */
-    margin: 0em;
-    flex-direction: column;
-    height: 15em;
-    display: flex;
-    
-    /* Style */
-    list-style-type: none;
-    overflow: hidden;  
-}
-
-#channelsMenu ul li {
-    /* Layout */
-    margin: 0em;
-    padding: 0.5em 0em;
-    display: flex;
-    
-    /* Style */
-    opacity: 0;  
-    font-family: var(--menu-font);
-    list-style-type: none;
-    visibility: hidden;
-    transition: 1.5s;
-}
-
-#channelsMenu img {
-    /* Layout */
-    width: 1em;
-    height: 1em;
-    margin-right: 0.5em; 
-
-    /* Style */
-    border-radius: 50%;
-    opacity: 0;
-    visibility: hidden;
-    transition: 1.5s;
+.mainMenu:hover {
+    border-left: solid var(--background-toolBar-color) 5px;
 }
 
 #toolBar {
@@ -242,6 +176,7 @@ body {
     /* Style */
     font-size: var(--toolBar-info-font-size);
     font-family: var(--toolBar-font);
+    color: black;
 }
 
 #filters > a h5 {

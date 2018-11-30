@@ -30,17 +30,8 @@
                     <div class="mainMenu">
                         <i class="fa fa-home"></i><a href="../pages/feed.php">Feed</a>
                     </div>
-                    <div id="channelsMenu">
-                        <div class="mainMenu">
-                            <i class="fa fa-th-list"></i><a>Channels</a>
-                        </div>
-                        <ul>
-                            <li><img src="../resources/images/profile.jpg" alt=""><a href="../pages/story.php">LTW</a></li>
-                            <li><img src="../resources/images/profile.jpg" alt=""><a href="../pages/story.php">ESOF</a></li>
-                            <li><img src="../resources/images/profile.jpg" alt=""><a href="../pages/story.php">PLOG</a></li>
-                            <li><img src="../resources/images/profile.jpg" alt=""><a href="../pages/story.php">RCOM</a></li>
-                            <li><img src="../resources/images/profile.jpg" alt=""><a href="../pages/story.php">LAIG</a></li>
-                        </ul>
+                    <div class="mainMenu">
+                        <i class="fa fa-th-list"></i><a href="../pages/feed.php">Channels</a> <!-- Change to a specific channels page -->
                     </div>
                     <div class="mainMenu">
                         <i class="fa fa-user-alt"></i><a href="../pages/profile.php">Profile</a>

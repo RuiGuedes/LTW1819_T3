@@ -39,19 +39,22 @@ body > header {
     grid-area: header; 
     flex-direction: column;
     justify-content: center;
+
     display: flex;
 }
 
 body > header img {
     /* Layout */
-    margin: 0.5em auto;
-    width: 35em;
-    height: 35em;
+    margin: 0em auto;
+    /* padding-bottom: 10em; */
+    margin-bottom: 2.5em;
+    width: 30em;
+    height: 30em;
 }
 
 body > header h1 {
     /* Layout */
-    margin-top: 0em;
+    margin: 0em auto;
     text-align: center;
 
     /* Style */
@@ -65,15 +68,7 @@ body > header h1 {
     flex-direction: column;
     justify-content: center;
     display: flex;
-    margin: 0em 10em;
-}
-
-#form > form {
-    /* Layout */
-    padding: 2em;
-
-    /* Style */
-    border: solid var(--border-color) 1px;
+    margin: 0em 7.5em;
 }
 
 #input {
@@ -89,6 +84,8 @@ body > header h1 {
     padding: 0em;
 
     /* Style */
+    outline: none;
+    border-radius: 20px;
     background-color: var(--background-input-color);
     text-align: center;
     font-family: var(--input-font);
@@ -109,6 +106,7 @@ body > header h1 {
     padding: 1em 2em 1em 2em;
     
     /* Style */
+    outline: none;
     border: solid var(--border-color) 2px;
     border-radius: 10px;
     font-family: var(--input-font);
@@ -120,12 +118,14 @@ body > header h1 {
     /* Style */
     background-color: var(--button-background-color);
     border-color: var(--border-color);
+    cursor: pointer;
 }
 
 #buttons > input:hover {
     /* Style */
     background-color: var(--button-background-color);
     border-color: var(--border-color);
+    cursor: pointer;
 }
 
 
