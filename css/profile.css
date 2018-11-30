@@ -291,7 +291,7 @@ aside > form input {
 
 #description textarea {
     /* Layout */
-    margin: 2.5em 2em;
+    margin: .5em 2em;
     padding: 1em;
     height: 10em;
     width: auto;
@@ -307,6 +307,16 @@ aside > form input {
     background-color: var(--aside-button-background-color);
 }
 
+#descriptionContent {
+    /* Layout */
+    margin: 0 2em;
+    text-align: center;
+
+    /* Style */
+    white-space: pre-wrap;
+    font-size: 1rem;
+}
+
 #editDescription, #applyDescription{
     /* Layout */
     vertical-align: middle;
@@ -315,6 +325,7 @@ aside > form input {
     margin: auto .5em;
 
     /* Style */
+    outline: none;
     border: solid var(--border-color) 1px;
     border-radius: 50%;
     background-color: var(--background-color);
@@ -336,7 +347,7 @@ aside > form input {
     font-size: 1.5em; 
 }
 
-.myChannels > p, #description > p {
+.myChannels > p, #description > p:first-child {
     /* Layout */
     margin: 0em;
     padding: 0.5em 1em;

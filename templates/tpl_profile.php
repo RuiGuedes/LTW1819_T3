@@ -1,4 +1,4 @@
-<?php function draw_profile($username, $myChannels, $stories) {
+<?php function draw_profile($username, $biography, $myChannels, $stories) {
     ?>
 
     <div id="masterStories">
@@ -59,6 +59,7 @@
         </form>
         <div id="description">
             <p>Biography<button id="editDescription" type="button"><i class="fas fa-pen"></i></button></p>
+            <p id="descriptionContent"><?=$biography?></p>
         </div>        
         <div class="myChannels">
             <p>My Channels</p>

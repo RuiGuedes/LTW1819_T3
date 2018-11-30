@@ -14,7 +14,7 @@
                 <link rel="stylesheet" type="text/css" media="screen" href="../css/<?=$css_file?>" />
             <?php } ?>
 
-            <script src="../js/common.js" defer></script>
+            <script src="../js/main.js" defer></script>
             <?php foreach($js_files as $js_file) { ?>
                 <script src="../js/<?=$js_file?>" defer></script>
             <?php } ?>

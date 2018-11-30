@@ -31,6 +31,23 @@
     }
 
     /**
+     * Sets a user's biography
+     */
+    function set_user_biography($username, $biography) {
+      $stmt = Database::instance()->db()->prepare('UPDATE User SET biography = ? WHERE username == ?');
+      $stmt->execute(array($biography, $username));
+    }
+
+    /**
+     * Gets the user biography
+     */
+    function get_user_biography($username) {
+      $stmt = Database::instance()->db()->prepare('SELECT biography FROM User WHERE username = ?');
+      $stmt->execute(array($username));
+      return $stmt->fetch()['biography'];
+    }
+
+    /**
      * Get's all user subscriptions
      */
     function get_user_subscriptions($username) {
