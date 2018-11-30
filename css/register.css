@@ -9,7 +9,7 @@
     --site-name-font-size: 7.5em;
 
     --input-font: 'Montserrat', sans-serif;
-    --input-font-size: 2.5em;
+    --input-font-size: 2em;
 
     --button-background-color: rgb(3, 173, 192);
 
@@ -27,7 +27,7 @@ body {
     display: grid;
 
     grid-template-columns: 100%;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: 50% 50%;
 
     grid-template-areas: "header"
                          "form"
@@ -39,14 +39,15 @@ body {
 
 #header {
     /* Layout */
-    grid-area: header;
+    margin: 0em auto;
     justify-content: center;
     display: flex;
+    grid-area: header;
 }
 
 #header > a img {
     /* Layout */
-    margin: 2em 0em;
+    padding-top: 2em;
     width: 20em;
     height: 20em;
 
@@ -54,9 +55,8 @@ body {
 
 #header > h1 {
     /* Layout */
-    margin: 0em;
-    margin-top: 1em;
-    padding-left: 1em;
+    margin: 0em auto;
+    padding: 1em 0em 0em 0.5em;
     text-align: center;
 
     /* Style */
@@ -65,7 +65,8 @@ body {
 }
 
 #form {
-    margin: auto 0em;
+    margin: 0em auto;
+    padding-top: 1em; 
     justify-content: center;
     display: flex;
     grid-area: form;
@@ -73,12 +74,8 @@ body {
 
 #form > form {
     /* Layout */
-    margin: 0em;
-    padding: 2em;
-
-    /* Style */
-    border: solid var(--border-color) 1px;
-    background-color: var(--background-form-color);
+    margin: 0em auto;
+    /* padding: 2em 4em 0em 4em; */
 }
 
 #input {
@@ -93,9 +90,11 @@ body {
     margin-bottom: 0.5em;
     padding: 0em;
     padding-left: 0.5em;
-    padding-right: 4em;
+    width: 22.5em;
 
     /* Style */
+    outline: none;
+    border-radius: 15px;
     text-align: start;
     font-style: italic;
     font-family: var(--input-font);
@@ -105,7 +104,8 @@ body {
 
 #button {
     /* Layout */
-    margin: 0em;
+    margin: auto;
+    padding: 1.5em 0em;
     justify-content: center;
     display: flex;
 }
@@ -115,6 +115,7 @@ body {
     padding: 1em;
 
     /* Style */
+    outline: none;
     border: solid var(--border-color) 2px;
     border-radius: 10px;
     font-family: var(--input-font);
@@ -125,4 +126,5 @@ body {
     /* Style */
     background-color: var(--background-button-color);
     border-color: var(--border-color);
+    cursor: pointer;
 }
