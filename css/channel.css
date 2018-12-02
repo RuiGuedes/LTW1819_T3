@@ -175,10 +175,24 @@ aside {
     font-family: var(--aside-channel-font);
 }
 
-#addPost {
+#forms {
+    /* Layout */
+    justify-content: center;
+    display: flex;
+}
+
+#forms form:first-child {
+    /* Layout */
+    padding-right: 2em;
+    
+    /* Style */
+    text-align: center;
+}
+
+.buttons {
     /* Layout */
     margin: 0em auto;
-    width: 6em;
+    width: 8em;
     height: 2em;
 
     /* Style */
@@ -192,7 +206,7 @@ aside {
     font-family: var(--aside-text-font);
 }
 
-#addPost:hover {
+.buttons:hover {
     /* Style */
     background-color: var(--aside-button-background-color-hover);
     cursor: pointer;

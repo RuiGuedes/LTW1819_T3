@@ -86,4 +86,23 @@
         break;
       }
     }
+
+    /**
+     * Checks whether user is already subscribed or not to a certain channel
+     */
+    function check_user_subscription($username, $channelName) {
+      $db = Database::instance()->db();
+      $stmt = $db->prepare('SELECT * FROM Subscription WHERE username = ? AND channelName = ?');
+      $stmt->execute(array($username, $channelName));
+      return $stmt->fetch() ? true : false; 
+    }
+
+    /**
+     * Removes a certain channel from the user subscriptions
+     */
+    function remove_subscription($username, $channelName) {
+      $db = Database::instance()->db();
+      $stmt = $db->prepare('DELETE FROM Subscription WHERE username = ? AND channelName = ?');
+      $stmt->execute(array($username, $channelName));
+    }
 ?>

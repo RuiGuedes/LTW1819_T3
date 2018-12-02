@@ -1,9 +1,49 @@
 'use strict'
 
+// Story referencing 
+let story = document.getElementsByClassName('storyArticle')
+
+for (let index = 0; index < story.length; index++) {
+  story[index].addEventListener('click', function(event) {
+      if(event.target.tagName !== 'I') {
+        let submit = document.getElementById('submitForm')
+        submit.value = story[index].id
+        submit.click()
+      }
+  })
+}
+
+// Votes /* TODO - Ajax to alter votes */
+let votesDown = document.getElementsByClassName('fas fa-minus-circle')
+let votesUp = document.getElementsByClassName('fas fa-plus-circle')
+let votesLength = votesDown.length
+
+for (let index = 0; index < votesLength; index++) {
+  votesDown[index].addEventListener('click', function() {
+    
+  })
+
+  votesUp[index].addEventListener('click', function() {
+    
+  })
+}
+
+//Channel referencing
+let subscription = document.getElementsByClassName('subscriptionArticle')
+
+for (let index = 0; index < subscription.length; index++) {
+  subscription[index].addEventListener('click', function() {
+        let submit = document.getElementById('submitChannelName')
+        submit.value = subscription[index].id
+        submit.click()
+  })
+}
+
 // Filter control
 let filter = document.getElementById('filterID')
 
-filter.addEventListener('change', function() {
+filter.addEventListener('change', function() {  
+  console.log(filter.value)
   filter.parentElement.submit()
 })
 
@@ -24,7 +64,7 @@ let editDescriptionHandler = function() {
   let applyDescriptionButton = document.getElementById('applyDescription')
   applyDescriptionButton.addEventListener('click', function() {
     let newContent = document.getElementById('descriptionContent').value
-    let userName = document.getElementById('username').textContent
+    let userName = document.getElementById('user-name').textContent
 
     let request = new XMLHttpRequest()
     request.open("post", "../api/api_edit_description.php", true)
@@ -40,7 +80,40 @@ let editDescriptionHandler = function() {
   })
 }
 
-editDescriptionButton.addEventListener('click', editDescriptionHandler)
+if(editDescriptionButton !== null)
+  editDescriptionButton.addEventListener('click', editDescriptionHandler)
+
+// Subscribe/Unsubscribe
+let subscribeButton = document.getElementById('subscribeButton')
+
+let subscriptionHandler = function() {
+    let statistics = document.getElementsByClassName('statistics')
+    let value = subscribeButton.value
+    let followers = Number(statistics[1].innerHTML.match('[0-9]\+')[0])
+
+    if(value == 'Subscribe') {
+      followers++
+      value = 'Unsubscribe'
+    }
+    else {
+      followers--
+      value = 'Subscribe'
+    }
+
+    let request = new XMLHttpRequest()  
+    let userName = document.getElementById('user-name').textContent
+    let channelname = document.getElementById('channelName').textContent
+
+    request.open("post", "../api/api_subscribe_channel.php", true)
+    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+    request.send(encodeForAjax({username: userName, channelName: channelname}))
+
+    subscribeButton.value = value
+    statistics[1].innerHTML = '<i class="fas fa-users"></i><p>' + followers + ' Followers</p>'
+}
+
+if(subscribeButton !== null)
+  subscribeButton.addEventListener('click', subscriptionHandler)
 
 function encodeForAjax(data) {
   return Object.keys(data).map(function(k){

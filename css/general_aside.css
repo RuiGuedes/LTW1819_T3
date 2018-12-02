@@ -1,0 +1,103 @@
+:root {
+    --background-color: rgb(231, 231, 231);
+    --background-story-color: whitesmoke;
+
+    --story-text-font: 'Montserrat', sans-serif;
+
+    --aside-img-font-size: 15em;
+    --aside-username-font: 'Exo', sans-serif;
+    --aside-username-font-size: 2em;
+    --aside-text-font: 'Montserrat', sans-serif;
+    --aside-button-font-size: 1em;
+
+    --aside-button-background-color: rgb(245, 243, 243);
+    --aside-button-background-color-hover: rgb(3, 173, 192);
+
+    --success-fg-color: rgb(86, 155, 13);
+    --error-fg-color: rgb(218, 2, 13);
+
+    --border-color: rgb(177, 177, 177);
+}
+
+aside {
+    /* Layout */
+    grid-area: aside;
+    padding: 3em;
+
+    border-left: solid var(--border-color);
+}
+
+aside > div {
+    /* Layout */
+    flex-direction: column;
+    display: flex;
+
+    /* Style */
+    border-radius: 15px;
+    text-align: center;
+    border: solid var(--border-color) 1px;
+    background-color: var(--background-story-color);
+}
+
+aside > div h1 {
+    /* Layout */
+    padding-bottom: 0.5em;
+
+    /* Style */
+    border-bottom: solid var(--border-color) 1px;
+    font-family: var(--story-text-font);
+}
+
+aside > div > ul {
+    /* Layout */
+    margin: 0em;
+    padding: 0em 4em;
+    list-style-type: decimal;
+}
+
+aside > div > ul * {   
+    /* Layout */
+    padding-bottom: 1em;
+    
+    /* Style */
+    font-family: var(--story-text-font);
+    font-style: italic; 
+}
+
+aside > div > ul li:hover {   
+    /* Style */
+    color: var(--aside-button-background-color-hover);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+aside > form {
+    /* Layout */
+    margin: 0em;
+    padding: 2em 0em;
+
+    /* Style */
+    text-align: center;
+}
+
+#browseChannels {
+    /* Layout */
+    width: 10em;
+    height: 2em;
+
+    /* Style */
+    outline: none;
+    border: solid var(--border-color) 1px;
+    border-radius: 15px;
+    background-color: var(--aside-button-background-color);
+    text-align: center;
+    font-style: italic;
+    font-size: var(--aside-button-font-size);
+    font-family: var(--aside-text-font);
+}
+
+#browseChannels:hover {
+    /* Style */
+    background-color: var(--aside-button-background-color-hover);
+    cursor: pointer;
+}

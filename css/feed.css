@@ -25,16 +25,23 @@
     padding-right: 20px;
 }
 
-#stories > article {
+#stories > form article {
     /* Layout */
     margin: 3.5em auto;
     width: 75%;
     height: auto;
     
     /* Style */ 
-    border: solid var(--border-color) 1px;
+    border-radius: 15px;
+    border: solid var(--border-color) 2px;
     background-color: var(--background-story-color);
+    transition: 0.1s;
 }   
+
+#stories > form article:hover {
+    border-style: inset;
+    cursor: pointer;
+}
 
 #storyHeader div {
     /* Layout */
@@ -60,6 +67,14 @@
     /* Layout */
     padding-left: 0.5em;
     padding-right: 0.5em;
+}
+
+#voteDown:hover {
+    color: red;
+}
+
+#voteUp:hover {
+    color: green;
 }
 
 #storyHeader > div:last-child {
@@ -131,24 +146,4 @@
     /* Style */
     content: '';
     background: var(--background-story-color);
-}
-
-/* Aside not done */
-
-aside {
-    /* Layout */
-    grid-area: aside;
-    padding: 0em 0em 0em 4em;
-
-    border-left: solid var(--border-color);
-}
-
-aside > section {
-    /* Layout */
-    margin: 3.5em 3.5em 0em 0em;
-    min-height: 20em;
-
-    /* Style */
-    border: solid var(--border-color) 1px;
-    background-color: var(--background-story-color);
 }

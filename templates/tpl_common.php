@@ -31,7 +31,7 @@
                         <i class="fa fa-home"></i><a href="../pages/feed.php">Feed</a>
                     </div>
                     <div class="mainMenu">
-                        <i class="fa fa-th-list"></i><a href="../pages/feed.php">Channels</a> <!-- Change to a specific channels page -->
+                        <i class="fa fa-th-list"></i><a href="../pages/subscriptions.php">Channels</a> <!-- Change to a specific channels page -->
                     </div>
                     <div class="mainMenu">
                         <i class="fa fa-user-alt"></i><a href="../pages/profile.php">Profile</a>
@@ -44,12 +44,13 @@
             <div id="toolBar">
                 <div id="info">
                     <img src="../resources/images/profile.jpg" alt="Profile Picture">
-                    <a href="../pages/profile.php"><h5><?php echo $username ?></h5></a>
+                    <a id="user-name" href="../pages/profile.php"><h5><?php echo $username ?></h5></a>
                 </div>
                 <div id="filters">
                     <h5>Filter:</h5>
                 
                     <form method="post" action="<?= $_SERVER['PHP_SELF']?>">
+                        <input type="hidden" name="channelName" value="<?= htmlentities($_POST['channelName']) ?>">
                         <select name="filter" id="filterID"> 
                             <option <? echo $filter == 0 ? 'selected ' : '' ?>value="0">Most Voted</option>
                             <option <? echo $filter == 1 ? 'selected ' : '' ?>value="1">Less Voted</option>
@@ -64,11 +65,79 @@
             </div>
 <? } ?>
 
+<?php function draw_general_aside($channels) {
+    ?>
+    <aside>
+        <div>
+            <h1>Top 10 channels</h1>
+            <ul>
+                <?php 
+                    foreach($channels as $channel) {
+                        ?>
+                          <li id="<?= $channel['channelName'] ?>" class="subscriptionArticle"><?= $channel['channelName'] ?></li>
+                    <?php } ?>                    
+            </ul>
+        </div>
+        <form method="post" action="../pages/feed.php">
+            <button id="browseChannels" type="submit">Browse channels</button> <!-- Discuss this -->
+        </form>
+    </aside>
+<?php } ?> 
+
+<?php function draw_channel_aside($channel, $channelStories, $channelFollowers, $status) {
+    ?>
+    <aside> 
+        <img id="channelImg" src="../resources/images/profile.jpg" alt="Channel Image">
+        <h3 id="channelName"><?= $channel['name'] ?></h3>
+        <div id="forms">
+            <form>
+                <?php
+                    if($status) {
+                      ?> <input id="subscribeButton" class="buttons" type="button" value="Unsubscribe"> <?php
+                    }                        
+                    else { 
+                        ?><input id="subscribeButton" class="buttons" type="button" value="Subscribe"> <?php
+                    }
+                ?>
+            </form> 
+            <form method="post" action="../pages/post.php">
+                <input type="hidden" name="channelName" value="<?= $channel['name'] ?>">
+                <input id="addPost" class="buttons" type="submit" value="Add post">
+            </form> 
+        </div>
+        <div id="description"> 
+            <textarea id="biographyContent" maxlength="240" cols="55" rows="1" placeholder="Short Description"></textarea>
+        </div>        
+        <div class="statistics">
+            <i class="far fa-newspaper"></i><p><?= count($channelStories) ?> Stories</p>    
+        </div>
+        <div class="statistics">
+            <i class="fas fa-users"></i><p><?= $channelFollowers ?> Followers</p>
+        </div>
+    </aside>
+<?php } ?>
+
+<?php function draw_post_aside($channel, $channelStories, $channelFollowers) {
+    ?>
+    <aside> 
+        <img id="channelImg" src="../resources/images/profile.jpg" alt="Channel Image">
+        <h3 id="channelName"><?= $channel['name'] ?></h3>
+        <div id="description"> 
+            <textarea id="biographyContent" maxlength="240" cols="55" rows="1" placeholder="Short Description" disabled="true"></textarea>
+        </div>        
+        <div class="statistics">
+            <i class="far fa-newspaper"></i><p><?= count($channelStories) ?> Stories</p>    
+        </div>
+        <div class="statistics">
+            <i class="fas fa-users"></i><p><?= $channelFollowers ?> Followers</p>
+        </div>
+    </aside>
+<?php } ?>
+
 <?php function draw_footer() {
     ?>
         </body>
     </html>
-
 <?php } ?>
 
 

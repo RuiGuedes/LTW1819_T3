@@ -65,7 +65,7 @@
             <p>My Channels</p>
             <ul>
                 <?php 
-                    if(count($myChannels) === 0) {
+                    if(empty($myChannels)) {
                         ?> <p id="noChannels">Empty</p> <?php
                     }
                     else {
