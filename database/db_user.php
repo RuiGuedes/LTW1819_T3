@@ -17,7 +17,7 @@
      */
     function insert_user($email, $username, $password) {
       $stmt = Database::instance()->db()->prepare('INSERT INTO User VALUES(?, ?, ?, ?)');
-      $stmt->execute(array($username, password_hash($password, PASSWORD_DEFAULT, ['cost' => 15]), $email, ""));
+      $stmt->execute(array($username, password_hash($password, PASSWORD_DEFAULT), $email, ""));
     }
 
     /**

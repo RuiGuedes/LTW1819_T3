@@ -6,5 +6,7 @@
     if (isset($_SESSION['username']))
       die(header('Location: feed.php'));
 
-    draw_login();
+    $username = isset($_GET['username']) ? $_GET['username'] : 'admin';
+
+    draw_login($username);
 ?>

@@ -80,7 +80,7 @@ let editDescriptionHandler = function() {
   })
 }
 
-if(editDescriptionButton !== null)
+if (editDescriptionButton !== null)
   editDescriptionButton.addEventListener('click', editDescriptionHandler)
 
 // Subscribe/Unsubscribe
@@ -91,7 +91,7 @@ let subscriptionHandler = function() {
     let value = subscribeButton.value
     let followers = Number(statistics[1].innerHTML.match('[0-9]\+')[0])
 
-    if(value == 'Subscribe') {
+    if (value == 'Subscribe') {
       followers++
       value = 'Unsubscribe'
     }
@@ -112,7 +112,7 @@ let subscriptionHandler = function() {
     statistics[1].innerHTML = '<i class="fas fa-users"></i><p>' + followers + ' Followers</p>'
 }
 
-if(subscribeButton !== null)
+if (subscribeButton !== null)
   subscribeButton.addEventListener('click', subscriptionHandler)
 
 function encodeForAjax(data) {
