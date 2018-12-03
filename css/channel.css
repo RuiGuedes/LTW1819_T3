@@ -41,7 +41,8 @@
     height: auto;
     
     /* Style */ 
-    border: solid var(--border-color) 1px;
+    border-radius: 15px;
+    border: solid var(--border-color) 2px;
     background-color: var(--background-story-color);
 }   
 

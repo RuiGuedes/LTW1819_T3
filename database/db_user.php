@@ -1,5 +1,6 @@
 <?php
     include_once('../includes/database.php');
+    include_once('../includes/functions.php');
 
     /**
      * Verifies if a certain username, password combination
@@ -68,23 +69,14 @@
     }
 
     /**
-     * Convert filter elements to their respective value
+     * Get's user subscribed channel stories order by parameters set on filter
      */
-    function orderBy($value) {
-      switch($value) {
-        case 0:
-          return 'storyPoints DESC';
-        break;
-        case 1:
-          return 'storyPoints ASC';
-        break;
-        case 3:
-          return 'storyID ASC';
-        break;
-        default:        
-          return 'storyID DESC';
-        break;
-      }
+    function get_user_channel_stories($username, $filter) {
+      $db = Database::instance()->db();
+      $stmt = $db->prepare('SELECT * FROM Story WHERE Story.channelName IN (
+                            SELECT channelName FROM Subscription WHERE username = ?) ORDER BY ' . orderBy($filter));
+      $stmt->execute(array($username));
+      return $stmt->fetchAll(); 
     }
 
     /**

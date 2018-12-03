@@ -100,7 +100,7 @@
                     }
                 ?>
             </form> 
-            <form method="post" action="../pages/post.php">
+            <form method="get" action="../pages/post.php">
                 <input type="hidden" name="channelName" value="<?= $channel['name'] ?>">
                 <input id="addPost" class="buttons" type="submit" value="Add post">
             </form> 
