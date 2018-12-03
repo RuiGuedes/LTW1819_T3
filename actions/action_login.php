@@ -5,6 +5,7 @@
   $username = $_POST['username'];
   $password = $_POST['password'];
 
+
   // Input Filtering
   if (!preg_match("/^[a-zA-Z0-9]+$/", $username)) {
     // Error Message -> Invalid characters on username
@@ -12,13 +13,12 @@
   }
 
 
-  // WARNING: temp admin to keep current test account
-  if ($username == 'admin' || validate_login($username, $password)) {
+  if ($username == 'admin' || validate_login($username, $password)) { // WARNING: temp admin to keep current test account
     $_SESSION['username'] = $username;
     header('Location: ../pages/feed.php');
   } else {
     // Error Message -> Invalid login credentials
-    header('Location: ../pages/login.php');
+    header("Location: ../pages/login.php?username=" . $username);
   }
 
 ?>
