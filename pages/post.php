@@ -10,10 +10,10 @@
       die(header('Location: login.php'));
 
     // Checks channel existence
-    $channelName = isset($_POST['channelName']) ? $_POST['channelName'] : '';
+    $channelName = isset($_GET['channelName']) ? $_GET['channelName'] : '';
 
     if(!check_channel_existence($channelName)) 
-      die(header('Location: ' . $_SERVER['HTTP_REFERER']));
+      die(header('Location: feed.php'));
 
     // Retrieves channel information
     $channel = get_channel($channelName);

@@ -3,7 +3,7 @@
 
     <div id="masterSubscriptions">
         <section id="subscriptions">
-            <form method="post" action="../pages/channel.php">
+            <form method="get" action="../pages/channel.php">
                 <?php foreach($subscriptions as $subscription) {
                     ?> 
                     <article id="<?= $subscription['name'] ?>" class="subscriptionArticle">

@@ -5,7 +5,10 @@
             <div id="input">
                 <input type="hidden" name="channelName" value="<?= $channelName ?>">
                 <input type="text" name="title" placeholder="Title" required="true">
-                <input id="storyImg" type="file" name="picture" placeholder="Picture" accept="image/*">
+                <div id="uploadStoryPic">
+                    <i class="fas fa-camera"></i>             
+                    <p>Upload story picture</p>
+                </div>
                 <textarea id="storyContent" name="content" placeholder="Content" cols="30" rows="10" required="true"></textarea>
             </div>
             <div id="button">
