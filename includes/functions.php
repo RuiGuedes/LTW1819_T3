@@ -1,32 +1,3 @@
-<?php function draw_stories($stories, $storiesVotes) {
-    /* Function responsible for drawing stories */
-    foreach($stories as $story) { ?> 
-        <article>
-            <header id="storyHeader">
-                <div>
-                    <div>
-                    <a class="votes"><i class="fas fa-minus-circle"></i><?= htmlentities($storiesVotes[$story['storyID']]) ?><i class="fas fa-plus-circle"></i></a>
-                    <h3><?= htmlentities($story['channelName']) ?></h3>
-                </div>
-                <div>
-                    <span class="author"><i class="fas fa-user-alt"></i><?= htmlentities($story['storyAuthor']) ?></span>
-                    <a class="comments"><i class="fas fa-comments"></i><?= htmlentities($story['storyComments']) ?></a>
-                    <span class="date"><i class="fas fa-clock"></i><?= htmlentities(data_converter($story['storyTime'])) ?></span>
-                </div>
-                </div>
-                <div>
-                    <img src="../resources/images/thumb.jpg" alt="Story Image">
-                    <h1><?= htmlentities($story['storyTitle']) ?></h1>
-                </div>
-            </header>
-            <div id="storySinopse">
-                <p><?= htmlentities($story['storyContent']) ?></p>
-            </div>
-        </article>
-    <?php } 
-}
-?>
-
 <?php function orderBy($value) {
     /* Convert filter elements to their respective value */
     switch($value) {

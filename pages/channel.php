@@ -38,7 +38,7 @@
     // Checks user subscription to a certain channel
     $status = check_user_subscription($_SESSION['username'], $channelName);
 
-    draw_common($_SESSION['username'], ['channel.css'], [], $filter);
+    draw_common($_SESSION['username'], ['stories.css', 'channel_aside.css'], [], $filter);
     draw_channel_feed($channelStories, $storiesVotes);
     draw_channel_aside($channel, $channelStories, $channelFollowers, $status);
     draw_footer();

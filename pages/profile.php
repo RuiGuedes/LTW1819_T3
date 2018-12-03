@@ -23,7 +23,7 @@
       $storiesVotes[$story['storyID']] = $votes == null ? 0 : $votes;
     }
     
-    draw_common($_SESSION['username'], ['profile.css'], [], $filter);
+    draw_common($_SESSION['username'], ['stories.css', 'profile_aside.css'], [], $filter);
     draw_profile($_SESSION['username'], htmlentities($biography), $myChannels, $userStories, $storiesVotes);
     draw_footer();
 ?>

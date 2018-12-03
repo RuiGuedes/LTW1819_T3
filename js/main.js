@@ -28,13 +28,24 @@ for (let index = 0; index < votesLength; index++) {
   })
 }
 
-//Channel referencing
+//Channel referencing - Articles
 let subscription = document.getElementsByClassName('subscriptionArticle')
 
 for (let index = 0; index < subscription.length; index++) {
   subscription[index].addEventListener('click', function() {
         let submit = document.getElementById('submitChannelName')
         submit.value = subscription[index].id
+        submit.click()
+  })
+}
+
+//Channel referencing - Aside
+let asideChannel = document.getElementsByClassName('asideChannelList')
+
+for (let index = 0; index < asideChannel.length; index++) {
+  asideChannel[index].addEventListener('click', function() {
+        let submit = document.getElementById('submitAsideChannelName')
+        submit.value = asideChannel[index].id
         submit.click()
   })
 }

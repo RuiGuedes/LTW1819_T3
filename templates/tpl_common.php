@@ -65,21 +65,51 @@
             </div>
 <? } ?>
 
+<?php function draw_stories($stories, $storiesVotes) {
+    foreach($stories as $story) { ?> 
+        <article>
+            <header id="storyHeader">
+                <div>
+                    <div>
+                        <a class="votes"><i class="fas fa-minus-circle"></i><?= htmlentities($storiesVotes[$story['storyID']]) ?><i class="fas fa-plus-circle"></i></a>
+                        <h3><?= htmlentities($story['channelName']) ?></h3>
+                    </div>
+                    <div>
+                        <span class="author"><i class="fas fa-user-alt"></i><?= htmlentities($story['storyAuthor']) ?></span>
+                        <a class="comments"><i class="fas fa-comments"></i><?= htmlentities($story['storyComments']) ?></a>
+                        <span class="date"><i class="fas fa-clock"></i><?= htmlentities(data_converter($story['storyTime'])) ?></span>
+                    </div>
+                </div>
+                <div>
+                    <img src="../resources/images/thumb.jpg" alt="Story Image">
+                    <h1><?= htmlentities($story['storyTitle']) ?></h1>
+                </div>
+            </header>
+            <div id="storySinopse">
+                <p><?= htmlentities($story['storyContent']) ?></p>
+            </div>
+        </article>
+    <?php } 
+} ?>
+
 <?php function draw_general_aside($channels) {
     ?>
     <aside>
         <div>
             <h1>Top 10 channels</h1>
-            <ul>
-                <?php 
-                    foreach($channels as $channel) {
-                        ?>
-                          <li id="<?= $channel['channelName'] ?>" class="subscriptionArticle"><?= $channel['channelName'] ?></li>
-                    <?php } ?>                    
-            </ul>
+            <form method="get" action="../pages/channel.php">
+                <ul>
+                    <?php 
+                        foreach($channels as $channel) {
+                            ?>
+                            <li id="<?= $channel['channelName'] ?>" class="asideChannelList"><?= $channel['channelName'] ?></li>
+                        <?php } ?>                    
+                </ul>
+                <input type="submit" id="submitAsideChannelName" name="channelName" visibility="hidden" style="display: none;">
+            </form>
         </div>
         <form method="post" action="../pages/feed.php">
-            <button id="browseChannels" type="submit">Browse channels</button> <!-- Discuss this -->
+            <button id="browseChannels" type="submit">Browse channels</button>
         </form>
     </aside>
 <?php } ?> 

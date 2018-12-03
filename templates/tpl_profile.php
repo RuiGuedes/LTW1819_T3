@@ -1,5 +1,4 @@
 <?php function draw_profile($username, $biography, $myChannels, $stories, $storiesVotes) {
-    include_once('../includes/functions.php');
     ?>
     <div id="masterStories">
         <section id="stories">

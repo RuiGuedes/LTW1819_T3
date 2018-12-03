@@ -23,7 +23,7 @@
     // Get top 10 channels
     $channels = get_top_channels();
 
-    draw_common($_SESSION['username'], ['feed.css', 'general_aside.css'], [], $filter);
+    draw_common($_SESSION['username'], ['stories.css', 'general_aside.css'], [], $filter);
     draw_feed($stories, $storiesVotes);
     draw_general_aside($channels);
     draw_footer();
