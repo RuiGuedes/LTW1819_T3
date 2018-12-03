@@ -6,19 +6,18 @@
      * exists in the database. Use the sha1 hashing function.
      */
     function validate_login($username, $password) {
-      $db = Database::instance()->db();
-      $stmt = $db->prepare('SELECT * FROM User WHERE username = ? AND password = ?');
-      $stmt->execute(array($username, sha1($password)));
-      return $stmt->fetch() ? true : false; 
+      $stmt = Database::instance()->db()->prepare('SELECT * FROM User WHERE username = ?');
+      $stmt->execute(array($username));
+      $user = $stmt->fetch();
+      return $user !== false && password_verify($password, $user['password']); 
     }
 
     /**
      * Inserts new user into the database
      */
     function insert_user($email, $username, $password) {
-      $db = Database::instance()->db();
-      $stmt = $db->prepare('INSERT INTO User VALUES(?, ?, ?, ?)');
-      $stmt->execute(array($username, sha1($password), $email, ""));
+      $stmt = Database::instance()->db()->prepare('INSERT INTO User VALUES(?, ?, ?, ?)');
+      $stmt->execute(array($username, password_hash($password, PASSWORD_DEFAULT, ['cost' => 15]), $email, ""));
     }
 
     /**
