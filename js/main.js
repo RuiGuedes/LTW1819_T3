@@ -114,16 +114,15 @@ if (subscribeButton !== null)
 // Vote up/down
 let voteDown = document.getElementsByClassName('fas fa-minus-circle')
 let voteUp = document.getElementsByClassName('fas fa-plus-circle')
-let storyVotes = document.getElementsByClassName('storyVotes')
 let votesLength = voteDown.length
 
 for(let index = 0; index < votesLength; index++) {
     let storyID = voteDown[index].parentElement.id
-    voteDown[index].addEventListener('click', function() {voteHandler(storyID, storyVotes[index], -1)} )
-    voteUp[index].addEventListener('click', function() {voteHandler(storyID, storyVotes[index], 1)})
+    voteDown[index].addEventListener('click', function() {voteHandler(storyID, -1)})
+    voteUp[index].addEventListener('click', function() {voteHandler(storyID, 1)})
 }
 
-function voteHandler(storyID, storyVotes, type) {
+function voteHandler(storyID, type) {
   let request = new XMLHttpRequest()  
   let userName = document.getElementById('user-name').textContent
   
@@ -131,11 +130,37 @@ function voteHandler(storyID, storyVotes, type) {
   request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
   request.addEventListener('load', () => {
     let votes = JSON.parse(request.responseText)
-    storyVotes.innerHTML = votes
+    let regex = document.getElementById(storyID).innerHTML
+    
+    document.getElementById(storyID).innerHTML = getVoteInnerHTML(type, regex, votes)
+    
+    let newVoteDown = document.getElementById(storyID).getElementsByClassName('fas fa-minus-circle')
+    let newVoteUp = document.getElementById(storyID).getElementsByClassName('fas fa-plus-circle')
+
+    newVoteDown[0].addEventListener('click', function() {voteHandler(storyID, -1)})
+    newVoteUp[0].addEventListener('click', function() {voteHandler(storyID, 1)})
   })
   request.send(encodeForAjax({username: userName, storyid: storyID, voteType: type}))
 }
 
+// Retrieves vote new inner html
+function getVoteInnerHTML(type, regex, votes) {
+  if((type == 1 && regex.match('voteUp') !== null) || (type == -1 && regex.match('voteDown') !== null)) {
+    return '<i class="fas fa-minus-circle"></i><span class="storyVotes">' + votes + '</span><i class="fas fa-plus-circle"></i>'
+  }
+  else if(type == 1 && regex.match('voteDown') !== null) {
+    return '<i class="fas fa-minus-circle"></i><span class="storyVotes">' + votes + '</span><i id="voteUp" class="fas fa-plus-circle"></i>'
+  }
+  else if(type == -1 && regex.match('voteUp') !== null) {
+    return '<i id="voteDown" class="fas fa-minus-circle"></i><span class="storyVotes">' + votes + '</span><i class="fas fa-plus-circle"></i>'
+  }
+  else if(type == 1) {
+    return '<i class="fas fa-minus-circle"></i><span class="storyVotes">' + votes + '</span><i id="voteUp" class="fas fa-plus-circle"></i>'
+  }
+  else {
+    return '<i id="voteDown" class="fas fa-minus-circle"></i><span class="storyVotes">' + votes + '</span><i class="fas fa-plus-circle"></i>'
+  }
+}
 
 function encodeForAjax(data) {
   return Object.keys(data).map(function(k){

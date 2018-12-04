@@ -24,7 +24,7 @@
             <header id="dynamicBar">
                 <div id="header">
                     <img src="../resources/images/logo.png" alt="Profile Picture">
-                    <h1>SiteName</h1>
+                    <h1>Nescio</h1>
                 </div>
                 <nav id="menu">
                     <div class="mainMenu">
@@ -69,13 +69,23 @@
             </div>
 <? } ?>
 
-<?php function draw_stories($stories, $storiesVotes) {
+<?php function draw_stories($stories, $storiesVotes, $votedStories) {
     foreach($stories as $story) { ?> 
         <article>
             <header id="storyHeader">
                 <div>
                     <div>
-                        <a id="<?= $story['storyID'] ?>" class="votes"><i class="fas fa-minus-circle"></i><span class="storyVotes"><?= htmlentities($storiesVotes[$story['storyID']]) ?></span><i class="fas fa-plus-circle"></i></a>
+                        <?php
+                            if($votedStories[$story['storyID']] == 1) { ?>
+                                <a id="<?= $story['storyID'] ?>" class="votes"><i class="fas fa-minus-circle"></i><span class="storyVotes"><?= htmlentities($storiesVotes[$story['storyID']]) ?></span><i id="voteUp" class="fas fa-plus-circle"></i></a>
+                            <?php }
+                            else if($votedStories[$story['storyID']] == -1) { ?>
+                                <a id="<?= $story['storyID'] ?>" class="votes"><i id="voteDown" class="fas fa-minus-circle"></i><span class="storyVotes"><?= htmlentities($storiesVotes[$story['storyID']]) ?></span><i class="fas fa-plus-circle"></i></a>
+                            <?php }
+                            else { ?>
+                                <a id="<?= $story['storyID'] ?>" class="votes"><i class="fas fa-minus-circle"></i><span class="storyVotes"><?= htmlentities($storiesVotes[$story['storyID']]) ?></span><i class="fas fa-plus-circle"></i></a>
+                            <?php }
+                        ?>
                         <h3><?= htmlentities($story['channelName']) ?></h3>
                     </div>
                     <div>

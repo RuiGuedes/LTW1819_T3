@@ -106,4 +106,14 @@
       $stmt->execute(array($username, $storyID));
       return $stmt->fetch()['voteType']; 
     }
+
+    /**
+     * 
+     */
+    function get_user_voted_stories($username) {
+      $db = Database::instance()->db();
+      $stmt = $db->prepare('SELECT storyID, voteType FROM Votes WHERE username = ?');
+      $stmt->execute(array($username));
+      return $stmt->fetchall(); 
+    }
 ?>

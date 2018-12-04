@@ -17,13 +17,14 @@
     $userStories = get_user_stories($_SESSION['username'], $filter);
 
     // Stories number of votes
-    $storiesVotes;
+    $storiesVotes; $votedStories;
     foreach($userStories as $story) {
       $votes = get_story_votes($story['storyID']);
       $storiesVotes[$story['storyID']] = $votes == null ? 0 : $votes;
+      $votedStories[$story['storyID']] = get_user_vote($_SESSION['username'], $story['storyID']);
     }
     
     draw_common($_SESSION['username'], ['stories.css', 'profile_aside.css'], [], $filter);
-    draw_profile($_SESSION['username'], htmlentities($biography), $myChannels, $userStories, $storiesVotes);
+    draw_profile($_SESSION['username'], htmlentities($biography), $myChannels, $userStories, $storiesVotes, $votedStories);
     draw_footer();
 ?>

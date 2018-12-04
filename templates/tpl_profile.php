@@ -1,8 +1,8 @@
-<?php function draw_profile($username, $biography, $myChannels, $stories, $storiesVotes) {
+<?php function draw_profile($username, $biography, $myChannels, $stories, $storiesVotes, $votedStories) {
     ?>
     <div id="masterStories">
         <section id="stories">
-            <?php draw_stories($stories, $storiesVotes) ?>
+            <?php draw_stories($stories, $storiesVotes, $votedStories) ?>
         </section>
     </div>
 

@@ -13,18 +13,18 @@
     $filter = isset($_GET['filter']) ? $_GET['filter'] : 2;
     $stories = get_user_channel_stories($_SESSION['username'], $filter);
 
-    // Stories number of votes
-    $storiesVotes;
+    // Stories number of votes and check user vote type
+    $storiesVotes; $votedStories;
     foreach($stories as $story) {
       $votes = get_story_votes($story['storyID']);
       $storiesVotes[$story['storyID']] = $votes == null ? 0 : $votes;
+      $votedStories[$story['storyID']] = get_user_vote($_SESSION['username'], $story['storyID']);
     }
-
-    // Get top 10 channels
+    
     $channels = get_top_channels();
 
     draw_common($_SESSION['username'], ['stories.css', 'general_aside.css'], [], $filter);
-    draw_feed($stories, $storiesVotes);
+    draw_feed($stories, $storiesVotes, $votedStories);
     draw_general_aside($channels);
     draw_footer();
 ?>

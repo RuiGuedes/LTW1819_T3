@@ -142,3 +142,11 @@
     cursor: pointer;
     color:rgb(9, 190, 9);
 }
+
+#voteDown {
+    color:rgb(255, 0, 0);
+}
+
+#voteUp {
+    color:rgb(9, 190, 9);
+}

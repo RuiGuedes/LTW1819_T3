@@ -26,10 +26,11 @@
     $channelStories = get_channel_stories($channelName, $filter);
 
     // Stories number of votes
-    $storiesVotes;
+    $storiesVotes; $votedStories;
     foreach($channelStories as $story) {
       $votes = get_story_votes($story['storyID']);
       $storiesVotes[$story['storyID']] = $votes == null ? 0 : $votes;
+      $votedStories[$story['storyID']] = get_user_vote($_SESSION['username'], $story['storyID']);
     }
 
     // Number of followers relative to the present channel
@@ -39,7 +40,7 @@
     $status = check_user_subscription($_SESSION['username'], $channelName);
 
     draw_common($_SESSION['username'], ['stories.css', 'channel_aside.css'], [], $filter);
-    draw_channel_feed($channelStories, $storiesVotes);
+    draw_channel_feed($channelStories, $storiesVotes, $votedStories);
     draw_channel_aside($channel, $channelStories, $channelFollowers, $status);
     draw_footer();
 ?>
