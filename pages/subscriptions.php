@@ -13,7 +13,9 @@
 
     $channels = get_top_channels();
 
-    draw_common($_SESSION['username'], ['subscriptions.css', 'general_aside.css'], []);
+    $filter = isset($_GET['filter']) ? $_GET['filter'] : 2;
+
+    draw_common($_SESSION['username'], ['subscriptions.css', 'general_aside.css'], [], $filter);
     draw_user_subscriptions($subscriptions);
     draw_general_aside($channels);
     draw_footer();

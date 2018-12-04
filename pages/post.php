@@ -24,7 +24,7 @@
     // Number of followers relative to the present channel
     $channelFollowers = count(get_channel_followers($channelName));
 
-    draw_common($_SESSION['username'], ['post.css', 'channel.css'], []);
+    draw_common($_SESSION['username'], ['post.css', 'channel_aside.css'], []);
     draw_post($channelName);
     draw_post_aside($channel, $channelStories, $channelFollowers);
     draw_footer();

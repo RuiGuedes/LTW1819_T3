@@ -10,13 +10,13 @@
     if (!isset($_SESSION['username']))
       die(header('Location: login.php'));
 
-    $filter = isset($_POST['filter']) ? $_POST['filter'] : 2;
+    $filter = isset($_GET['filter']) ? $_GET['filter'] : 2;
     $stories = get_user_channel_stories($_SESSION['username'], $filter);
 
     // Stories number of votes
     $storiesVotes;
     foreach($stories as $story) {
-      $votes = get_story_votes($story['storyID'])['storyPoints'];
+      $votes = get_story_votes($story['storyID']);
       $storiesVotes[$story['storyID']] = $votes == null ? 0 : $votes;
     }
 

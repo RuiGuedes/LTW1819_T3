@@ -138,7 +138,7 @@
     color:rgb(255, 0, 0);
 }
 
-#storyHeader div:first-child div:first-child i:nth-child(2):hover {
+#storyHeader div:first-child div:first-child i:nth-child(3):hover {
     cursor: pointer;
     color:rgb(9, 190, 9);
 }

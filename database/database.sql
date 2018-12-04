@@ -37,20 +37,21 @@ CREATE TABLE Story(
     storyID INTEGER NOT NULL PRIMARY KEY,
     storyTitle TEXT NOT NULL,
     storyContent TEXT NOT NULL,
-    storyPoints INTEGER NOT NULL,
+    storyPoints INTEGER,
     storyAuthor TEXT NOT NULL REFERENCES User(username),
     storyComments INTEGER NOT NULL,
-    storyTime BLOB NOT NULL,
+    storyTime TEXT NOT NULL,
     channelName TEXT NOT NULL REFERENCES Channel(name)       
 );
 
 ----- Votes
 
 CREATE TABLE Votes(
-    storyID INTEGER NOT NULL PRIMARY KEY,
+    storyID INTEGER NOT NULL,
     username TEXT NOT NULL,
     voteType INTEGER NOT NULL DEFAULT 0,
-    CONSTRAINT VoteValue CHECK(voteType = 1 OR voteType = -1) 
+    CONSTRAINT VoteValue CHECK(voteType = 1 OR voteType = -1),
+    CONSTRAINT Votes PRIMARY KEY (storyID, username)
 );
 
 ----- Comment 

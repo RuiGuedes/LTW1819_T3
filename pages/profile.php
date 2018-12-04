@@ -13,13 +13,13 @@
 
     $myChannels = get_user_subscriptions($_SESSION['username']);
   
-    $filter = isset($_POST['filter']) ? $_POST['filter'] : 2;
+    $filter = isset($_GET['filter']) ? $_GET['filter'] : 2;
     $userStories = get_user_stories($_SESSION['username'], $filter);
 
     // Stories number of votes
     $storiesVotes;
     foreach($userStories as $story) {
-      $votes = get_story_votes($story['storyID'])['storyPoints'];
+      $votes = get_story_votes($story['storyID']);
       $storiesVotes[$story['storyID']] = $votes == null ? 0 : $votes;
     }
     

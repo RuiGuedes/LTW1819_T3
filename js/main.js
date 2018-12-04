@@ -13,21 +13,6 @@ for (let index = 0; index < story.length; index++) {
   })
 }
 
-// Votes /* TODO - Ajax to alter votes */
-let votesDown = document.getElementsByClassName('fas fa-minus-circle')
-let votesUp = document.getElementsByClassName('fas fa-plus-circle')
-let votesLength = votesDown.length
-
-for (let index = 0; index < votesLength; index++) {
-  votesDown[index].addEventListener('click', function() {
-    
-  })
-
-  votesUp[index].addEventListener('click', function() {
-    
-  })
-}
-
 //Channel referencing - Articles
 let subscription = document.getElementsByClassName('subscriptionArticle')
 
@@ -54,7 +39,6 @@ for (let index = 0; index < asideChannel.length; index++) {
 let filter = document.getElementById('filterID')
 
 filter.addEventListener('change', function() {  
-  console.log(filter.value)
   filter.parentElement.submit()
 })
 
@@ -125,6 +109,32 @@ let subscriptionHandler = function() {
 
 if(subscribeButton !== null)
   subscribeButton.addEventListener('click', subscriptionHandler)
+
+// Vote up/down
+let voteDown = document.getElementsByClassName('fas fa-minus-circle')
+let voteUp = document.getElementsByClassName('fas fa-plus-circle')
+let storyVotes = document.getElementsByClassName('storyVotes')
+let votesLength = voteDown.length
+
+for(let index = 0; index < votesLength; index++) {
+    let storyID = voteDown[index].parentElement.id
+    voteDown[index].addEventListener('click', function() {voteHandler(storyID, storyVotes[index], -1)} )
+    voteUp[index].addEventListener('click', function() {voteHandler(storyID, storyVotes[index], 1)})
+}
+
+function voteHandler(storyID, storyVotes, type) {
+  let request = new XMLHttpRequest()  
+  let userName = document.getElementById('user-name').textContent
+  
+  request.open("post", "../api/api_votes.php", true)
+  request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+  request.addEventListener('load', () => {
+    let votes = JSON.parse(request.responseText)
+    storyVotes.innerHTML = votes
+  })
+  request.send(encodeForAjax({username: userName, storyid: storyID, voteType: type}))
+}
+
 
 function encodeForAjax(data) {
   return Object.keys(data).map(function(k){

@@ -28,7 +28,34 @@
         $db = Database::instance()->db();
         $stmt = $db->prepare('SELECT storyPoints FROM Story WHERE storyID = ?');
         $stmt->execute(array($storyID));
-        return $stmt->fetch();
+        return $stmt->fetch()['storyPoints'];
+    }
+
+    /**
+     * Add vote to a certain story from a specific user
+     */
+    function add_story_vote($storyID, $username, $voteType) {
+        $db = Database::instance()->db();
+        $stmt = $db->prepare('INSERT INTO Votes VALUES(?, ?, ?)');
+        $stmt->execute(array($storyID, $username, $voteType));
+    }
+
+    /**
+     * Remove vote from a certain story relative to a specific user
+     */
+    function remove_story_vote($storyID, $username) {
+        $db = Database::instance()->db();
+        $stmt = $db->prepare('DELETE FROM Votes WHERE storyID = ? AND username = ?');
+        $stmt->execute(array($storyID, $username));
+    }
+
+    /**
+     * Update vote relative to a certain story from a specific user
+     */
+    function update_story_vote($storyID, $username, $voteType) {
+        $db = Database::instance()->db();
+        $stmt = $db->prepare('UPDATE Votes SET voteType = ? WHERE storyID = ? AND username = ?');
+        $stmt->execute(array($voteType, $storyID, $username));
     }
 
     /**

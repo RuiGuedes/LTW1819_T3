@@ -49,8 +49,12 @@
                 <div id="filters">
                     <h5>Filter:</h5>
                 
-                    <form method="post" action="<?= $_SERVER['PHP_SELF']?>">
-                        <input type="hidden" name="channelName" value="<?= htmlentities($_POST['channelName']) ?>">
+                    <form method="get" action="<?= $_SERVER['PHP_SELF']?>">
+                        <?php 
+                            if(isset($_GET['channelName'])) {
+                                ?> <input type="hidden" name="channelName" value="<?= htmlentities($_GET['channelName']) ?>">
+                            <?php } 
+                        ?>
                         <select name="filter" id="filterID"> 
                             <option <? echo $filter == 0 ? 'selected ' : '' ?>value="0">Most Voted</option>
                             <option <? echo $filter == 1 ? 'selected ' : '' ?>value="1">Less Voted</option>
@@ -71,7 +75,7 @@
             <header id="storyHeader">
                 <div>
                     <div>
-                        <a class="votes"><i class="fas fa-minus-circle"></i><?= htmlentities($storiesVotes[$story['storyID']]) ?><i class="fas fa-plus-circle"></i></a>
+                        <a id="<?= $story['storyID'] ?>" class="votes"><i class="fas fa-minus-circle"></i><span class="storyVotes"><?= htmlentities($storiesVotes[$story['storyID']]) ?></span><i class="fas fa-plus-circle"></i></a>
                         <h3><?= htmlentities($story['channelName']) ?></h3>
                     </div>
                     <div>

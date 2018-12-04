@@ -23,15 +23,6 @@
     }
 
     /**
-     * Adds a new channel to the user subscriptions
-     */
-    function add_new_subscription($username, $channelName) {
-      $db = Database::instance()->db();
-      $stmt = $db->prepare('INSERT INTO Subscription VALUES(?, ?)');
-      $stmt->execute(array($username, $channelName));
-    }
-
-    /**
      * Sets a user's biography
      */
     function set_user_biography($username, $biography) {
@@ -46,16 +37,6 @@
       $stmt = Database::instance()->db()->prepare('SELECT biography FROM User WHERE username = ?');
       $stmt->execute(array($username));
       return $stmt->fetch()['biography'];
-    }
-
-    /**
-     * Get's all user subscriptions
-     */
-    function get_user_subscriptions($username) {
-      $db = Database::instance()->db();
-      $stmt = $db->prepare('SELECT * FROM Subscription JOIN Channel ON Subscription.channelName = Channel.name WHERE username = ?');
-      $stmt->execute(array($username));
-      return $stmt->fetchAll();  
     }
 
     /**
@@ -80,6 +61,15 @@
     }
 
     /**
+     * Adds a new channel to the user subscriptions
+     */
+    function add_new_subscription($username, $channelName) {
+      $db = Database::instance()->db();
+      $stmt = $db->prepare('INSERT INTO Subscription VALUES(?, ?)');
+      $stmt->execute(array($username, $channelName));
+    }
+
+    /**
      * Checks whether user is already subscribed or not to a certain channel
      */
     function check_user_subscription($username, $channelName) {
@@ -90,11 +80,31 @@
     }
 
     /**
+     * Get's all user subscriptions
+     */
+    function get_user_subscriptions($username) {
+      $db = Database::instance()->db();
+      $stmt = $db->prepare('SELECT * FROM Subscription JOIN Channel ON Subscription.channelName = Channel.name WHERE username = ?');
+      $stmt->execute(array($username));
+      return $stmt->fetchAll();  
+    }
+
+    /**
      * Removes a certain channel from the user subscriptions
      */
     function remove_subscription($username, $channelName) {
       $db = Database::instance()->db();
       $stmt = $db->prepare('DELETE FROM Subscription WHERE username = ? AND channelName = ?');
       $stmt->execute(array($username, $channelName));
+    }
+
+    /**
+     * 
+     */
+    function get_user_vote($username, $storyID) {
+      $db = Database::instance()->db();
+      $stmt = $db->prepare('SELECT voteType FROM Votes WHERE username = ? AND storyID = ?');
+      $stmt->execute(array($username, $storyID));
+      return $stmt->fetch()['voteType']; 
     }
 ?>

@@ -25,16 +25,16 @@
     $interval = date_diff($newStoryTime, $oldStoryTime);
 
     if($interval->format('%y') !== '0')
-        return $interval->format('%y Year');
+        return $interval->format('%y Y');
     else if($interval->format('%m') !== '0')
-        return $interval->format('%m Month');
+        return $interval->format('%m M');
     else if($interval->format('%d') !== '0')
-        return $interval->format('%d Day');
+        return $interval->format('%d d');
     else if($interval->format('%h') !== '0')
-        return $interval->format('%h Hour');
+        return $interval->format('%h h');
     else if($interval->format('%i') !== '0')
-        return $interval->format('%i Min');
+        return $interval->format('%i m');
     else 
-        return $interval->format('%s Sec');
+        return $interval->format('%s s');
 }
 ?> 

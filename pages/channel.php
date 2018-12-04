@@ -20,7 +20,7 @@
     $channel = get_channel($channelName);
 
     // Checks filter value in order to order results from the next query
-    $filter = isset($_POST['filter']) ? $_POST['filter'] : 2;
+    $filter = isset($_GET['filter']) ? $_GET['filter'] : 2;
 
     // Retrieves channel stories order by the value presente on filter variable
     $channelStories = get_channel_stories($channelName, $filter);
@@ -28,7 +28,7 @@
     // Stories number of votes
     $storiesVotes;
     foreach($channelStories as $story) {
-      $votes = get_story_votes($story['storyID'])['storyPoints'];
+      $votes = get_story_votes($story['storyID']);
       $storiesVotes[$story['storyID']] = $votes == null ? 0 : $votes;
     }
 
