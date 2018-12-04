@@ -7,15 +7,25 @@
     $password = $_POST['password'];
     $passwordCheck = $_POST['passwordCheck'];
 
-    if($password === $passwordCheck) {
-        try {
-            insert_user($email, $username, $password);
-            $_SESSION['username'] = $username;
-            die(header('Location: ../pages/feed.php'));
-          } catch (PDOException $e) {
-            header('Location: ../pages/register.php');
-          }
+
+    // Input Filtering (Email must be encoded instead)
+    if (!preg_match("/^[a-zA-Z0-9]+$/", $username)) {
+        // Error Message -> Invalid characters on username
+        die(header("Location: ../pages/register.php?email=" . $email));
     }
 
-    header('Location: ../pages/register.php');
+
+    if ($password !== $passwordCheck) {
+        // Warning Message -> Password Check different from password
+        die(header("Location: ../pages/register.php?email=" . $email . "&username=" . $username));
+    }
+
+    try {
+        insert_user($email, $username, $password);
+        $_SESSION['username'] = $username;
+        die(header('Location: ../pages/feed.php'));
+    } catch (PDOException $e) {
+        // Error Message -> Register failed
+        header("Location: ../pages/register.php?email=" . $email);
+    }
 ?>

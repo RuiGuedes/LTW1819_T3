@@ -64,18 +64,19 @@ let editDescriptionHandler = function() {
     let request = new XMLHttpRequest()
     request.open("post", "../api/api_edit_description.php", true)
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
-    request.addEventListener('load', () => newContent = JSON.parse(request.responseText))
-    request.send(encodeForAjax({username: userName, description: newContent}))
-  
-    description.innerHTML = previousHTML
-    document.getElementById('descriptionContent').innerHTML = newContent
+    request.addEventListener('load', function() {
+      newContent = JSON.parse(request.responseText)
+      description.innerHTML = previousHTML
+      document.getElementById('descriptionContent').innerHTML = newContent
 
-    editDescriptionButton = document.getElementById('editDescription')
-    editDescriptionButton.addEventListener('click', editDescriptionHandler)
+      editDescriptionButton = document.getElementById('editDescription')
+      editDescriptionButton.addEventListener('click', editDescriptionHandler)
+    })
+    request.send(encodeForAjax({username: userName, description: newContent}))
   })
 }
 
-if(editDescriptionButton !== null)
+if (editDescriptionButton !== null)
   editDescriptionButton.addEventListener('click', editDescriptionHandler)
 
 // Subscribe/Unsubscribe
@@ -86,7 +87,7 @@ let subscriptionHandler = function() {
     let value = subscribeButton.value
     let followers = Number(statistics[1].innerHTML.match('[0-9]\+')[0])
 
-    if(value == 'Subscribe') {
+    if (value == 'Subscribe') {
       followers++
       value = 'Unsubscribe'
     }
@@ -107,7 +108,7 @@ let subscriptionHandler = function() {
     statistics[1].innerHTML = '<i class="fas fa-users"></i><p>' + followers + ' Followers</p>'
 }
 
-if(subscribeButton !== null)
+if (subscribeButton !== null)
   subscribeButton.addEventListener('click', subscriptionHandler)
 
 // Vote up/down
