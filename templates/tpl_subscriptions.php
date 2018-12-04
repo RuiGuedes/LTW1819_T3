@@ -17,7 +17,15 @@
                                 </div>
                             </div>
                             <div>
-                                <img src="../resources/images/profile.jpg" alt="Subscription Image">                        
+                                <?php
+                                    $imageID = $subscription['name'];
+                                    if(glob("../resources/images/channels/$imageID.*")) { ?>
+                                        <img id="asideIMG" src="../resources/images/channels/<?= $subscription['name'] ?>" alt="User Image"> 
+                                    <?php }
+                                    else { ?>
+                                        <img id="asideIMG" src="../resources/images/default/defaultChannel.png?>" alt="User Image"> 
+                                    <?php }
+                                ?>                     
                                 <div id="channelDescription">
                                     <h1>Description:</h1><p><?= $subscription['description'] ?></p>
                                 </div>

@@ -9,22 +9,28 @@
     if (!isset($_SESSION['username']))
       die(header('Location: login.php'));
 
-    $biography = get_user_biography($_SESSION['username']);
+    // Checks user existence
+    $username = isset($_GET['username']) ? $_GET['username'] : '';
 
-    $myChannels = get_user_subscriptions($_SESSION['username']);
-  
+    if(!check_user_existence($username)) 
+      die(header('Location: ../actions/action_logout.php'));
+
+    $biography = get_user_biography($username);
+
+    $myChannels = get_user_subscriptions($username);
+
     $filter = isset($_GET['filter']) ? $_GET['filter'] : 2;
-    $userStories = get_user_stories($_SESSION['username'], $filter);
+    $userStories = get_user_stories($username, $filter);
 
     // Stories number of votes
     $storiesVotes; $votedStories;
     foreach($userStories as $story) {
       $votes = get_story_votes($story['storyID']);
       $storiesVotes[$story['storyID']] = $votes == null ? 0 : $votes;
-      $votedStories[$story['storyID']] = get_user_vote($_SESSION['username'], $story['storyID']);
+      $votedStories[$story['storyID']] = get_user_vote($username, $story['storyID']);
     }
     
     draw_common($_SESSION['username'], ['stories.css', 'profile_aside.css'], [], $filter);
-    draw_profile($_SESSION['username'], htmlentities($biography), $myChannels, $userStories, $storiesVotes, $votedStories);
+    draw_profile($username, htmlentities($biography), $myChannels, $userStories, $storiesVotes, $votedStories);
     draw_footer();
 ?>

@@ -162,6 +162,20 @@ function getVoteInnerHTML(type, regex, votes) {
   }
 }
 
+// Uploads image
+let currPicture = document.getElementById('asidePicture')
+let uploader = document.getElementById('uploadImage')
+let submit = document.getElementById('submitImage')
+
+currPicture.addEventListener('click', function() {
+  uploader.click()
+})
+
+uploader.addEventListener('change', function() {  
+  submit.click()
+})
+
+
 function encodeForAjax(data) {
   return Object.keys(data).map(function(k){
     return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])

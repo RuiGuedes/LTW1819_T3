@@ -13,5 +13,5 @@
     else 
         $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Channel already exists !');
     
-    header('Location: ../pages/profile.php');
+    header('Location: ../pages/profile.php?username=' . $_SESSION['username']);
 ?>

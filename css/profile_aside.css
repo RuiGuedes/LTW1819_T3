@@ -32,7 +32,7 @@ aside {
     font-family: var(--aside-text-font);
 }
 
-#profilePicture {
+#asidePicture {
     margin: 0em auto;
     position: relative;
 
@@ -40,7 +40,7 @@ aside {
     text-align: center;
 }
 
-#profileImg {
+#asideIMG {
     /* Layout */
     margin: 3em auto 0em auto;
     width: var(--aside-img-font-size);
@@ -52,7 +52,7 @@ aside {
     transition: 1s;
 }
 
-#profilePicture > div {
+#asidePicture > div {
     /* Layout */
     margin: 0em auto;
     position: absolute;
@@ -64,12 +64,12 @@ aside {
     transition: 1s;
 }
 
-#profilePicture > div > i { 
+#asidePicture > div > i { 
     /* Style */
     font-size: 2em;
 }
 
-#profilePicture > div > p {
+#asidePicture > div > p {
     /* Layout */
     margin: 0.5em;
 
@@ -77,13 +77,13 @@ aside {
     font-weight: bold;
 }
 
-#profilePicture:hover #profileImg {
+#asidePicture:hover #asideIMG {
     /* Style */
     opacity: 0.25;
     cursor: pointer;
 }
 
-#profilePicture:hover div {
+#asidePicture:hover div {
     /* Style */
     opacity: 1;
     cursor: pointer;

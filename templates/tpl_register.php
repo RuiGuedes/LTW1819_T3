@@ -12,8 +12,8 @@
         </head>
         <body>
             <header id="header">
-                <a href="login.php"><img src="../resources/images/logo.png" alt="Site Logo"></a>
-                <h1>Site Name</h1>
+                <a href="login.php"><img src="../resources/images/default/logo.png" alt="Site Logo"></a>
+                <h1>Nescio</h1>
             </header>
             <div id="form">
                 <form>

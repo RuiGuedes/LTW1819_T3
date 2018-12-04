@@ -22,6 +22,16 @@
     }
 
     /**
+     *  Checks user existence
+     */
+    function check_user_existence($username) {
+      $db = Database::instance()->db();
+      $stmt = $db->prepare('SELECT * FROM User WHERE username = ?');
+      $stmt->execute(array($username));
+      return $stmt->fetch()? true : false; // Return true if user exists
+    }
+
+    /**
      * Sets a user's biography
      */
     function set_user_biography($username, $biography) {

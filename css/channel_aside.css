@@ -29,7 +29,15 @@ aside {
     font-family: var(--aside-text-font);
 }
 
-#channelImg {
+#asidePicture {
+    margin: 0em auto;
+    position: relative;
+
+    border-radius: 50%;
+    text-align: center;
+}
+
+#asideIMG {
     /* Layout */
     margin: 3em auto 0em auto;
     width: var(--aside-img-font-size);
@@ -37,6 +45,45 @@ aside {
 
     /* Style */
     border-radius: 50%;
+    object-fit: cover;
+    transition: 1s;
+}
+
+#asidePicture > div {
+    /* Layout */
+    margin: 0em auto;
+    position: absolute;
+    top: 50%;
+    left: 35%;
+
+    /* Style */
+    opacity: 0;
+    transition: 1s;
+}
+
+#asidePicture > div > i { 
+    /* Style */
+    font-size: 2em;
+}
+
+#asidePicture > div > p {
+    /* Layout */
+    margin: 0.5em;
+
+    /* Style */
+    font-weight: bold;
+}
+
+#asidePicture:hover #asideIMG {
+    /* Style */
+    opacity: 0.25;
+    cursor: pointer;
+}
+
+#asidePicture:hover div {
+    /* Style */
+    opacity: 1;
+    cursor: pointer;
 }
 
 #channelName {

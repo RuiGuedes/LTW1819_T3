@@ -41,6 +41,16 @@
     }
 
     /**
+     *  Checks story existence
+     */
+    function check_story_existence($storyID) {
+        $db = Database::instance()->db();
+        $stmt = $db->prepare('SELECT * FROM Story WHERE $storyID = ?');
+        $stmt->execute(array($storyID));
+        return $stmt->fetch()? true : false; // Return true if user exists
+      }
+
+    /**
      * Remove vote from a certain story relative to a specific user
      */
     function remove_story_vote($storyID, $username) {

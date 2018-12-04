@@ -7,8 +7,21 @@
     </div>
 
     <aside> 
-        <div id="profilePicture">
-            <img id="profileImg" src="../resources/images/profile.jpg" alt="Channel Image"> 
+        <div id="asidePicture">
+            <form action="../actions/action_upload_image.php" method="post" enctype="multipart/form-data" style="display: none;">
+                <input type="hidden" name="imageID" value="<?= htmlentities($_SESSION['username']) ?>">
+                <input id="uploadImage"type="file" name="image">
+                <input id="submitImage" type="submit" value="Upload">
+            </form>
+            <?php
+                $imageID = $_SESSION['username'];
+                if(glob("../resources/images/users/$imageID.*")) { ?>
+                    <img id="asideIMG" src="../resources/images/users/<?= $_SESSION['username'] ?>" alt="User Image"> 
+                <?php }
+                else { ?>
+                    <img id="asideIMG" src="../resources/images/default/defaultUser.jpg?>" alt="User Image"> 
+                <?php }
+            ?>
             <div>
                 <i class="fas fa-camera"></i>             
                 <p>Update</p>
@@ -42,7 +55,7 @@
                     }
                     else {
                         foreach($myChannels as $channel) {
-                            ?> <li><a href="../pages/channel.php"><img src="../resources/images/NoImage.png" alt=""></a></li> <?php
+                            ?> <li><a href="../pages/channel.php"><img src="../resources/images/NoImage.png" alt="To remove this"></a></li> <?php
                         }
                     }
                 ?>            

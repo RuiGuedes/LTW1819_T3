@@ -13,8 +13,8 @@
 
         <body>
             <header>
-                <img src="../resources/images/logo.png" alt="Site Logo">
-                <h1>Site Name</h1>
+                <img src="../resources/images/default/logo.png" alt="Site Logo">
+                <h1>Nescio</h1>
             </header>
             <div id="form">
                 <form>

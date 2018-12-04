@@ -1,4 +1,5 @@
-<?php function draw_common($username, $css_files, $js_files, $filter = 2) { ?>
+<?php function draw_common($username, $css_files, $js_files, $filter = 2) {
+    ?>
     <!DOCTYPE <!DOCTYPE html>
     <html>
         <head>
@@ -23,7 +24,7 @@
         <body>
             <header id="dynamicBar">
                 <div id="header">
-                    <img src="../resources/images/logo.png" alt="Profile Picture">
+                    <img src="../resources/images/default/logo.png" alt="Logo">
                     <h1>Nescio</h1>
                 </div>
                 <nav id="menu">
@@ -34,7 +35,7 @@
                         <i class="fa fa-th-list"></i><a href="../pages/subscriptions.php">Channels</a> <!-- Change to a specific channels page -->
                     </div>
                     <div class="mainMenu">
-                        <i class="fa fa-user-alt"></i><a href="../pages/profile.php">Profile</a>
+                        <i class="fa fa-user-alt"></i><a href="../pages/profile.php?username=<?= $_SESSION['username'] ?>">Profile</a>
                     </div>
                     <div class="mainMenu">
                         <i class="fa fa-sign-out-alt"></i><a href="../actions/action_logout.php">Logout</a>
@@ -43,8 +44,16 @@
             </header>
             <div id="toolBar">
                 <div id="info">
-                    <img src="../resources/images/profile.jpg" alt="Profile Picture">
-                    <a id="user-name" href="../pages/profile.php"><h5><?php echo $username ?></h5></a>
+                    <?php
+                        $imageID = $_SESSION['username'];
+                        if(glob("../resources/images/users/$imageID.*")) { ?>
+                            <img id="asideIMG" src="../resources/images/users/<?= $_SESSION['username'] ?>" alt="User Image"> 
+                        <?php }
+                        else { ?>
+                            <img id="asideIMG" src="../resources/images/default/defaultUser.jpg?>" alt="User Image"> 
+                        <?php }
+                    ?>
+                    <a id="user-name" href="../pages/profile.php?username=<?= $_SESSION['username'] ?>"><h5><?php echo $username ?></h5></a>
                 </div>
                 <div id="filters">
                     <h5>Filter:</h5>
@@ -94,8 +103,16 @@
                         <span class="date"><i class="fas fa-clock"></i><?= htmlentities(data_converter($story['storyTime'])) ?></span>
                     </div>
                 </div>
-                <div>
-                    <img src="../resources/images/thumb.jpg" alt="Story Image">
+                <div>  
+                    <?php
+                        $imageID = $story['storyID'];
+                        if(glob("../resources/images/$imageID.*")) { ?>
+                            <img src="../resources/images/<?= $story['storyID'] ?>" alt="User Image"> 
+                        <?php }
+                        else { ?>
+                            <img src="../resources/images/thumb.jpg?>" alt="User Image"> 
+                        <?php }
+                    ?>
                     <h1><?= htmlentities($story['storyTitle']) ?></h1>
                 </div>
             </header>
@@ -131,7 +148,26 @@
 <?php function draw_channel_aside($channel, $channelStories, $channelFollowers, $status) {
     ?>
     <aside> 
-        <img id="channelImg" src="../resources/images/profile.jpg" alt="Channel Image">
+        <div id="asidePicture">
+            <form action="../actions/action_upload_image.php" method="post" enctype="multipart/form-data" style="display: none;">
+                <input type="hidden" name="imageID" value="<?= htmlentities($channel['name']) ?>">
+                <input id="uploadImage"type="file" name="image">
+                <input id="submitImage" type="submit" value="Upload">
+            </form>
+            <?php
+                $imageID = $channel['name'];
+                if(glob("../resources/images/channels/$imageID.*")) { ?>
+                    <img id="asideIMG" src="../resources/images/channels/<?= $channel['name'] ?>" alt="User Image"> 
+                <?php }
+                else { ?>
+                    <img id="asideIMG" src="../resources/images/default/defaultChannel.png?>" alt="User Image"> 
+                <?php }
+            ?>
+            <div>
+                <i class="fas fa-camera"></i>             
+                <p>Update</p>
+            </div>
+        </div>
         <h3 id="channelName"><?= $channel['name'] ?></h3>
         <div id="forms">
             <form>
@@ -164,7 +200,15 @@
 <?php function draw_post_aside($channel, $channelStories, $channelFollowers) {
     ?>
     <aside> 
-        <img id="channelImg" src="../resources/images/profile.jpg" alt="Channel Image">
+        <?php
+            $imageID = $channel['name'];
+            if(glob("../resources/images/channels/$imageID.*")) { ?>
+                <img id="asideIMG" src="../resources/images/channels/<?= $channel['name'] ?>" alt="User Image"> 
+            <?php }
+            else { ?>
+                <img id="asideIMG" src="../resources/images/default/defaultChannel.png?>" alt="User Image"> 
+            <?php }
+        ?>
         <h3 id="channelName"><?= $channel['name'] ?></h3>
         <div id="description"> 
             <textarea id="biographyContent" maxlength="240" cols="55" rows="1" placeholder="Short Description" disabled="true"></textarea>
