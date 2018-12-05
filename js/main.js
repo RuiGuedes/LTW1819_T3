@@ -168,12 +168,12 @@ let uploader = document.getElementById('uploadImage')
 let postUploader = document.getElementById('uploadStoryPic')
 let submit = document.getElementById('submitImage')
 
-postUploader.addEventListener('click', function() {
-  uploader.click();
-})
-
 currPicture.addEventListener('click', function() {
   uploader.click()
+})
+
+postUploader.addEventListener('click', function() {
+  uploader.click();
 })
 
 uploader.addEventListener('change', function() {

@@ -14,9 +14,8 @@
                 <input id="submitImage" type="submit" value="Upload">
             </form>
             <?php
-                $imageID = $_SESSION['username'];
-                if(glob("../resources/images/users/$imageID.*")) { ?>
-                    <img id="asideIMG" src="../resources/images/users/<?= $_SESSION['username'] ?>" alt="User Image"> 
+                if(glob("../resources/images/users/$username.*")) { ?>
+                    <img id="asideIMG" src="../resources/images/users/<?= $username ?>" alt="User Image"> 
                 <?php }
                 else { ?>
                     <img id="asideIMG" src="../resources/images/default/defaultUser.jpg?>" alt="User Image"> 
