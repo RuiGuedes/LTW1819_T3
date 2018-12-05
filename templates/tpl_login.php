@@ -1,4 +1,4 @@
-<?php function draw_login($username) {
+<?php function draw_login($username, $messages) {
     ?>
     
     <!DOCTYPE html>
@@ -7,6 +7,7 @@
             <meta charset="utf-8" />
             <title>Site Name</title>
             <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" type="text/css" media="screen" href="../css/common.css" />
             <link rel="stylesheet" type="text/css" media="screen" href="../css/login.css" />
             <link href="https://fonts.googleapis.com/css?family=Exo:700|Montserrat|Muli|PT+Sans|Permanent+Marker|Poppins:500" rel="stylesheet">
         </head>
@@ -17,6 +18,7 @@
                 <h1>Nescio</h1>
             </header>
             <div id="form">
+                <?=$messages?>
                 <form>
                     <div id="input">
                         <input type="text" name="username" placeholder="Username" value=<?=$username?> required="true">

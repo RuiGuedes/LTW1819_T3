@@ -8,5 +8,5 @@
 
     $username = isset($_GET['username']) ? $_GET['username'] : 'admin';
 
-    draw_login($username);
+    draw_login($username, display_messages());
 ?>

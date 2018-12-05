@@ -8,7 +8,7 @@
 
   // Input Filtering
   if (!preg_match("/^[a-zA-Z0-9]+$/", $username)) {
-    // Error Message -> Invalid characters on username
+    generate_error('username must contain alphanumeric characters only!');
     die(header('Location: ../pages/login.php'));
   }
 
@@ -18,6 +18,7 @@
     header('Location: ../pages/feed.php');
   } else {
     // Error Message -> Invalid login credentials
+    generate_error('Invalid username and password combination!');
     header("Location: ../pages/login.php?username=" . $username);
   }
 

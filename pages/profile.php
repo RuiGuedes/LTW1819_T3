@@ -31,6 +31,6 @@
     }
     
     draw_common($_SESSION['username'], ['stories.css', 'profile_aside.css'], [], $filter);
-    draw_profile($username, htmlentities($biography), $myChannels, $userStories, $storiesVotes, $votedStories);
+    draw_profile($username, htmlentities($biography), display_messages(), $myChannels, $userStories, $storiesVotes, $votedStories);
     draw_footer();
 ?>

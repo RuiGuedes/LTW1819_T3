@@ -10,13 +10,13 @@
 
     // Input Filtering (Email must be encoded instead)
     if (!preg_match("/^[a-zA-Z0-9]+$/", $username)) {
-        // Error Message -> Invalid characters on username
+        generate_error('username must contain alphanumeric characters only!');
         die(header("Location: ../pages/register.php?email=" . $email));
     }
 
 
     if ($password !== $passwordCheck) {
-        // Warning Message -> Password Check different from password
+        generate_warning('Password confirmation failed - The entered passwords aren\'t the same!');
         die(header("Location: ../pages/register.php?email=" . $email . "&username=" . $username));
     }
 
@@ -25,7 +25,7 @@
         $_SESSION['username'] = $username;
         die(header('Location: ../pages/feed.php'));
     } catch (PDOException $e) {
-        // Error Message -> Register failed
+        generate_error('Selected username already exists!');
         header("Location: ../pages/register.php?email=" . $email);
     }
 ?>
