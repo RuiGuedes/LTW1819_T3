@@ -103,14 +103,14 @@
                         <span class="date"><i class="fas fa-clock"></i><?= htmlentities(data_converter($story['storyTime'])) ?></span>
                     </div>
                 </div>
-                <div>  
+                <div> 
+                    <h1><?= htmlentities($story['storyTitle']) ?></h1> 
                     <?php
                         $imageID = $story['storyID'];
                         if(glob("../resources/images/stories/$imageID.*")) { ?>
                             <img src="../resources/images/stories/<?= $story['storyID'] ?>" alt="User Image"> 
                         <?php }
-                    ?>
-                    <h1><?= htmlentities($story['storyTitle']) ?></h1>
+                    ?>                    
                 </div>
             </header>
             <div id="storySinopse">
