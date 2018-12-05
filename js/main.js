@@ -165,13 +165,18 @@ function getVoteInnerHTML(type, regex, votes) {
 // Uploads image
 let currPicture = document.getElementById('asidePicture')
 let uploader = document.getElementById('uploadImage')
+let postUploader = document.getElementById('uploadStoryPic')
 let submit = document.getElementById('submitImage')
+
+postUploader.addEventListener('click', function() {
+  uploader.click();
+})
 
 currPicture.addEventListener('click', function() {
   uploader.click()
 })
 
-uploader.addEventListener('change', function() {  
+uploader.addEventListener('change', function() {
   submit.click()
 })
 

@@ -106,11 +106,8 @@
                 <div>  
                     <?php
                         $imageID = $story['storyID'];
-                        if(glob("../resources/images/$imageID.*")) { ?>
-                            <img src="../resources/images/<?= $story['storyID'] ?>" alt="User Image"> 
-                        <?php }
-                        else { ?>
-                            <img src="../resources/images/thumb.jpg?>" alt="User Image"> 
+                        if(glob("../resources/images/stories/$imageID.*")) { ?>
+                            <img src="../resources/images/stories/<?= $story['storyID'] ?>" alt="User Image"> 
                         <?php }
                     ?>
                     <h1><?= htmlentities($story['storyTitle']) ?></h1>

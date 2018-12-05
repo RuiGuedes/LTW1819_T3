@@ -13,6 +13,16 @@
     }
 
     /**
+    *  Get's last story ID 
+    */
+    function get_last_storyID() {
+        $db = Database::instance()->db();
+        $stmt = $db->prepare('SELECT max(storyID) as storyMaxID FROM Story');
+        $stmt->execute();
+        return $stmt->fetch()['storyMaxID'];
+    }
+
+    /**
      * Add's a new story
      */
     function add_new_story($storyTitle, $storyContent, $storyAuthor, $storyTime, $channelName) {
