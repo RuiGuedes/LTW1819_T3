@@ -15,8 +15,8 @@
     generate_message('error', $description);
   }
 
-  function generate_warning($description) {
-    generate_message('warning', $description);
+  function generate_success($description) {
+    generate_message('success', $description);
   }
 
   function display_messages() {

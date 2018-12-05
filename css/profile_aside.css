@@ -142,16 +142,6 @@ aside > form input {
     cursor: pointer;
 }
 
-#messages div {
-    /* Layout */
-    margin: 0em auto 1em auto;
-    padding: 0.5em 2em;
-
-    /* Style */
-    text-align: center;
-    font-style: italic;
-}
-
 #description textarea {
     /* Layout */
     margin: .5em 2em;

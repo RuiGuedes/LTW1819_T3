@@ -17,8 +17,8 @@
 
     --border-color: rgb(177, 177, 177);
 
+    --messages-font: 'Montserrat', sans-serif;
     --success-fg-color: rgb(86, 155, 13);
-    --warning-fg-color: rgb(230, 245, 17);
     --error-fg-color: rgb(218, 2, 13);
 }
 
@@ -234,14 +234,20 @@ a {
     text-decoration: none;
 }
 
+#messages div {
+    /* Layout */
+    margin: 0em auto 1em auto;
+    padding: 0.5em 2em;
+
+    /* Style */
+    text-align: center;
+    font-family: var(--messages-font);
+    font-style: italic;
+}
+
 #messages .error {
     /* Style */
     color: var(--error-fg-color);
-}
-
-#messages .warning {
-    /* Style */
-    color: var(--warning-fg-color);
 }
   
 #messages .success {

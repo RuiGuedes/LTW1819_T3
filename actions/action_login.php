@@ -8,7 +8,7 @@
 
   // Input Filtering
   if (!preg_match("/^[a-zA-Z0-9]+$/", $username)) {
-    generate_error('username must contain alphanumeric characters only!');
+    generate_error('The username must contain alphanumeric characters only!');
     die(header('Location: ../pages/login.php'));
   }
 

@@ -17,8 +17,8 @@
                 <h1>Nescio</h1>
             </header>
             <div id="form">
-                <?=$messages?>
                 <form>
+                    <?=$messages?>
                     <div id="input">
                         <input type="email" name="email" placeholder="Email:" required="true" value=<?=$email?>>
                         <input type="text" name="username" placeholder="Username:" required="true" value=<?=$username?>>
