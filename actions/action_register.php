@@ -16,7 +16,7 @@
 
 
     if ($password !== $passwordCheck) {
-        generate_warning('Password confirmation failed - The entered passwords aren\'t the same!');
+        generate_error('Password confirmation failed - The entered passwords aren\'t the same!');
         die(header("Location: ../pages/register.php?email=" . $email . "&username=" . $username));
     }
 

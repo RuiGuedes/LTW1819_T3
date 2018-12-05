@@ -38,8 +38,8 @@
   $imgInfo['extension'] = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
 
   // Check if file extension is valid
-  if($imgInfo['extension'] !== 'jpg' && $imgInfo['extension'] !== 'png' && $imgInfo['extension'] !== 'gif') {
-      $_SESSION['messages'][] = array('type' => 'error', 'content' => 'File extension not valid. Available extensions: <jpg> <png> <gif> !');
+  if(!in_array($imgInfo['extension'], $imgInfo['availableExtensions'])) {
+      generate_error("File extension not valid. Available extensions: <" . implode("> <", $imgInfo['availableExtensions']) . "> !");
       die(header('Location: ../pages/channel.php?channelName=' . $channelName));
   }
 
