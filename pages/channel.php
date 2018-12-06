@@ -36,6 +36,8 @@
     // Number of followers relative to the present channel
     $channelFollowers = count(get_channel_followers($channelName));
 
+    //die(print_r($channelFollowers));
+
     // Checks user subscription to a certain channel
     $status = check_user_subscription($_SESSION['username'], $channelName);
 

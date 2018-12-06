@@ -182,8 +182,9 @@
                 <input id="addPost" class="buttons" type="submit" value="Add post">
             </form> 
         </div>
-        <div id="description"> 
-            <textarea id="biographyContent" maxlength="240" cols="55" rows="1" placeholder="Short Description"></textarea>
+        <div id="description">
+            <p>Description<button id="editDescription" type="button"><i class="fas fa-pen"></i></button></p>
+            <p id="descriptionContent"><?=htmlentities($channel['description'])?></p>
         </div>        
         <div class="statistics">
             <i class="far fa-newspaper"></i><p><?= count($channelStories) ?> Stories</p>    

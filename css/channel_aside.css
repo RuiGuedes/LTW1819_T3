@@ -86,7 +86,7 @@ aside {
     cursor: pointer;
 }
 
-#channelName {
+#channelName, #description > p:first-child {
      /* Layout */
      margin: 1em auto;
  
@@ -131,24 +131,6 @@ aside {
     /* Style */
     background-color: var(--aside-button-background-color-hover);
     cursor: pointer;
-}
-
-#biography > textarea {
-    /* Layout */
-    margin: 2.5em 2em;
-    padding: 1em;
-    height: 10em;
-    width: auto;
-
-    /* Style */
-    outline: none;
-    resize: none;
-    text-align: start;
-    text-indent: 1.5em;
-    font-family: var(--aside-text-font);
-    border: solid var(--border-color) 2px;
-    border-radius: 15px;
-    background-color: var(--aside-button-background-color);
 }
 
 .statistics {

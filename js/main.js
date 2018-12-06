@@ -59,7 +59,9 @@ let editDescriptionHandler = function() {
   let applyDescriptionButton = document.getElementById('applyDescription')
   applyDescriptionButton.addEventListener('click', function() {
     let newContent = document.getElementById('descriptionContent').value
-    let userName = document.getElementById('user-name').textContent
+
+    let userName = document.getElementById('username')
+    let channelName = document.getElementById('channelName')
 
     let request = new XMLHttpRequest()
     request.open("post", "../api/api_edit_description.php", true)
@@ -72,7 +74,8 @@ let editDescriptionHandler = function() {
       editDescriptionButton = document.getElementById('editDescription')
       editDescriptionButton.addEventListener('click', editDescriptionHandler)
     })
-    request.send(encodeForAjax({username: userName, description: newContent}))
+    if (userName) request.send(encodeForAjax({username: userName.textContent, description: newContent}))
+    else          request.send(encodeForAjax({channelname: channelName.textContent, description: newContent}))
   })
 }
 
@@ -168,17 +171,11 @@ let uploader = document.getElementById('uploadImage')
 let postUploader = document.getElementById('uploadStoryPic')
 let submit = document.getElementById('submitImage')
 
-currPicture.addEventListener('click', function() {
-  uploader.click()
-})
+let uploadClick = uploader.click()
 
-postUploader.addEventListener('click', function() {
-  uploader.click();
-})
-
-uploader.addEventListener('change', function() {
-  submit.click()
-})
+if (currPicture) currPicture.addEventListener('click', uploadClick)
+if (postUploader) postUploader.addEventListener('click', uploadClick)
+uploader.addEventListener('change', uploadClick)
 
 
 function encodeForAjax(data) {

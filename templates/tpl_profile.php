@@ -35,7 +35,7 @@
         <div id="description">
             <p>Biography<button id="editDescription" type="button"><i class="fas fa-pen"></i></button></p>
             <p id="descriptionContent"><?=$biography?></p>
-        </div>        
+        </div>
         <div class="myChannels">
             <p>My Channels</p>
             <ul>

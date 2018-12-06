@@ -234,6 +234,53 @@ a {
     text-decoration: none;
 }
 
+#editDescription, #applyDescription{
+    /* Layout */
+    vertical-align: middle;
+    height: 2em;
+    width:  2em;
+    margin: auto .5em;
+
+    /* Style */
+    outline: none;
+    border: solid var(--border-color) 1px;
+    border-radius: 50%;
+    background-color: var(--background-color);
+}
+
+#editDescription:hover, #applyDescription:hover {
+    /* Style */
+    color: var(--aside-button-background-color-hover);
+}
+
+#description textarea {
+    /* Layout */
+    margin: .5em;
+    padding: 1em;
+    height: 10em;
+    width: 30rem;
+
+    /* Style */
+    outline: none;
+    resize: none;
+    text-align: start;
+    text-indent: 1.5em;
+    font-family: var(--aside-text-font);
+    border: solid var(--border-color) 2px;
+    border-radius: 15px;
+    background-color: var(--aside-button-background-color);
+}
+
+#descriptionContent {
+    /* Layout */
+    margin: 0 2em;
+    text-align: center;
+
+    /* Style */
+    white-space: pre-wrap;
+    font-size: 1rem;
+}
+
 #messages div {
     /* Layout */
     margin: 0em auto 1em auto;
