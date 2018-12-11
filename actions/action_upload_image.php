@@ -23,8 +23,8 @@
     }
 
     // Check if file extension is valid
-    if($imgInfo['extension'] !== 'jpg' && $imgInfo['extension'] !== 'png' && $imgInfo['extension'] !== 'gif') {
-        $_SESSION['messages'][] = array('type' => 'error', 'content' => 'File extension not valid. Available extensions: <jpg> <png> <gif> !');
+    if(!in_array($imgInfo['extension'], $imgInfo['availableExtensions'])) {
+        $_SESSION['messages'][] = array('type' => 'error', 'content' => "File extension not valid. Available extensions: ." . implode(" .", $imgInfo['availableExtensions']) . " !");
         die(header('Location: ../pages/profile.php?username=' . $_SESSION['username']));
     }
 

@@ -95,16 +95,16 @@
                                 <a id="<?= $story['storyID'] ?>" class="votes"><i class="fas fa-chevron-up"></i><span class="storyVotes"><?= htmlentities($storiesVotes[$story['storyID']]) ?></span><i class="fas fa-chevron-down"></i></a>
                             <?php }
                         ?>
-                        <h3><?= htmlentities($story['channelName']) ?></h3>
+                        <h3><?= $story['channelName'] ?></h3>
                     </div>
                     <div>
-                        <span class="author"><i class="far fa-user"></i><?= htmlentities($story['storyAuthor']) ?></span>
-                        <a class="comments"><i class="far fa-comments"></i><?= htmlentities($story['storyComments']) ?></a>
-                        <span class="date"><i class="far fa-clock"></i><?= htmlentities(data_converter($story['storyTime'])) ?></span>
+                        <span class="author"><i class="far fa-user"></i><?= $story['storyAuthor'] ?></span>
+                        <a class="comments"><i class="far fa-comments"></i><?= $story['storyComments'] ?></a>
+                        <span class="date"><i class="far fa-clock"></i><?= data_converter($story['storyTime']) ?></span>
                     </div>
                 </div>
                 <div> 
-                    <h1><?= htmlentities($story['storyTitle']) ?></h1> 
+                    <h1><?= $story['storyTitle'] ?></h1> 
                     <?php
                         $imageID = $story['storyID'];
                         if(glob("../resources/images/stories/$imageID.*")) { ?>
@@ -114,7 +114,7 @@
                 </div>
             </header>
             <div id="storySinopse">
-                <p><?= htmlentities($story['storyContent']) ?></p>
+                <p><?= $story['storyContent'] ?></p>
             </div>
         </article>
     <?php } 
@@ -147,7 +147,7 @@
     <aside> 
         <div id="asidePicture">
             <form action="../actions/action_upload_image.php" method="post" enctype="multipart/form-data" style="display: none;">
-                <input type="hidden" name="imageID" value="<?= htmlentities($channel['name']) ?>">
+                <input type="hidden" name="imageID" value="<?= $channel['name'] ?>">
                 <input id="uploadImage"type="file" name="image">
                 <input id="submitImage" type="submit" value="Upload">
             </form>
@@ -184,7 +184,7 @@
         </div>
         <div id="description">
             <p>Description<button id="editDescription" type="button"><i class="fas fa-pen"></i></button></p>
-            <p id="descriptionContent"><?=htmlentities($channel['description'])?></p>
+            <p id="descriptionContent"><?=$channel['description']?></p>
         </div>
         <div id="description">
         <p>Statistics</p>
