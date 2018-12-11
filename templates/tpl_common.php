@@ -142,7 +142,7 @@
     </aside>
 <?php } ?> 
 
-<?php function draw_channel_aside($channel, $channelStories, $channelFollowers, $status) {
+<?php function draw_channel_aside($channel, $channelStories, $channelFollowers, $channelOwner, $status) {
     ?>
     <aside> 
         <div id="asidePicture">
@@ -185,12 +185,18 @@
         <div id="description">
             <p>Description<button id="editDescription" type="button"><i class="fas fa-pen"></i></button></p>
             <p id="descriptionContent"><?=htmlentities($channel['description'])?></p>
+        </div>
+        <div id="description">
+        <p>Statistics</p>
         </div>        
         <div class="statistics">
             <i class="far fa-newspaper"></i><p><?= count($channelStories) ?> Stories</p>    
         </div>
         <div class="statistics">
             <i class="fas fa-users"></i><p><?= $channelFollowers ?> Followers</p>
+        </div>
+        <div class="statistics">
+            <i class="fas fa-user-lock"></i><p><?= $channelOwner ?></p>
         </div>
     </aside>
 <?php } ?>

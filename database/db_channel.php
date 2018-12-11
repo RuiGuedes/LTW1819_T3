@@ -49,6 +49,16 @@
         return $stmt->fetchall();
     }
 
+    /**
+     * Get a channel owner
+     */
+     function get_channel_owner($channelName){
+      $db = Database::instance()->db();
+      $stmt = $db->prepare('SELECT owner FROM Channel WHERE Channel.name = ?');
+      $stmt->execute(array($channelName));
+      return $stmt->fetch()['owner']; 
+     }
+
       /**
        * Get's top 10 channels order by followers 
        */
