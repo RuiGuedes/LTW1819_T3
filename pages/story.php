@@ -1,5 +1,6 @@
 <?php
     include_once('../includes/session.php');
+    include_once('../includes/functions.php');
     include_once('../templates/tpl_common.php');
     include_once('../templates/tpl_story.php');
     include_once('../database/db_story.php');
@@ -10,9 +11,9 @@
 
     // Retrives a certain story with ID equals to <storyID>
     $storyID = isset($_POST['storyID']) && is_numeric($_POST['storyID']) ? $_POST['storyID'] : 0;
-    $story = get_story($storyID);
+    $story = htmlentities_all(get_story($storyID));
 
-    if(empty($story))
+    if (empty($story))
       die(header('Location: feed.php'));
     else {
       draw_common($_SESSION['username'], ['story.css'], []);

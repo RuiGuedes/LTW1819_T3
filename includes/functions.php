@@ -15,9 +15,8 @@
     break;
     }
 }
-?>
 
-<?php function data_converter($storyTime) {
+function data_converter($storyTime) {
     /* Converts time in order to be properly displayed */
     $newStoryTime = new DateTime(date('Y-m-d H:i:s'));
     $oldStoryTime = new DateTime($storyTime);
@@ -36,5 +35,19 @@
         return $interval->format('%i m');
     else 
         return $interval->format('%s s');
+}
+
+function htmlentities_all($data) {
+    foreach($data as $k => $v) {
+        switch(gettype($v)) {
+            case 'array':
+                $data[$k] = htmlentities_all($v);        
+                break;
+            case 'string':
+                $data[$k] = htmlentities($v);        
+                break;
+        }
+    }
+    return $data;
 }
 ?> 

@@ -17,13 +17,13 @@
       die(header('Location: feed.php'));
 
     // Retrieves channel information
-    $channel = get_channel($channelName);
+    $channel = htmlentities_all(get_channel($channelName));
 
     // Checks filter value in order to order results from the next query
     $filter = isset($_GET['filter']) ? $_GET['filter'] : 2;
 
     // Retrieves channel stories order by the value presente on filter variable
-    $channelStories = get_channel_stories($channelName, $filter);
+    $channelStories = htmlentities_all(get_channel_stories($channelName, $filter));
 
     // Stories number of votes
     $storiesVotes; $votedStories;
@@ -35,14 +35,17 @@
 
     // Number of followers relative to the present channel
     $channelFollowers = count(get_channel_followers($channelName));
-
-    //die(print_r($channelFollowers));
+    
+    // Retrieve channel Owner
+    $channelOwner = get_channel_owner($channelName);
+    
+    //die();
 
     // Checks user subscription to a certain channel
     $status = check_user_subscription($_SESSION['username'], $channelName);
 
     draw_common($_SESSION['username'], ['stories.css', 'channel_aside.css'], [], $filter);
     draw_channel_feed($channelStories, $storiesVotes, $votedStories);
-    draw_channel_aside($channel, $channelStories, $channelFollowers, $status);
+    draw_channel_aside($channel, $channelStories, $channelFollowers, $channelOwner, $status);
     draw_footer();
 ?>
