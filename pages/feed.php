@@ -1,5 +1,6 @@
 <?php 
     include_once('../includes/session.php');
+    include_once('../includes/functions.php');
     include_once('../templates/tpl_common.php');
     include_once('../templates/tpl_feed.php');
     include_once('../database/db_channel.php');
@@ -24,7 +25,7 @@
     $channels = get_top_channels();
 
     draw_common($_SESSION['username'], ['stories.css', 'general_aside.css'], [], $filter);
-    draw_feed($stories, $storiesVotes, $votedStories);
-    draw_general_aside($channels);
+    draw_feed(htmlentities_all($stories), $storiesVotes, $votedStories);
+    draw_general_aside(htmlentities_all($channels));
     draw_footer();
 ?>

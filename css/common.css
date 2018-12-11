@@ -281,6 +281,10 @@ a {
     font-size: 1rem;
 }
 
+aside #messages {
+    width: 30em;
+}
+
 #messages div {
     /* Layout */
     margin: 0em auto 1em auto;

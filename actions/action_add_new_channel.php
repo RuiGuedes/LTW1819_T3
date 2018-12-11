@@ -11,7 +11,7 @@
         add_new_subscription($username, $channelName);
     }
     else 
-        generate_error('Channel already exists !');
+        generate_error('Channel already exists!');
     
     header('Location: ../pages/profile.php?username=' . $_SESSION['username']);
 ?>
