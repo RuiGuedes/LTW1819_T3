@@ -185,13 +185,15 @@
         <div id="description">
             <p>Description<button id="editDescription" type="button"><i class="fas fa-pen"></i></button></p>
             <p id="descriptionContent"><?=htmlentities($channel['description'])?></p>
-        </div>        
-        <div class="statistics">
-            <i class="far fa-newspaper"></i><p><?= count($channelStories) ?> Stories</p>    
         </div>
-        <div class="statistics">
-            <i class="fas fa-users"></i><p><?= $channelFollowers ?> Followers</p>
-        </div>
+        <div id="statistics">
+            <div class="statistics">
+                <i class="far fa-newspaper"></i><p><?= count($channelStories) ?> Stories</p>    
+            </div>
+            <div class="statistics">
+                <i class="fas fa-users"></i><p><?= $channelFollowers ?> Followers</p>
+            </div>
+        </div>      
     </aside>
 <?php } ?>
 

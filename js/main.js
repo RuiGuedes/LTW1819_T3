@@ -55,6 +55,10 @@ let editDescriptionHandler = function() {
     '<textarea id="descriptionContent" maxlength="240" cols="55" rows="1" placeholder="Short Description">' +
       previousContent + 
     '</textarea>'
+  
+  document.getElementById('descriptionContent').style.maxWidth = '27.5em'
+  document.getElementById('descriptionContent').style.margin = '0em'
+  document.getElementById('descriptionContent').style.borderRadius = '0%'
 
   let applyDescriptionButton = document.getElementById('applyDescription')
   applyDescriptionButton.addEventListener('click', function() {

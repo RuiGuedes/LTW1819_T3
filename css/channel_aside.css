@@ -22,7 +22,17 @@ aside {
     /* Layout */
     grid-area: aside;
     flex-direction: column;
-    display: flex;
+    display: grid;
+    max-height: 100%;
+
+    grid-template-columns: 100%;
+    grid-template-rows: 17.5em 4em 3em 15em 1fr;
+
+    grid-template-areas:    "picture"
+                            "name"
+                            "forms"
+                            "description"
+                            "statistics";
 
     /* Style */
     border-left: solid var(--border-color);
@@ -30,8 +40,11 @@ aside {
 }
 
 #asidePicture {
-    margin: 0em auto;
+    /* Layout */
+    margin: 0em;
+    padding-top: 2em;
     position: relative;
+    grid-area: picture;
 
     border-radius: 50%;
     text-align: center;
@@ -39,7 +52,7 @@ aside {
 
 #asideIMG {
     /* Layout */
-    margin: 3em auto 0em auto;
+    margin: 0em;
     width: var(--aside-img-font-size);
     height: var(--aside-img-font-size);
 
@@ -51,10 +64,10 @@ aside {
 
 #asidePicture > div {
     /* Layout */
-    margin: 0em auto;
+    margin: 0em;
     position: absolute;
-    top: 50%;
-    left: 35%;
+    top: 45%;
+    left: 43%;
 
     /* Style */
     opacity: 0;
@@ -86,10 +99,12 @@ aside {
     cursor: pointer;
 }
 
-#channelName, #description > p:first-child {
-     /* Layout */
-     margin: 1em auto;
- 
+#channelName {
+    /* Layout */
+    margin: 0em;
+    padding: 0.5em 0em;
+    grid-area: name;
+
      /* Style */
     text-align: center;
     font-size: var(--aside-channel-font-size);
@@ -100,14 +115,46 @@ aside {
     /* Layout */
     justify-content: center;
     display: flex;
+    grid-area: forms;
+    padding: 1em;
 }
 
 #forms form:first-child {
     /* Layout */
+    margin: 0em;
     padding-right: 2em;
+
+    /* Style */
+    text-align: center;
+}
+
+#description {
+    margin: 0em auto;
+    grid-area: description;
+}
+
+#description p:first-child {
+    margin: 0.75em 0em;
     
     /* Style */
     text-align: center;
+    font-size: var(--aside-channel-font-size);
+    font-family: var(--aside-channel-font);
+}
+
+#description p:nth-child(2) {
+    max-width: 25em;
+    max-height: 10em;
+    
+    /* Style */ 
+    text-indent: 1em;
+    text-align: start;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#statistics {
+    grid-area: statistics;
 }
 
 .buttons {
