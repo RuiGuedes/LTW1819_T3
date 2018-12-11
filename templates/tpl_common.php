@@ -84,23 +84,23 @@
             <header id="storyHeader">
                 <div>
                     <div>
-                        <?php
+                        <?php 
                             if($votedStories[$story['storyID']] == 1) { ?>
-                                <a id="<?= $story['storyID'] ?>" class="votes"><i class="fas fa-minus-circle"></i><span class="storyVotes"><?= htmlentities($storiesVotes[$story['storyID']]) ?></span><i id="voteUp" class="fas fa-plus-circle"></i></a>
+                                <a id="<?= $story['storyID'] ?>" class="votes"><i id="voteUp" class="fas fa-chevron-up"></i><span class="storyVotes"><?= htmlentities($storiesVotes[$story['storyID']]) ?></span><i class="fas fa-chevron-down"></i></a>
                             <?php }
                             else if($votedStories[$story['storyID']] == -1) { ?>
-                                <a id="<?= $story['storyID'] ?>" class="votes"><i id="voteDown" class="fas fa-minus-circle"></i><span class="storyVotes"><?= htmlentities($storiesVotes[$story['storyID']]) ?></span><i class="fas fa-plus-circle"></i></a>
+                                <a id="<?= $story['storyID'] ?>" class="votes"><i class="fas fa-chevron-up"></i><span class="storyVotes"><?= htmlentities($storiesVotes[$story['storyID']]) ?></span><i id="voteDown" class="fas fa-chevron-down"></i></a>
                             <?php }
                             else { ?>
-                                <a id="<?= $story['storyID'] ?>" class="votes"><i class="fas fa-minus-circle"></i><span class="storyVotes"><?= htmlentities($storiesVotes[$story['storyID']]) ?></span><i class="fas fa-plus-circle"></i></a>
+                                <a id="<?= $story['storyID'] ?>" class="votes"><i class="fas fa-chevron-up"></i><span class="storyVotes"><?= htmlentities($storiesVotes[$story['storyID']]) ?></span><i class="fas fa-chevron-down"></i></a>
                             <?php }
                         ?>
                         <h3><?= htmlentities($story['channelName']) ?></h3>
                     </div>
                     <div>
-                        <span class="author"><i class="fas fa-user-alt"></i><?= htmlentities($story['storyAuthor']) ?></span>
-                        <a class="comments"><i class="fas fa-comments"></i><?= htmlentities($story['storyComments']) ?></a>
-                        <span class="date"><i class="fas fa-clock"></i><?= htmlentities(data_converter($story['storyTime'])) ?></span>
+                        <span class="author"><i class="far fa-user"></i><?= htmlentities($story['storyAuthor']) ?></span>
+                        <a class="comments"><i class="far fa-comments"></i><?= htmlentities($story['storyComments']) ?></a>
+                        <span class="date"><i class="far fa-clock"></i><?= htmlentities(data_converter($story['storyTime'])) ?></span>
                     </div>
                 </div>
                 <div> 
