@@ -115,8 +115,8 @@ if (subscribeButton !== null)
   subscribeButton.addEventListener('click', subscriptionHandler)
 
 // Vote up/down
-let voteDown = document.getElementsByClassName('fas fa-minus-circle')
-let voteUp = document.getElementsByClassName('fas fa-plus-circle')
+let voteUp = document.getElementsByClassName('fas fa-chevron-up')
+let voteDown = document.getElementsByClassName('fas fa-chevron-down')
 let votesLength = voteDown.length
 
 for(let index = 0; index < votesLength; index++) {
@@ -137,8 +137,8 @@ function voteHandler(storyID, type) {
     
     document.getElementById(storyID).innerHTML = getVoteInnerHTML(type, regex, votes)
     
-    let newVoteDown = document.getElementById(storyID).getElementsByClassName('fas fa-minus-circle')
-    let newVoteUp = document.getElementById(storyID).getElementsByClassName('fas fa-plus-circle')
+    let newVoteDown = document.getElementById(storyID).getElementsByClassName('fas fa-chevron-down')
+    let newVoteUp = document.getElementById(storyID).getElementsByClassName('fas fa-chevron-up')
 
     newVoteDown[0].addEventListener('click', function() {voteHandler(storyID, -1)})
     newVoteUp[0].addEventListener('click', function() {voteHandler(storyID, 1)})
@@ -149,19 +149,19 @@ function voteHandler(storyID, type) {
 // Retrieves vote new inner html
 function getVoteInnerHTML(type, regex, votes) {
   if((type == 1 && regex.match('voteUp') !== null) || (type == -1 && regex.match('voteDown') !== null)) {
-    return '<i class="fas fa-minus-circle"></i><span class="storyVotes">' + votes + '</span><i class="fas fa-plus-circle"></i>'
+    return '<i class="fas fa-chevron-up"></i><span class="storyVotes">' + votes + '</span><i class="fas fa-chevron-down"></i>'
   }
   else if(type == 1 && regex.match('voteDown') !== null) {
-    return '<i class="fas fa-minus-circle"></i><span class="storyVotes">' + votes + '</span><i id="voteUp" class="fas fa-plus-circle"></i>'
+    return '<i id="voteUp"class="fas fa-chevron-up"></i><span class="storyVotes">' + votes + '</span><i class="fas fa-chevron-down"></i>'
   }
   else if(type == -1 && regex.match('voteUp') !== null) {
-    return '<i id="voteDown" class="fas fa-minus-circle"></i><span class="storyVotes">' + votes + '</span><i class="fas fa-plus-circle"></i>'
+    return '<i class="fas fa-chevron-up"></i><span class="storyVotes">' + votes + '</span><i id="voteDown" class="fas fa-chevron-down"></i>'
   }
   else if(type == 1) {
-    return '<i class="fas fa-minus-circle"></i><span class="storyVotes">' + votes + '</span><i id="voteUp" class="fas fa-plus-circle"></i>'
+    return '<i id="voteUp" class="fas fa-chevron-up"></i><span class="storyVotes">' + votes + '</span><i class="fas fa-chevron-down"></i>'
   }
   else {
-    return '<i id="voteDown" class="fas fa-minus-circle"></i><span class="storyVotes">' + votes + '</span><i class="fas fa-plus-circle"></i>'
+    return '<i class="fas fa-chevron-up"></i><span class="storyVotes">' + votes + '</span><i id="voteDown" class="fas fa-chevron-down"></i>'
   }
 }
 
@@ -171,12 +171,21 @@ let uploader = document.getElementById('uploadImage')
 let postUploader = document.getElementById('uploadStoryPic')
 let submit = document.getElementById('submitImage')
 
-let uploadClick = uploader.click()
+if(currPicture != null) {
+  currPicture.addEventListener('click', function() {
+    uploader.click()
+  })
+}
 
-if (currPicture) currPicture.addEventListener('click', uploadClick)
-if (postUploader) postUploader.addEventListener('click', uploadClick)
-uploader.addEventListener('change', uploadClick)
+if(postUploader != null) {
+  postUploader.addEventListener('click', function() {
+    uploader.click();
+  })
+}
 
+uploader.addEventListener('change', function() {
+  submit.click()
+})
 
 function encodeForAjax(data) {
   return Object.keys(data).map(function(k){

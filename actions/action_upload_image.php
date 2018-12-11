@@ -56,7 +56,7 @@
     else if($imgInfo['extension'] == 'gif') {
         imagecreatefromgif($originalFileName);
     }   
-
+    
     if($imgInfo['type'] == 'profile') {
         die(header('Location: ../pages/profile.php?username=' . $id));
     }

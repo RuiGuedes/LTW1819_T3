@@ -77,12 +77,9 @@
 
 #storyHeader div:last-child img {
     /* Layout */
-    padding: 0em 1em;
-    
-    object-fit: contain;
-    background-size: cover;
-    background-repeat: no-repeat;
-    /* background-position: 100% 50%; */
+    margin: auto;
+    /* padding: 0em 1em;    */
+    width: 95%;
 }
 
 #storyHeader div:last-child h1 {
@@ -94,6 +91,7 @@
 
     /* Style */
     font-family: var(--story-title-font);
+    font-size: 2em;
 }
 
 #storySinopse  {
@@ -146,12 +144,12 @@
 
 #storyHeader div:first-child div:first-child i:first-child:hover {
     cursor: pointer;
-    color:rgb(255, 0, 0);
+    color:rgb(9, 190, 9);
 }
 
 #storyHeader div:first-child div:first-child i:nth-child(3):hover {
     cursor: pointer;
-    color:rgb(9, 190, 9);
+    color:rgb(255, 0, 0);
 }
 
 #voteDown {
