@@ -39,7 +39,7 @@
 
   // Check if file extension is valid
   if(!in_array($imgInfo['extension'], $imgInfo['availableExtensions'])) {
-      generate_error("File extension not valid. Available extensions: <" . implode("> <", $imgInfo['availableExtensions']) . "> !"));
+      generate_error("File extension not valid. Available extensions: <" . implode("> <", $imgInfo['availableExtensions']) . "> !");
       die(header('Location: ../pages/channel.php?channelName=' . $channelName));
   }
 

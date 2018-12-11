@@ -183,6 +183,9 @@ if(postUploader != null) {
   })
 }
 
+uploader.addEventListener('change', function() {
+  submit.click()
+})
 
 function encodeForAjax(data) {
   return Object.keys(data).map(function(k){
