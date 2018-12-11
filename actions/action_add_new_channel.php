@@ -6,12 +6,12 @@
     $channelName = $_POST['channelName'];
     $username = $_SESSION['username'];
 
-    if(!check_channel_existence($channelName)) {
+    if (!check_channel_existence($channelName)) {
         add_new_channel($channelName, $username);
         add_new_subscription($username, $channelName);
     }
     else 
-        $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Channel already exists !');
+        generate_error('Channel already exists !');
     
     header('Location: ../pages/profile.php?username=' . $_SESSION['username']);
 ?>

@@ -32,6 +32,14 @@
     }
 
     /**
+     * Sets a channel's description
+     */
+    function set_channel_description($channelname, $description) {
+        $stmt = Database::instance()->db()->prepare('UPDATE Channel SET description = ? WHERE name == ?');
+        $stmt->execute(array($description, $channelname));
+      }
+
+    /**
      * Get's all channel stories order by a certain filter
      */
     function get_channel_stories($channelName, $filter) {

@@ -37,7 +37,7 @@ body {
     background-color: var(--background-color);
 }
 
-#header {
+#registerHeader {
     /* Layout */
     margin: 0em auto;
     justify-content: center;
@@ -45,7 +45,7 @@ body {
     grid-area: header;
 }
 
-#header > a img {
+#registerHeader > a img {
     /* Layout */
     padding-top: 2em;
     width: 20em;
@@ -53,7 +53,7 @@ body {
 
 }
 
-#header > h1 {
+#registerHeader > h1 {
     /* Layout */
     margin: 0em auto;
     padding: 1em 0em 0em 0.5em;

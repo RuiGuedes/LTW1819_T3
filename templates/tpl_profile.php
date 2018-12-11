@@ -1,4 +1,4 @@
-<?php function draw_profile($username, $biography, $myChannels, $stories, $storiesVotes, $votedStories) {
+<?php function draw_profile($username, $biography, $messages, $myChannels, $stories, $storiesVotes, $votedStories) {
     ?>
     <div id="masterStories">
         <section id="stories">
@@ -27,16 +27,7 @@
             </div>
         </div>
         <h3 id="username"><?= $username ?></h3>
-        <?php 
-            if(isset($_SESSION['messages'])) { ?>
-                <section id="messages"> <?php
-                foreach($_SESSION['messages'] as $message) {
-                    ?><div class="<?=$message['type']?>"><?=$message['content']?></div> <?php 
-                } ?>
-                </section> <?php
-            }
-            unset($_SESSION['messages']);
-        ?>
+        <?=$messages?>
         <form>
             <input type="text" name="channelName" placeholder="Channel Name" required="true" maxlength="18">
             <button id="newChannel" type="submit" formaction="../actions/action_add_new_channel.php" formmethod="POST">Create</button>
@@ -44,7 +35,7 @@
         <div id="description">
             <p>Biography<button id="editDescription" type="button"><i class="fas fa-pen"></i></button></p>
             <p id="descriptionContent"><?=$biography?></p>
-        </div>        
+        </div>
         <div class="myChannels">
             <p>My Channels</p>
             <ul>

@@ -15,9 +15,6 @@
     --aside-button-background-color: rgb(245, 243, 243);
     --aside-button-background-color-hover: rgb(3, 173, 192);
 
-    --success-fg-color: rgb(86, 155, 13);
-    --error-fg-color: rgb(218, 2, 13);
-
     --border-color: rgb(177, 177, 177);
 }
 
@@ -143,73 +140,6 @@ aside > form input {
     /* Style */
     background-color: var(--aside-button-background-color-hover);
     cursor: pointer;
-}
-
-#messages div {
-    /* Layout */
-    margin: 0em auto 1em auto;
-    padding: 0.5em 2em;
-
-    /* Style */
-    text-align: center;
-    font-style: italic;
-}
-  
-#messages .error {
-     /* Style */
-    color: var(--error-fg-color);
-}
-  
-#messages .success {
-    /* Style */
-    color: var(--success-fg-color);
-}
-
-#description textarea {
-    /* Layout */
-    margin: .5em 2em;
-    padding: 1em;
-    height: 10em;
-    width: auto;
-
-    /* Style */
-    outline: none;
-    resize: none;
-    text-align: start;
-    text-indent: 1.5em;
-    font-family: var(--aside-text-font);
-    border: solid var(--border-color) 2px;
-    border-radius: 15px;
-    background-color: var(--aside-button-background-color);
-}
-
-#descriptionContent {
-    /* Layout */
-    margin: 0 2em;
-    text-align: center;
-
-    /* Style */
-    white-space: pre-wrap;
-    font-size: 1rem;
-}
-
-#editDescription, #applyDescription{
-    /* Layout */
-    vertical-align: middle;
-    height: 2em;
-    width:  2em;
-    margin: auto .5em;
-
-    /* Style */
-    outline: none;
-    border: solid var(--border-color) 1px;
-    border-radius: 50%;
-    background-color: var(--background-color);
-}
-
-#editDescription:hover, #applyDescription:hover {
-    /* Style */
-    color: var(--aside-button-background-color-hover);
 }
 
 .myChannels {

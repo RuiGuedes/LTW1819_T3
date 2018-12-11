@@ -4,4 +4,30 @@
 
   session_start();
   session_regenerate_id(true);
+
+
+  // Dynamic feedback messages API
+  function generate_message($type, $description) {
+    $_SESSION['messages'][] = array('type' => $type, 'content' => $description);
+  }
+
+  function generate_error($description) {
+    generate_message('error', $description);
+  }
+
+  function generate_success($description) {
+    generate_message('success', $description);
+  }
+
+  function display_messages() {
+    if (isset($_SESSION['messages'])) {
+      $msgString = "<section id=\"messages\">";
+      foreach ($_SESSION['messages'] as $message) {
+        $msgString .= "<div class=\"" . $message['type'] . "\">" . $message['content'] . "</div>";
+      }
+      unset($_SESSION['messages']);
+      return $msgString . "</section>"; 
+    }
+    else return '';
+  }
 ?>
