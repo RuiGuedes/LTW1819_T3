@@ -55,10 +55,6 @@ let editDescriptionHandler = function() {
     '<textarea id="descriptionContent" maxlength="240" cols="55" rows="1" placeholder="Short Description">' +
       previousContent + 
     '</textarea>'
-  
-  document.getElementById('descriptionContent').style.maxWidth = '27.5em'
-  document.getElementById('descriptionContent').style.margin = '0em'
-  document.getElementById('descriptionContent').style.borderRadius = '0%'
 
   let applyDescriptionButton = document.getElementById('applyDescription')
   applyDescriptionButton.addEventListener('click', function() {
@@ -92,8 +88,8 @@ let subscribeButton = document.getElementById('subscribeButton')
 let subscriptionHandler = function() {
     let statistics = document.getElementsByClassName('statistics')
     let value = subscribeButton.value
-    let followers = Number(statistics[1].innerHTML.match('[0-9]\+')[0])
-
+    let followers = Number(statistics[2].innerHTML.match('[0-9]\+')[0])
+  
     if (value == 'Subscribe') {
       followers++
       value = 'Unsubscribe'
@@ -112,7 +108,7 @@ let subscriptionHandler = function() {
     request.send(encodeForAjax({username: userName, channelName: channelname}))
 
     subscribeButton.value = value
-    statistics[1].innerHTML = '<i class="fas fa-users"></i><p>' + followers + ' Followers</p>'
+    statistics[2].innerHTML = '<i class="fas fa-users"></i><p>' + followers + ' Followers</p>'
 }
 
 if (subscribeButton !== null)

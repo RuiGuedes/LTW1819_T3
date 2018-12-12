@@ -15,5 +15,4 @@
     // Subscribes or unsubscribes a channel 
     if(check_channel_existence($channelName)) 
         check_user_subscription($username, $channelName) ? remove_subscription($username, $channelName) : add_new_subscription($username, $channelName);
-    
 ?>

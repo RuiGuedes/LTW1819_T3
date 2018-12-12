@@ -73,7 +73,7 @@
                     </form>
                 </div>
                 <div id="search">
-                    <input type="search" name="Search" placeholder="Search">
+                    <input type="search" name="Search" placeholder="Search ...">
                 </div>
             </div>
 <? } ?>
@@ -187,40 +187,66 @@
             <p id="descriptionContent"><?=htmlentities($channel['description'])?></p>
         </div>
         <div id="statistics">
+            <p>Channel Statistics</p>
+            <div class="statistics">
+                <i class="fas fa-user-lock"></i><p><?= $channelOwner ?></p>
+            </div>
             <div class="statistics">
                 <i class="far fa-newspaper"></i><p><?= count($channelStories) ?> Stories</p>    
             </div>
             <div class="statistics">
                 <i class="fas fa-users"></i><p><?= $channelFollowers ?> Followers</p>
             </div>
-            <div class="statistics">
-                <i class="fas fa-user-lock"></i><p><?= $channelOwner ?></p>
-            </div>
         </div>
     </aside>
 <?php } ?>
 
-<?php function draw_post_aside($channel, $channelStories, $channelFollowers) {
+<?php function draw_post_aside($channel, $channelStories, $channelFollowers, $channelOwner, $status) {
     ?>
     <aside> 
-        <?php
-            $imageID = $channel['name'];
-            if(glob("../resources/images/channels/$imageID.*")) { ?>
-                <img id="asideIMG" src="../resources/images/channels/<?= $channel['name'] ?>" alt="User Image"> 
-            <?php }
-            else { ?>
-                <img id="asideIMG" src="../resources/images/default/defaultChannel.png?>" alt="User Image"> 
-            <?php }
-        ?>
-        <h3 id="channelName"><?= $channel['name'] ?></h3>
-        <div id="description"> 
-            <textarea id="biographyContent" maxlength="240" cols="55" rows="1" placeholder="Short Description" disabled="true"></textarea>
-        </div>        
-        <div class="statistics">
-            <i class="far fa-newspaper"></i><p><?= count($channelStories) ?> Stories</p>    
+        <div id="channelPicture">
+            <?php
+                $imageID = $channel['name'];
+                if(glob("../resources/images/channels/$imageID.*")) { ?>
+                    <img id="asideIMG" src="../resources/images/channels/<?= $channel['name'] ?>" alt="User Image"> 
+                <?php }
+                else { ?>
+                    <img id="asideIMG" src="../resources/images/default/defaultChannel.png?>" alt="User Image"> 
+                <?php }
+            ?>
         </div>
-        <div class="statistics">
-            <i class="fas fa-users"></i><p><?= $channelFollowers ?> Followers</p>
+        <h3 id="channelName"><?= $channel['name'] ?></h3>
+        <div id="forms">
+            <form>
+                <?php
+                    if($status) {
+                      ?> <input class="buttons" type="button" value="Unsubscribe" disabled> <?php
+                    }                        
+                    else { 
+                        ?><input class="buttons" type="button" value="Subscribe" disabled> <?php
+                    }
+                ?>
+            </form> 
+            <form method="get" action="../pages/post.php">
+                <input type="hidden" name="channelName" value="<?= $channel['name'] ?>">
+                <input class="buttons" type="submit" value="Add post" disabled>
+            </form> 
+        </div>
+        <div id="description">
+            <p>Description</p>
+            <p id="descriptionContent"><?=htmlentities($channel['description'])?></p>
+        </div>     
+        <div id="statistics">
+            <p>Channel Statistics</p>
+            <div class="statistics">
+                <i class="fas fa-user-lock"></i><p><?= $channelOwner ?></p>
+            </div>
+            <div class="statistics">
+                <i class="far fa-newspaper"></i><p><?= count($channelStories) ?> Stories</p>    
+            </div>
+            <div class="statistics">
+                <i class="fas fa-users"></i><p><?= $channelFollowers ?> Followers</p>
+            </div>
         </div>
     </aside>
 <?php } ?>

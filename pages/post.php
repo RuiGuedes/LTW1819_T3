@@ -24,8 +24,14 @@
     // Number of followers relative to the present channel
     $channelFollowers = count(get_channel_followers($channelName));
 
+    // Retrieve channel Owner
+    $channelOwner = get_channel_owner($channelName);
+
+    // Checks user subscription to a certain channel
+    $status = check_user_subscription($_SESSION['username'], $channelName);
+
     draw_common($_SESSION['username'], ['post.css', 'channel_aside.css'], []);
     draw_post($channelName);
-    draw_post_aside($channel, $channelStories, $channelFollowers);
+    draw_post_aside($channel, $channelStories, $channelFollowers, $channelOwner, $status);
     draw_footer();
 ?>

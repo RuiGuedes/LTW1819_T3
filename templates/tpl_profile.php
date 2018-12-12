@@ -27,29 +27,20 @@
             </div>
         </div>
         <h3 id="username"><?= $username ?></h3>
-        <?=$messages?>
-        <form>
+        <?php 
+            if($messages !== '')
+                echo $messages;
+        ?>
+        <form id="forms">
             <input type="text" name="channelName" placeholder="Channel Name" required="true" maxlength="18">
             <button id="newChannel" type="submit" formaction="../actions/action_add_new_channel.php" formmethod="POST">Create</button>
         </form>
         <div id="description">
             <p>Biography<button id="editDescription" type="button"><i class="fas fa-pen"></i></button></p>
-            <p id="descriptionContent"><?=$biography?></p>
+            <p id="descriptionContent"><?=htmlentities($biography)?></p>
         </div>
-        <div class="myChannels">
-            <p>My Channels</p>
-            <ul>
-                <?php 
-                    if(empty($myChannels)) {
-                        ?> <p id="noChannels">Empty</p> <?php
-                    }
-                    else {
-                        foreach($myChannels as $channel) {
-                            ?> <li><a href="../pages/channel.php"><img src="../resources/images/NoImage.png" alt="To remove this"></a></li> <?php
-                        }
-                    }
-                ?>            
-            </ul>
+        <div id="statistics">
+            <p>User Statistics</p>
         </div>
     </aside>
 

@@ -6,23 +6,40 @@
     --story-header-font: 'Montserrat', sans-serif;
     --story-text-font: 'Montserrat', sans-serif;
 
-    --aside-img-font-size: 15em;
-    --aside-username-font: 'Exo', sans-serif;
-    --aside-username-font-size: 2em;
-    --aside-text-font: 'Montserrat', sans-serif;
-    --aside-button-font-size: 1em;
+    --aside-upload-icon-size: 200%;
 
+    --aside-username-font: 'Exo', sans-serif;
+    --aside-username-font-size: 200%;
+    
+    --aside-description-font: 'Exo', sans-serif;
+    --aside-description-font-size: 200%;
+
+    --aside-text-font: 'Montserrat', sans-serif;
+    
+    --aside-button-font-size: 100%;
     --aside-button-background-color: rgb(245, 243, 243);
     --aside-button-background-color-hover: rgb(3, 173, 192);
+    
+    --aside-statistics-font-size: 130%;
 
     --border-color: rgb(177, 177, 177);
 }
 
 aside {
     /* Layout */
+    display: grid;
+    max-height: 100%;
     grid-area: aside;
-    flex-direction: column;
-    display: flex;
+
+    grid-template-columns: 100%;
+    grid-template-rows: 30% 5% 2.5% 7.5% 28.5% auto;
+
+    grid-template-areas:    "picture"
+                            "name"
+                            "messages"
+                            "forms"
+                            "description"
+                            "statistics";
 
     /* Style */
     border-left: solid var(--border-color);
@@ -30,40 +47,40 @@ aside {
 }
 
 #asidePicture {
-    margin: 0em auto;
+    /* Layout */
+    margin: 0em;
+    padding: 5%;
     position: relative;
+    grid-area: picture;
 
+    /* Style */
     border-radius: 50%;
     text-align: center;
 }
 
 #asideIMG {
-    /* Layout */
-    margin: 3em auto 0em auto;
-    width: var(--aside-img-font-size);
-    height: var(--aside-img-font-size);
+   /* Layout */
+   margin: 0em;
+   width: 55%;
+   height: 100%;
 
-    /* Style */
-    border-radius: 50%;
-    object-fit: cover;
-    transition: 1s;
+   /* Style */
+   border-radius: 50%;
+   object-fit: cover;
+   transition: 1s;
 }
 
 #asidePicture > div {
     /* Layout */
-    margin: 0em auto;
+    margin: 0em;
     position: absolute;
-    top: 50%;
-    left: 35%;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -55%);
 
     /* Style */
     opacity: 0;
     transition: 1s;
-}
-
-#asidePicture > div > i { 
-    /* Style */
-    font-size: 2em;
 }
 
 #asidePicture > div > p {
@@ -72,6 +89,11 @@ aside {
 
     /* Style */
     font-weight: bold;
+}
+
+#asidePicture > div > i { 
+    /* Style */
+    font-size: var(--aside-upload-icon-size);
 }
 
 #asidePicture:hover #asideIMG {
@@ -87,22 +109,25 @@ aside {
 }
 
 #username {
-     /* Layout */
-     margin: 1em auto 0.5em auto;
- 
+    /* Layout */
+    margin: 0em;
+    grid-area: name;
+
      /* Style */
     text-align: center;
     font-size: var(--aside-username-font-size);
     font-family: var(--aside-username-font);
 }
 
-aside > form {
-    margin: 0em;
-    justify-content: center;
+#forms {
+    /* Layout */
+    padding-top: 4%;
     display: flex;
+    grid-area: forms;
+    justify-content: center;
 }
 
-aside > form input {
+#forms input {
     /* Layout */
     margin: 0em 0.25em 0em 2em;
     width: 15em;
@@ -142,60 +167,60 @@ aside > form input {
     cursor: pointer;
 }
 
-.myChannels {
-    /* Layout */
-    margin: 1em auto 0em auto;   
-    width: 15em;
-    flex-direction: column;
-    display: flex;
-
-    /* Style */
-    font-size: 1.5em; 
-}
-
-.myChannels > p, #description > p:first-child {
+#description {
     /* Layout */
     margin: 0em;
-    padding: 0.5em 1em;
+    grid-area: description;
+}
+
+#description p:first-child {
+    /* Layout */
+    margin: 0%;
     
     /* Style */
     text-align: center;
-    font-size: 2.2rem;
-    font-family: var(--aside-username-font);
-} 
+    font-family: var(--aside-description-font);
+    font-size: var(--aside-description-font-size);
+}
 
-.myChannels > ul {
+#description p:first-child i:hover {
+    /* Style */
+    cursor: pointer;
+}
+
+#description p:nth-child(2) {
     /* Layout */
-    margin: 0em;
-    padding: 0em 1em;
+    margin: 0em 5%;
+    padding: 2.5%;
+    width: 90%;
+    height: 20%;
+    
+    /* Style */ 
+    text-indent: 1em;
+    text-align: start;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: var(--aside-text-font);
+}
+
+#statistics {
+    /* Layout */
     justify-content: center;
-    flex-wrap: wrap;
-    display: flex;
-} 
+    grid-area: statistics;
+}
 
-.myChannels > ul li {
-    /* Style */
-    list-style-type: none;
-} 
-
-.myChannels > ul li img {
-    /* Layout */
-    margin: 0em;
-    padding: 0.25em 0.25em;
-    width: 1.5em;
-    height: 1.5em;
-
-    /* Style */
-    border-radius: 50%;
-    object-fit: cover;
-} 
-
-#noChannels {
+#statistics > p {
     /* Layout */
     margin: 0em;
 
-    /* Style */
-    opacity: 0.5;
-    font-style: italic;
-    font-family: var(--story-text-font);
+    /* Style */ 
+    font-size: var(--aside-username-font-size);
+    font-family: var(--aside-username-font);
+    text-align: center;
+}
+
+#statistics div {
+    /* Layout */
+    margin: 0.25em auto;
+    justify-content: center;
 }

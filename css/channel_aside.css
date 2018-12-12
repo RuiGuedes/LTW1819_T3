@@ -2,31 +2,33 @@
     --background-color: rgb(231, 231, 231);
     --background-story-color: whitesmoke;
 
-    --story-title-font: 'Montserrat', sans-serif;
-    --story-header-font: 'Montserrat', sans-serif;
-    --story-text-font: 'Montserrat', sans-serif;
+    --aside-upload-icon-size: 200%;
+    
+    --aside-channelName-font: 'Exo', sans-serif;
+    --aside-channelName-font-size: 200%;
+    
+    --aside-description-font: 'Exo', sans-serif;
+    --aside-description-font-size: 200%;
 
-    --aside-img-font-size: 15em;
-    --aside-channel-font: 'Exo', sans-serif;
-    --aside-channel-font-size: 2em;
     --aside-text-font: 'Montserrat', sans-serif;
-    --aside-button-font-size: 1em;
+    
+    --aside-button-font-size: 100%;
     --aside-button-background-color: rgb(245, 243, 243);
     --aside-button-background-color-hover: rgb(3, 173, 192);
     
+    --aside-statistics-font-size: 130%;
 
     --border-color: rgb(177, 177, 177);
 }
 
 aside {
     /* Layout */
-    grid-area: aside;
-    flex-direction: column;
     display: grid;
     max-height: 100%;
+    grid-area: aside;
 
     grid-template-columns: 100%;
-    grid-template-rows: 17.5em 4em 3em 15em 1fr;
+    grid-template-rows: 30% 5% 7.5% 28.5% auto;
 
     grid-template-areas:    "picture"
                             "name"
@@ -42,10 +44,23 @@ aside {
 #asidePicture {
     /* Layout */
     margin: 0em;
-    padding-top: 2em;
+    padding: 5%;
     position: relative;
     grid-area: picture;
 
+    /* Style */
+    border-radius: 50%;
+    text-align: center;
+}
+
+#channelPicture {
+    /* Layout */
+    margin: 0em;
+    padding: 5%;
+    position: relative;
+    grid-area: picture;
+
+    /* Style */
     border-radius: 50%;
     text-align: center;
 }
@@ -53,8 +68,8 @@ aside {
 #asideIMG {
     /* Layout */
     margin: 0em;
-    width: var(--aside-img-font-size);
-    height: var(--aside-img-font-size);
+    width: 55%;
+    height: 100%;
 
     /* Style */
     border-radius: 50%;
@@ -66,8 +81,9 @@ aside {
     /* Layout */
     margin: 0em;
     position: absolute;
-    top: 45%;
-    left: 43%;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -55%);
 
     /* Style */
     opacity: 0;
@@ -76,15 +92,7 @@ aside {
 
 #asidePicture > div > i { 
     /* Style */
-    font-size: 2em;
-}
-
-#asidePicture > div > p {
-    /* Layout */
-    margin: 0.5em;
-
-    /* Style */
-    font-weight: bold;
+    font-size: var(--aside-upload-icon-size);
 }
 
 #asidePicture:hover #asideIMG {
@@ -102,21 +110,20 @@ aside {
 #channelName {
     /* Layout */
     margin: 0em;
-    padding: 0.5em 0em;
     grid-area: name;
 
      /* Style */
     text-align: center;
-    font-size: var(--aside-channel-font-size);
-    font-family: var(--aside-channel-font);
+    font-size: var(--aside-channelName-font-size);
+    font-family: var(--aside-channelName-font);
 }
 
 #forms {
     /* Layout */
-    justify-content: center;
+    padding-top: 5%;
     display: flex;
     grid-area: forms;
-    padding: 1em;
+    justify-content: center;
 }
 
 #forms form:first-child {
@@ -129,32 +136,61 @@ aside {
 }
 
 #description {
+    /* Layout */
     margin: 0em auto;
     grid-area: description;
 }
 
 #description p:first-child {
-    margin: 0.75em 0em;
+    /* Layout */
+    margin: 0%;
     
     /* Style */
     text-align: center;
-    font-size: var(--aside-channel-font-size);
-    font-family: var(--aside-channel-font);
+    font-family: var(--aside-description-font);
+    font-size: var(--aside-description-font-size);
+}
+
+#description p:first-child i:hover {
+    /* Style */
+    cursor: pointer;
 }
 
 #description p:nth-child(2) {
-    max-width: 25em;
-    max-height: 10em;
+    /* Layout */
+    margin: 0em 5%;
+    padding: 2.5%;
+    width: 90%;
+    height: 20%;
     
     /* Style */ 
     text-indent: 1em;
     text-align: start;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-family: var(--aside-text-font);
 }
 
 #statistics {
+    /* Layout */
+    justify-content: center;
     grid-area: statistics;
+}
+
+#statistics > p {
+    /* Layout */
+    margin: 0em;
+
+    /* Style */ 
+    font-size: var(--aside-channelName-font-size);
+    font-family: var(--aside-channelName-font);
+    text-align: center;
+}
+
+#statistics div {
+    /* Layout */
+    margin: 0.25em auto;
+    justify-content: center;
 }
 
 .buttons {
@@ -181,13 +217,16 @@ aside {
 }
 
 .statistics {
+    /* Layout */
     margin: 1em auto 0em auto;   
     display: flex;
 
-    font-size: 1.5em; 
+    /* Style */
+    font-size: var(--aside-statistics-font-size); 
 }
 
 .statistics > p {
+    /* Layout */
     margin: 0em;
     padding: 0em 1em;
 } 
