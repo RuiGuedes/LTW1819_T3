@@ -13,7 +13,7 @@
     $username = isset($_GET['username']) ? $_GET['username'] : '';
 
     if(!check_user_existence($username)) 
-      die(header('Location: ../actions/action_logout.php'));
+      die(header('Location: profile.php?username='. $_SESSION['username']));
 
     $biography = get_user_biography($username);
 

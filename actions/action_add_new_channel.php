@@ -3,8 +3,20 @@
     include_once('../database/db_user.php');
     include_once('../database/db_channel.php');
 
+    // Verify if user is logged in
+    if (!isset($_SESSION['username'])) {
+        $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Session expired, please login!');
+        die(header('Location: ../pages/login.php'));
+    }
+
     $channelName = $_POST['channelName'];
-    $username = $_SESSION['username'];
+    $logged_username = $_SESSION['username'];
+    $profile = $_GET['username'];
+
+    if($profile !== $logged_username) {
+        generate_error('You can\'t create channels on other person profile !');
+        die(header("Location: ../pages/profile.php?username=" . $profile));
+    }
 
     if (!check_channel_existence($channelName)) {
         add_new_channel($channelName, $username);

@@ -57,12 +57,15 @@
                 </div>
                 <div id="filters">
                     <h5>Filter:</h5>
-                
+
                     <form method="get" action="<?= $_SERVER['PHP_SELF']?>">
                         <?php 
                             if(isset($_GET['channelName'])) {
                                 ?> <input type="hidden" name="channelName" value="<?= htmlentities($_GET['channelName']) ?>">
                             <?php } 
+                            if(isset($_GET['username'])) {
+                                ?> <input type="hidden" name="username" value="<?= htmlentities($_GET['username']) ?>">
+                            <?php }
                         ?>
                         <select name="filter" id="filterID"> 
                             <option <? echo $filter == 0 ? 'selected ' : '' ?>value="0">Most Voted</option>

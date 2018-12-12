@@ -58,6 +58,18 @@ aside {
     text-align: center;
 }
 
+#userPicture {
+    /* Layout */
+    margin: 0em;
+    padding: 5%;
+    position: relative;
+    grid-area: picture;
+
+    /* Style */
+    border-radius: 50%;
+    text-align: center;
+}
+
 #asideIMG {
    /* Layout */
    margin: 0em;
@@ -171,6 +183,7 @@ aside {
     /* Layout */
     margin: 0em;
     grid-area: description;
+    overflow:hidden;
 }
 
 #description p:first-child {
@@ -199,6 +212,7 @@ aside {
     text-indent: 1em;
     text-align: start;
     overflow: hidden;
+    word-wrap: break-word;
     text-overflow: ellipsis;
     font-family: var(--aside-text-font);
 }

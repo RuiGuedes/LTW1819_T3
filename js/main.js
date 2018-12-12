@@ -79,8 +79,9 @@ let editDescriptionHandler = function() {
   })
 }
 
-if (editDescriptionButton !== null)
+if (editDescriptionButton !== null) {
   editDescriptionButton.addEventListener('click', editDescriptionHandler)
+}
 
 // Subscribe/Unsubscribe
 let subscribeButton = document.getElementById('subscribeButton')
@@ -183,9 +184,11 @@ if(postUploader != null) {
   })
 }
 
-uploader.addEventListener('change', function() {
-  submit.click()
-})
+if(uploader != null) {
+  uploader.addEventListener('change', function() {
+    submit.click()
+  })
+}
 
 function encodeForAjax(data) {
   return Object.keys(data).map(function(k){

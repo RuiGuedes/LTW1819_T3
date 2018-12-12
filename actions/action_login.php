@@ -5,13 +5,11 @@
   $username = $_POST['username'];
   $password = $_POST['password'];
 
-
   // Input Filtering
   if (!preg_match("/^[a-zA-Z0-9]+$/", $username)) {
     generate_error('The username must contain alphanumeric characters only!');
     die(header('Location: ../pages/login.php'));
   }
-
 
   if ($username == 'admin' || validate_login($username, $password)) { // WARNING: temp admin to keep current test account
     $_SESSION['username'] = $username;

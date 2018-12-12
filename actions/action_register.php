@@ -7,19 +7,17 @@
     $password = $_POST['password'];
     $passwordCheck = $_POST['passwordCheck'];
 
-
     // Input Filtering (Email must be encoded instead)
     if (!preg_match("/^[a-zA-Z0-9]+$/", $username)) {
         generate_error('username must contain alphanumeric characters only!');
         die(header("Location: ../pages/register.php?email=" . $email));
     }
 
-
     if ($password !== $passwordCheck) {
         generate_error('Password confirmation failed - The entered passwords aren\'t the same!');
         die(header("Location: ../pages/register.php?email=" . $email . "&username=" . $username));
     }
-
+    
     try {
         insert_user($email, $username, $password);
         $_SESSION['username'] = $username;
