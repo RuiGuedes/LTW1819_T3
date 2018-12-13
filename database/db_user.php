@@ -17,8 +17,8 @@
      * Inserts new user into the database
      */
     function insert_user($email, $username, $password) {
-      $stmt = Database::instance()->db()->prepare('INSERT INTO User VALUES(?, ?, ?, ?)');
-      $stmt->execute(array($username, password_hash($password, PASSWORD_DEFAULT), $email, ""));
+      $stmt = Database::instance()->db()->prepare('INSERT INTO User VALUES(?, ?, ?, ?, ?)');
+      $stmt->execute(array($username, password_hash($password, PASSWORD_DEFAULT), $email, 0, ""));
     }
 
     /**
@@ -136,4 +136,43 @@
       $stmt->execute(array($username));
       return $stmt->fetchall(); 
     }
+
+    /**
+     * Returns user number of points
+     */
+    function get_user_points($username) {
+      $db = Database::instance()->db();
+
+      $stmt = $db->prepare('SELECT sum(storyPoints) as StoryPoints FROM Story WHERE storyAuthor = ?');
+      $stmt->execute(array($username));
+      $storyPoints = $stmt->fetch()['StoryPoints'];
+
+      $stmt = $db->prepare('SELECT sum(commentPoints) as CommentPoints FROM Comment WHERE commentAuthor = ?');
+      $stmt->execute(array($username));
+      $commentPoints = $stmt->fetch()['CommentPoints'];
+
+      return $storyPoints + $commentPoints; 
+    }
+
+    /**
+     * Returns user number of posts
+     */
+    function get_user_num_posted_stories($username) {
+      $db = Database::instance()->db();
+      $stmt = $db->prepare('SELECT count(*) as Posts FROM Story WHERE storyAuthor = ?');
+      $stmt->execute(array($username));
+      return $stmt->fetch()['Posts']; 
+    }
+
+    /**
+     * Returns user number of subscriptions
+     */
+    function get_user_num_subscriptions($username) {
+      $db = Database::instance()->db();
+      $stmt = $db->prepare('SELECT count(*) as Subs FROM Subscription WHERE username = ?');
+      $stmt->execute(array($username));
+      return $stmt->fetch()['Subs']; 
+    }
+
+
 ?>

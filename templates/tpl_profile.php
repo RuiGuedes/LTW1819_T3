@@ -1,11 +1,13 @@
-<?php function draw_profile($username, $biography, $messages, $myChannels, $stories, $storiesVotes, $votedStories) {
+<?php function draw_profile($stories, $storiesVotes, $votedStories) {
     ?>
     <div id="masterStories">
         <section id="stories">
             <?php draw_stories($stories, $storiesVotes, $votedStories) ?>
         </section>
     </div>
+<?php } ?>
 
+<?php function draw_profile_aside($username, $biography, $messages, $userPoints, $userNumPosts, $userNumSubs) { ?>
     <aside> 
         <?php 
             if(htmlentities($_GET['username']) == $_SESSION['username']) { ?>
@@ -76,7 +78,15 @@
         </div>
         <div id="statistics">
             <p>User Statistics</p>
+            <div class="statistics">
+                <i class="fas fa-heart"></i><p><?= $userPoints ?> Points</p>
+            </div>
+            <div class="statistics">
+                <i class="far fa-newspaper"></i><p><?= $userNumPosts ?> Stories</p>    
+            </div>
+            <div class="statistics">
+                <i class="fas fa-users"></i><p><?= $userNumSubs ?> Subscriptions</p>
+            </div>
         </div>
     </aside>
-
 <?php } ?>
