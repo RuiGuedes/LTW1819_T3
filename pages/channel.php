@@ -30,7 +30,7 @@
     foreach($channelStories as $story) {
       $votes = get_story_votes($story['storyID']);
       $storiesVotes[$story['storyID']] = $votes == null ? 0 : $votes;
-      $votedStories[$story['storyID']] = get_user_vote($_SESSION['username'], $story['storyID']);
+      $votedStories[$story['storyID']] = get_user_story_vote($_SESSION['username'], $story['storyID']);
     }
 
     // Number of followers relative to the present channel

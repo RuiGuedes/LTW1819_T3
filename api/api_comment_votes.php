@@ -1,7 +1,7 @@
 <?php 
     include_once('../includes/session.php');
     include_once('../database/db_user.php');
-    include_once('../database/db_story.php');
+    include_once('../database/db_comment.php');
 
     // Verify if user is logged in
     if (!isset($_SESSION['username'])) {
@@ -9,30 +9,31 @@
         die(header('Location: ../pages/login.php'));
     }
 
+    // Variables
     $username = $_POST['username'];
-    $storyID = $_POST['storyid'];
+    $commentID = $_POST['rootid'];
     $voteType = $_POST['voteType'];
-
+    
     // Checks if user already voted or not
-    $userVote = get_user_vote($username, $storyID);
+    $userVote = get_user_comment_vote($username, $commentID);
 
     // Updates user vote
     if($userVote == null) {
-        add_story_vote($storyID, $username, $voteType);
+        add_comment_vote($commentID, $username, $voteType);
     }
     else if($userVote !== $voteType) {
-        update_story_vote($storyID, $username, $voteType);
+        update_comment_vote($commentID, $username, $voteType);
     }
     else {
-        remove_story_vote($storyID, $username);
+        remove_comment_vote($commentID, $username);
     }
 
-    // Updates story number of votes
-    update_story_votes($storyID);
+    // Updates comment number of votes
+    update_comment_votes($commentID);
     
     // Sends request response
-    $storyVotes = get_story_votes($storyID);
-    $storyVotes = $storyVotes == null ? 0 : $storyVotes;
+    $commentVotes = get_comment_votes($commentID);
+    $commentVotes = $commentVotes == null ? 0 : $commentVotes;
     
-    echo json_encode($storyVotes);
+    echo json_encode($commentVotes);
 ?>

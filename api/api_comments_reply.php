@@ -30,5 +30,12 @@
     // Sends request response
     $comment = get_comment_info($commentContent, $commentAuthor, $commentTime, $storyID, $parentID);
     
+    // Convert time format
+    foreach($comment as $k => $v) {
+        if($k === 'commentTime') {
+            $comment[$k] = data_converter($v);
+        }
+    }
+
     echo json_encode($comment);
 ?>

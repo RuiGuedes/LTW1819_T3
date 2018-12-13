@@ -108,21 +108,31 @@
     }
 
     /**
-     * 
+     * Returns the type of vote that a user has given to a story
      */
-    function get_user_vote($username, $storyID) {
+    function get_user_story_vote($username, $storyID) {
       $db = Database::instance()->db();
-      $stmt = $db->prepare('SELECT voteType FROM Votes WHERE username = ? AND storyID = ?');
+      $stmt = $db->prepare('SELECT voteType FROM StoryVotes WHERE username = ? AND storyID = ?');
       $stmt->execute(array($username, $storyID));
       return $stmt->fetch()['voteType']; 
     }
 
     /**
-     * 
+     * Returns the type of vote that a user has given to a comment
+     */
+    function get_user_comment_vote($username, $commentID) {
+      $db = Database::instance()->db();
+      $stmt = $db->prepare('SELECT voteType FROM CommentVotes WHERE username = ? AND commentID = ?');
+      $stmt->execute(array($username, $commentID));
+      return $stmt->fetch()['voteType']; 
+    }
+
+    /**
+     * Returns every story where user has voted
      */
     function get_user_voted_stories($username) {
       $db = Database::instance()->db();
-      $stmt = $db->prepare('SELECT storyID, voteType FROM Votes WHERE username = ?');
+      $stmt = $db->prepare('SELECT storyID, voteType FROM StoryVotes WHERE username = ?');
       $stmt->execute(array($username));
       return $stmt->fetchall(); 
     }

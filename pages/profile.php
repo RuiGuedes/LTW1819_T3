@@ -27,7 +27,7 @@
     foreach($userStories as $story) {
       $votes = get_story_votes($story['storyID']);
       $storiesVotes[$story['storyID']] = $votes == null ? 0 : $votes;
-      $votedStories[$story['storyID']] = get_user_vote($username, $story['storyID']);
+      $votedStories[$story['storyID']] = get_user_story_vote($username, $story['storyID']);
     }
     
     draw_common($_SESSION['username'], ['stories.css', 'profile_aside.css'], [], $filter);

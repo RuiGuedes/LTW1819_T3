@@ -1,5 +1,4 @@
-<?php function draw_story($story, $storiesVotes, $votedStories, $comments) { ?>
-
+<?php function draw_story($story, $storyVotes, $voteType, $comments, $commentVotes, $votedComments) { ?>
     <div id="masterStories"> 
         <section id="stories">
             <article id="<?= $story['storyID'] ?>">
@@ -7,22 +6,22 @@
                     <div id="story_<?= $story['storyID'] ?>_votes">
                         <div>
                             <?php 
-                                if($votedStories[$story['storyID']] == 1) { ?>
+                                if($voteType[$story['storyID']] == 1) { ?>
                                     <div class="votes">
                                         <div>
                                             <i id="voteUp" class="fas fa-chevron-up"></i>
                                             <i class="fas fa-chevron-down"></i>
                                         </div>
-                                        <span class="storyVotes"><?= htmlentities($storiesVotes[$story['storyID']]) ?></span>
+                                        <span class="storyVotes"><?= htmlentities($storyVotes[$story['storyID']]) ?></span>
                                     </div>
                                 <?php }
-                                else if($votedStories[$story['storyID']] == -1) { ?>
+                                else if($voteType[$story['storyID']] == -1) { ?>
                                     <div class="votes">
                                         <div>
                                             <i class="fas fa-chevron-up"></i>
                                             <i id="voteDown" class="fas fa-chevron-down"></i>
                                         </div>
-                                        <span class="storyVotes"><?= htmlentities($storiesVotes[$story['storyID']]) ?></span>
+                                        <span class="storyVotes"><?= htmlentities($storyVotes[$story['storyID']]) ?></span>
                                     </div>
                                 <?php }
                                 else { ?>
@@ -31,7 +30,7 @@
                                             <i class="fas fa-chevron-up"></i>
                                             <i class="fas fa-chevron-down"></i>
                                         </div>
-                                        <span class="storyVotes"><?= htmlentities($storiesVotes[$story['storyID']]) ?></span>
+                                        <span class="storyVotes"><?= htmlentities($storyVotes[$story['storyID']]) ?></span>
                                     </div>
                                 <?php }
                             ?>
@@ -57,45 +56,71 @@
                     <p><?= $story['storyContent'] ?></p>
                 </div>
             </article> 
+            <?php 
+                comment_section($story['storyID'], $comments, $commentVotes, $votedComments); 
+            ?>
+        </section>
+    </div>
+<?php } ?>
 
-            <section id="comments">
-                <?php
-                    foreach($comments as $comment) { ?>
-                        <div>
-                            <article>
-                                    <header>
-                                        <div id="comment_<?= htmlentities($comment['commentID']) ?>_votes">
-                                            <div>
-                                                <div>
+<?php function comment_section($storyID, $comments, $commentVotes, $votedComments) { ?>
+        <section id="comments">
+        <?php
+            foreach($comments as $comment) { ?>
+                <div>
+                    <article>
+                            <header>
+                                <div id="comment_<?= htmlentities($comment['commentID']) ?>_votes">
+                                    <div>
+                                        <?php 
+                                            if($votedComments[$comment['commentID']] == 1) { ?>
+                                                <div class="votes">
+                                                    <div>
+                                                        <i id="voteUp" class="fas fa-chevron-up"></i>
+                                                        <i class="fas fa-chevron-down"></i>
+                                                    </div>
+                                                    <span class="storyVotes"><?= htmlentities($commentVotes[$comment['commentID']]) ?></span>
+                                                </div>
+                                            <?php }
+                                            else if($votedComments[$comment['commentID']] == -1) { ?>
+                                                <div class="votes">
+                                                    <div>
+                                                        <i class="fas fa-chevron-up"></i>
+                                                        <i id="voteDown" class="fas fa-chevron-down"></i>
+                                                    </div>
+                                                    <span class="storyVotes"><?= htmlentities($commentVotes[$comment['commentID']]) ?></span>
+                                                </div>
+                                            <?php }
+                                            else { ?>
+                                                <div class="votes">
                                                     <div>
                                                         <i class="fas fa-chevron-up"></i>
                                                         <i class="fas fa-chevron-down"></i>
-                                                    </div>                                        
-                                                    <span class="storyVotes"><?= htmlentities($comment['commentPoints']) ?></span>  
+                                                    </div>
+                                                    <span class="storyVotes"><?= htmlentities($commentVotes[$comment['commentID']]) ?></span>
                                                 </div>
-                                            <span class="author"><i class="far fa-user"></i><?= htmlentities($comment['commentAuthor']) ?></span>
-                                            </div>
-                                            <div>
-                                                <span class="reply"><i class="fas fa-reply"></i></i>Reply</span>
-                                                <span class="expand"><i class="fas fa-stream"></i></i>Expand</span>
-                                                <span class="date"><i class="far fa-clock"></i><?= data_converter($comment['commentTime']) ?></span>
-                                            </div>
-                                        </div>
-                                    </header>
-                                    <p><?= htmlentities($comment['commentContent']) ?></p>
-                                </article> 
-                        </div>
-                    <?php }
-                ?> 
-                <div>
-                    <form method="post" action="../actions/action_add_comment.php">
-                        <textarea name="content" cols="30" rows="10" required placeholder="Write your comment here ..."></textarea>
-                        <input type="hidden" name="storyID" value="<?= htmlentities($story['storyID']) ?>">
-                        <input type="submit" id="submitCommentForm" value="Comment">
-                    </form>                    
+                                            <?php }
+                                        ?>
+                                    <span class="author"><i class="far fa-user"></i><?= htmlentities($comment['commentAuthor']) ?></span>
+                                    </div>
+                                    <div>
+                                        <span class="reply"><i class="fas fa-reply"></i></i>Reply</span>
+                                        <span class="expand"><i class="fas fa-stream"></i></i>Expand</span>
+                                        <span class="date"><i class="far fa-clock"></i><?= data_converter($comment['commentTime']) ?></span>
+                                    </div>
+                                </div>
+                            </header>
+                            <p><?= htmlentities($comment['commentContent']) ?></p>
+                        </article> 
                 </div>
-            </section>  
-                  
-        </section>
-    </div>
+            <?php }
+        ?> 
+        <div>
+            <form method="post" action="../actions/action_add_comment.php">
+                <textarea name="content" cols="30" rows="10" required placeholder="Write your comment here ..."></textarea>
+                <input type="hidden" name="storyID" value="<?= htmlentities($storyID) ?>">
+                <input type="submit" id="submitCommentForm" value="Comment">
+            </form>                    
+        </div>
+    </section> 
 <?php } ?>

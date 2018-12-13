@@ -108,37 +108,34 @@ let voteDown = document.getElementsByClassName('fas fa-chevron-down')
 let votesLength = voteDown.length
 
 for(let index = 0; index < votesLength; index++) {
-  let storyID = Number(voteDown[index].parentElement.parentElement.parentElement.parentElement.id.match('[0-9]\+')[0])
+  let rootID = Number(voteDown[index].parentElement.parentElement.parentElement.parentElement.id.match('[0-9]\+')[0])
   let voteType = voteDown[index].parentElement.parentElement.parentElement.parentElement.id.match('story|comment')[0]
-  
-  voteDown[index].addEventListener('click', function() {voteHandler(storyID, voteType, -1)})
-  voteUp[index].addEventListener('click', function() {voteHandler(storyID, voteType, 1)})
+
+  voteDown[index].addEventListener('click', function() {voteHandler(rootID, voteType, -1)})
+  voteUp[index].addEventListener('click', function() {voteHandler(rootID, voteType, 1)})
 }
 
-function voteHandler(storyID, voteType, type) {
-  if(voteType == 'comment'){
-    console.log("comment shit")
-    return
-  }
-
-  let request = new XMLHttpRequest()  
+function voteHandler(rootID, voteType, type) {
+  // Variables 
   let userName = document.getElementById('user-name').textContent
-  
-  request.open("post", "../api/api_votes.php", true)
+
+  // Ajax - Update vote status
+  let request = new XMLHttpRequest()  
+  request.open("post", "../api/api_" + voteType + "_votes.php", true)
   request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
   request.addEventListener('load', () => {
     let votes = JSON.parse(request.responseText)
-    let regex = document.getElementById("story_" + storyID + "_votes").childNodes[1].childNodes[1].innerHTML
-    
-    document.getElementById("story_" + storyID + "_votes").childNodes[1].childNodes[1].innerHTML = getVoteInnerHTML(type, regex, votes)
-  
-    let newVoteDown = document.getElementById("story_" + storyID + "_votes").getElementsByClassName('fas fa-chevron-down')
-    let newVoteUp = document.getElementById("story_" + storyID + "_votes").getElementsByClassName('fas fa-chevron-up')
+    let regex = document.getElementById(voteType + "_" + rootID + "_votes").getElementsByClassName('votes')[0].innerHTML
 
-    newVoteDown[0].addEventListener('click', function() {voteHandler(storyID, -1)})
-    newVoteUp[0].addEventListener('click', function() {voteHandler(storyID, 1)})
+    document.getElementById(voteType + "_" + rootID + "_votes").getElementsByClassName('votes')[0].innerHTML = getVoteInnerHTML(type, regex, votes)
+  
+    let newVoteDown = document.getElementById(voteType + "_" + rootID + "_votes").getElementsByClassName('fas fa-chevron-down')
+    let newVoteUp = document.getElementById(voteType + "_" + rootID + "_votes").getElementsByClassName('fas fa-chevron-up')
+
+    newVoteDown[0].addEventListener('click', function() {voteHandler(rootID, voteType, -1)})
+    newVoteUp[0].addEventListener('click', function() {voteHandler(rootID, voteType, 1)})
   })
-  request.send(encodeForAjax({username: userName, storyid: storyID, voteType: type}))
+  request.send(encodeForAjax({username: userName, rootid: rootID, voteType: type}))
 }
 
 // Retrieves vote new inner html
@@ -178,7 +175,7 @@ if(uploader != null) {
   })
 }
 
-// Story referencing 
+/* Story referencing */
 let story = document.getElementsByClassName('storyArticle')
 
 for (let index = 0; index < story.length; index++) {
@@ -198,18 +195,18 @@ let commentsExpand = document.getElementsByClassName('expand')
 
 for(let index = 0; index < commentsReply.length; index++) {
   commentsReply[index].addEventListener('click', function() {
-    commentReplyHandler(commentsReply[index])
+    commentReplyHandler(commentsReply[index], index)
   })
   commentsExpand[index].addEventListener('click', function() {
-    commentExapndHandler(commentsExpand[index])
+    commentExpandHandler(commentsExpand[index])
   })
 }
 
-function commentReplyHandler(commentSection) {
+function commentReplyHandler(commentSection, index) {
   // Variables
   let parent_id
   let root = commentSection
-  let previousRoot = root
+  let storyNumComments = Number(document.getElementsByClassName('comments')[0].childNodes[1].textContent)
 
   // Retrieve root comment
   for(let i = 1; i <= 5; i++) {
@@ -232,7 +229,8 @@ function commentReplyHandler(commentSection) {
   let textArea = '<form id="newCommentTextArea"> <textarea name="" cols="30" rows="10" placeholder="Write your comment here ..."></textarea> <input type="submit" name="storyID" value="Comment"></form>'
   root.innerHTML += textArea
 
-  reset_comment_buttons_class(root)
+  // Reset buttons due to a new html
+  set_buttons_custom_listener(root)
 
   let submit = document.getElementById('newCommentTextArea').getElementsByTagName('input')[0]
   submit.addEventListener('click', function(event) {
@@ -242,6 +240,7 @@ function commentReplyHandler(commentSection) {
     let comment_content = document.getElementById('newCommentTextArea').getElementsByTagName('textarea')[0].value
     let story_id = document.getElementById('stories').childNodes[1].id
 
+    // Invalid comment - no content
     if(comment_content == '')
       return;
 
@@ -250,20 +249,21 @@ function commentReplyHandler(commentSection) {
     request.open("post", "../api/api_comments_reply.php", true)
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
     request.addEventListener('load', () => {
-      let newComment = JSON.parse(request.responseText)
-      previousRoot.innerHTML += root.innerHTML +=  retrieve_child_comment(newComment)
-      
-      reset_comment_buttons_class(root)
+      document.getElementsByClassName('comments')[0].childNodes[1].textContent = storyNumComments + 1
+      document.getElementsByClassName('expand')[index].click()
+      set_buttons_custom_listener(root)
       remove_comment_text_area()
     })
     request.send(encodeForAjax({commentContent: comment_content, storyID: story_id, parentID: parent_id}))
   })
 }
 
-function commentExapndHandler(commentSection) {
-  // Retrieve root comment
+function commentExpandHandler(commentSection) {
+  // Variables
   let parent_id
   let root = commentSection
+
+  // Retrieve root comment
   for(let i = 1; i <= 5; i++) {
     if(i == 3) {
       parent_id = Number(root.id.match('[0-9]\+')[0])
@@ -277,7 +277,7 @@ function commentExapndHandler(commentSection) {
   // Remove child comments from being displayed on screen
   if(root.getElementsByClassName('childComment').length > 0) {
     root.innerHTML = root.getElementsByTagName('article')[0].outerHTML
-    reset_comment_buttons_class(root)
+    set_buttons_custom_listener(root)
     return
   }
 
@@ -286,45 +286,73 @@ function commentExapndHandler(commentSection) {
   request.open("post", "../api/api_comments_expand.php", true)
   request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
   request.addEventListener('load', () => {
-    let comments = JSON.parse(request.responseText)
-    if(comments.length == 0)
+    let response = JSON.parse(request.responseText)
+    let comments = response[0]
+    let votedComments = response[1]
+
+    if(comments.length == 0)  
       return
 
     for(let index = 0; index < comments.length; index++) {      
-      root.innerHTML +=  retrieve_child_comment(comments[index])
+      root.innerHTML +=  get_comment_html(comments[index], votedComments[comments[index]['commentID']])
     }
     
-    reset_comment_buttons_class(root)
+    set_buttons_custom_listener(root)
   })
   request.send(encodeForAjax({parentID: parent_id}))
 }
 
+// Remove comment text area relative to another comment
 function remove_comment_text_area() {
   let areas = document.getElementById("newCommentTextArea")
       if(areas != null)
         areas.remove()
 }
 
-function reset_comment_buttons_class(root) {
+// Resets comments buttons due to the presence of new html
+function set_buttons_custom_listener(root) {
   let replyClass = root.getElementsByClassName('reply')
   for(let index = 0; index < replyClass.length; index++) {
       replyClass[index].addEventListener('click', function() {
-        commentReplyHandler(replyClass[index])
+        commentReplyHandler(replyClass[index], index)
     })
   }
 
   let expandClass = root.getElementsByClassName('expand')
   for(let index = 0; index < expandClass.length; index++) {
         expandClass[index].addEventListener('click', function() {
-        commentExapndHandler(expandClass[index])
+        commentExpandHandler(expandClass[index], index)
     })
   }
+
+  let voteUpClass = root.getElementsByClassName('fas fa-chevron-up')
+  let voteDownClass = root.getElementsByClassName('fas fa-chevron-down')
+  let votesLengthClass = voteDownClass.length
+
+for(let index = 0; index < votesLengthClass; index++) {
+  let storyID = Number(voteDownClass[index].parentElement.parentElement.parentElement.parentElement.id.match('[0-9]\+')[0])
+  let voteType = voteDownClass[index].parentElement.parentElement.parentElement.parentElement.id.match('story|comment')[0]
+  
+  voteDownClass[index].addEventListener('click', function() {voteHandler(storyID, voteType, -1)})
+  voteUpClass[index].addEventListener('click', function() {voteHandler(storyID, voteType, 1)})
+}
 }
 
-function retrieve_child_comment(comment) {
-  let newChild = '<div class="childComment"><article><header><div id="comment_' + comment['commentID'] + '_votes">'
-  newChild += '<div><div><div><i class="fas fa-chevron-up"></i><i class="fas fa-chevron-down"></i></div><span class="storyVotes">' + comment['commentPoints'] 
-  newChild += '</span></div><span class="author"><i class="far fa-user"></i>' + comment['commentAuthor']
+// Retrieve the html of certain comment
+function get_comment_html(comment, voteType) {
+  let newChild = '<div class="childComment"><article><header><div id="comment_' + comment['commentID'] + '_votes"><div><div class="votes"><div>'
+
+  if(voteType == 1) {
+    newChild += '<i id="voteUp" class="fas fa-chevron-up"></i><i class="fas fa-chevron-down"></i>'
+  }
+  else if(voteType == -1) {
+    newChild += '<i class="fas fa-chevron-up"></i><i id="voteDown" class="fas fa-chevron-down"></i>'
+  }
+  else {
+    newChild += '<i class="fas fa-chevron-up"></i><i class="fas fa-chevron-down"></i>'
+  }
+
+  newChild += '</div><span class="storyVotes">' + comment['commentPoints'] + '</span></div><span class="author"><i class="far fa-user"></i>' + comment['commentAuthor']
   newChild += '</span></div><div><span class="reply"><i class="fas fa-reply"></i></i>Reply</span><span class="expand"><i class="fas fa-stream"></i></i>Expand</span><span class="date">'
   newChild += '<i class="far fa-clock"></i>' + comment['commentTime'] + '</span></div></div></header> <p>' + comment['commentContent'] + '</p></article>'
 

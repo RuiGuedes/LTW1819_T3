@@ -11,7 +11,7 @@
     die(header('Location: ../pages/login.php'));
   }
 
-  if ($username == 'admin' || validate_login($username, $password)) { // WARNING: temp admin to keep current test account
+  if (validate_login($username, $password)) { // WARNING: temp admin to keep current test account
     $_SESSION['username'] = $username;
     header('Location: ../pages/feed.php');
   } else {

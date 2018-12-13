@@ -12,6 +12,7 @@ CREATE TABLE User(
     username TEXT NOT NULL PRIMARY KEY,
     password TEXT NOT NULL,
     email TEXT NOT NULL,
+    userPoints INTEGER DEFAULT 0,
     biography TEXT
 );
 
@@ -44,14 +45,14 @@ CREATE TABLE Story(
     channelName TEXT NOT NULL REFERENCES Channel(name)       
 );
 
------ Votes
+----- Story Votes
 
-CREATE TABLE Votes(
+CREATE TABLE StoryVotes(
     storyID INTEGER NOT NULL,
     username TEXT NOT NULL,
     voteType INTEGER NOT NULL DEFAULT 0,
     CONSTRAINT VoteValue CHECK(voteType = 1 OR voteType = -1),
-    CONSTRAINT Votes PRIMARY KEY (storyID, username)
+    CONSTRAINT StoryVotes PRIMARY KEY (storyID, username)
 );
 
 ----- Comment 
@@ -59,10 +60,19 @@ CREATE TABLE Votes(
 CREATE TABLE Comment(
     commentID INTEGER PRIMARY KEY,
     commentContent TEXT NOT NULL,
-    commentPoints INTEGER NOT NULL,
+    commentPoints INTEGER,
     commentAuthor TEXT NOT NULL REFERENCES User(username),
     commentTime TEXT NOT NULL,
     storyID INTEGER REFERENCES Story,
     parentID INTEGER REFERENCES Comment(commentID)
 );
 
+----- CommentVotes
+
+CREATE TABLE CommentVotes(
+    commentID INTEGER NOT NULL,
+    username TEXT NOT NULL,
+    voteType INTEGER NOT NULL DEFAULT 0,
+    CONSTRAINT VoteValue CHECK(voteType = 1 OR voteType = -1),
+    CONSTRAINT CommentVotes PRIMARY KEY (commentID, username)
+);

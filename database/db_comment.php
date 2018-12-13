@@ -52,5 +52,50 @@
         return $stmt->fetchall();
     }
 
+    /**
+     * Get's the number of votes of a certain comment
+     */
+    function get_comment_votes($commentID) {
+        $db = Database::instance()->db();
+        $stmt = $db->prepare('SELECT commentPoints FROM Comment WHERE commentID = ?');
+        $stmt->execute(array($commentID));
+        return $stmt->fetch()['commentPoints'];
+    }
+
+    /**
+     * Add vote to a certain comment from a specific user
+     */
+    function add_comment_vote($commentID, $username, $voteType) {
+        $db = Database::instance()->db();
+        $stmt = $db->prepare('INSERT INTO CommentVotes VALUES(?, ?, ?)');
+        $stmt->execute(array($commentID, $username, $voteType));
+    }
+
+    /**
+     * Remove vote from a certain comment relative to a specific user
+     */
+    function remove_comment_vote($commentID, $username) {
+        $db = Database::instance()->db();
+        $stmt = $db->prepare('DELETE FROM CommentVotes WHERE commentID = ? AND username = ?');
+        $stmt->execute(array($commentID, $username));
+    }
+
+    /**
+     * Update vote relative to a certain comment from a specific user
+     */
+    function update_comment_vote($commentID, $username, $voteType) {
+        $db = Database::instance()->db();
+        $stmt = $db->prepare('UPDATE CommentVotes SET voteType = ? WHERE commentID = ? AND username = ?');
+        $stmt->execute(array($voteType, $commentID, $username));
+    }
+
+    /**
+     * Update the number of votes of a certain comment 
+     */
+    function update_comment_votes($commentID) {
+        $db = Database::instance()->db();
+        $stmt = $db->prepare('UPDATE Comment SET commentPoints = (SELECT SUM(voteType) FROM CommentVotes WHERE CommentVotes.commentID = ?) WHERE Comment.commentID = ?');
+        $stmt->execute(array($commentID, $commentID));
+    }
 
 ?>
