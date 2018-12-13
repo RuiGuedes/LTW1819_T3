@@ -14,7 +14,6 @@
     /* Layout */
     margin: 0em;
     padding: 1em 1em 1em 1em;
-    max-height: 5em;
     max-width: 100%;
 
     /* Style */
@@ -43,6 +42,7 @@
     max-height: 95%;
     overflow-y: auto;
     padding-right: 20px;
+    
 }
 
 .childComment {
@@ -121,3 +121,34 @@
     text-indent: 1em;
 }
 
+#comments form {
+    flex-direction: column;
+    display: flex;
+}
+#comments form > textarea {
+    padding: 2em;
+
+    outline: none;
+}
+
+#comments form > input {
+    /* Layout */
+    width: 10em;
+    height: 2em;
+    margin: 0em auto;
+
+    /* Style */
+    outline: none;
+    border: solid var(--border-color) 1px;
+    border-radius: 15px;
+    background-color: var(--aside-button-background-color);
+    text-align: center;
+    font-style: italic;
+    font-size: var(--aside-button-font-size);
+    font-family: var(--aside-text-font);
+}
+
+#comments form > input:hover {
+    cursor: pointer;
+    background-color: var(--aside-button-background-color-hover);
+}

@@ -89,7 +89,7 @@
                 ?> 
                 <div>
                     <form method="post" action="../actions/action_add_comment.php">
-                        <textarea name="content" id="" cols="30" rows="10"></textarea>
+                        <textarea name="content" cols="30" rows="10" required placeholder="Write your comment here ..."></textarea>
                         <input type="hidden" name="storyID" value="<?= htmlentities($story['storyID']) ?>">
                         <input type="submit" id="submitCommentForm" value="Comment">
                     </form>                    

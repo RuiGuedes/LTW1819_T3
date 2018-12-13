@@ -229,7 +229,7 @@ function commentReplyHandler(commentSection) {
   remove_comment_text_area()
 
   // Allow user to comment a specific comment
-  let textArea = '<form id="newCommentTextArea"> <textarea name="" id="" cols="30" rows="10" required></textarea> <input type="submit" name="storyID"></form>'
+  let textArea = '<form id="newCommentTextArea"> <textarea name="" cols="30" rows="10" placeholder="Write your comment here ..."></textarea> <input type="submit" name="storyID" value="Comment"></form>'
   root.innerHTML += textArea
 
   reset_comment_buttons_class(root)
@@ -241,6 +241,9 @@ function commentReplyHandler(commentSection) {
     // New comment variables
     let comment_content = document.getElementById('newCommentTextArea').getElementsByTagName('textarea')[0].value
     let story_id = document.getElementById('stories').childNodes[1].id
+
+    if(comment_content == '')
+      return;
 
     // Ajax
     let request = new XMLHttpRequest() 
