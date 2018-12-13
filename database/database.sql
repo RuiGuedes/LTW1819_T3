@@ -61,6 +61,7 @@ CREATE TABLE Comment(
     commentContent TEXT NOT NULL,
     commentPoints INTEGER NOT NULL,
     commentAuthor TEXT NOT NULL REFERENCES User(username),
+    commentTime TEXT NOT NULL,
     storyID INTEGER REFERENCES Story,
     parentID INTEGER REFERENCES Comment(commentID)
 );

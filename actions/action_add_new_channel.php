@@ -11,11 +11,11 @@
 
     $channelName = $_POST['channelName'];
     $logged_username = $_SESSION['username'];
-    $profile = $_GET['username'];
+    $username = $_POST['username'];
 
-    if($profile !== $logged_username) {
+    if($username !== $logged_username) {
         generate_error('You can\'t create channels on other person profile !');
-        die(header("Location: ../pages/profile.php?username=" . $profile));
+        die(header("Location: ../pages/profile.php?username=" . $username));
     }
 
     if (!check_channel_existence($channelName)) {

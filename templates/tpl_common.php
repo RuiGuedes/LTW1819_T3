@@ -83,26 +83,44 @@
 
 <?php function draw_stories($stories, $storiesVotes, $votedStories) {
     foreach($stories as $story) { ?> 
-        <article>
+        <article id="<?= $story['storyID'] ?>" class="storyArticle">
             <header id="storyHeader">
-                <div>
+                <div id="story_<?= $story['storyID'] ?>_votes" >
                     <div>
                         <?php 
                             if($votedStories[$story['storyID']] == 1) { ?>
-                                <a id="<?= $story['storyID'] ?>" class="votes"><i id="voteUp" class="fas fa-chevron-up"></i><span class="storyVotes"><?= htmlentities($storiesVotes[$story['storyID']]) ?></span><i class="fas fa-chevron-down"></i></a>
+                                <div class="votes">
+                                    <div>
+                                        <i id="voteUp" class="fas fa-chevron-up"></i>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                    <span class="storyVotes"><?= htmlentities($storiesVotes[$story['storyID']]) ?></span>
+                                </div>
                             <?php }
                             else if($votedStories[$story['storyID']] == -1) { ?>
-                                <a id="<?= $story['storyID'] ?>" class="votes"><i class="fas fa-chevron-up"></i><span class="storyVotes"><?= htmlentities($storiesVotes[$story['storyID']]) ?></span><i id="voteDown" class="fas fa-chevron-down"></i></a>
+                                <div class="votes">
+                                    <div>
+                                        <i class="fas fa-chevron-up"></i>
+                                        <i id="voteDown" class="fas fa-chevron-down"></i>
+                                    </div>
+                                    <span class="storyVotes"><?= htmlentities($storiesVotes[$story['storyID']]) ?></span>
+                                </div>
                             <?php }
                             else { ?>
-                                <a id="<?= $story['storyID'] ?>" class="votes"><i class="fas fa-chevron-up"></i><span class="storyVotes"><?= htmlentities($storiesVotes[$story['storyID']]) ?></span><i class="fas fa-chevron-down"></i></a>
+                                <div class="votes">
+                                    <div>
+                                        <i class="fas fa-chevron-up"></i>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                    <span class="storyVotes"><?= htmlentities($storiesVotes[$story['storyID']]) ?></span>
+                                </div>
                             <?php }
                         ?>
                         <h3><?= $story['channelName'] ?></h3>
                     </div>
                     <div>
                         <span class="author"><i class="far fa-user"></i><?= $story['storyAuthor'] ?></span>
-                        <a class="comments"><i class="far fa-comments"></i><?= $story['storyComments'] ?></a>
+                        <span class="comments"><i class="far fa-comments"></i><?= $story['storyComments'] ?></span>
                         <span class="date"><i class="far fa-clock"></i><?= data_converter($story['storyTime']) ?></span>
                     </div>
                 </div>
@@ -123,7 +141,7 @@
     <?php } 
 } ?>
 
-<?php function draw_general_aside($channels) {
+<?php function draw_general_aside($channels, $messages) {
     ?>
     <aside>
         <div>
@@ -139,6 +157,10 @@
                 <input type="submit" id="submitAsideChannelName" name="channelName" visibility="hidden" style="display: none;">
             </form>
         </div>
+        <?php 
+            if($messages !== '')
+                echo $messages;
+        ?>
         <form method="post" action="../pages/feed.php">
             <button id="browseChannels" type="submit">Browse channels</button>
         </form>

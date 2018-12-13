@@ -35,7 +35,11 @@
     border-radius: 15px;
     border: solid var(--border-color) 2px;
     background-color: var(--background-story-color);
-}   
+}  
+
+#stories > article:hover {
+    cursor: pointer;
+}
 
 #storyHeader div {
     /* Layout */
@@ -46,11 +50,12 @@
 #storyHeader > div:first-child h3 {
     /* Layout */
     margin: 0em;
+    padding-top: 0.25em;
 }
 
 #storyHeader > div:first-child > * {
     /* Layout */
-    margin: 1em 1em 0.5em 1em;
+    margin: 0.25em;
     
     /* Style */
     font-family: var(--story-header-font);
@@ -77,8 +82,25 @@
 
 #storyHeader i {
     /* Layout */
-    
     font-size: 1.2em;
+}
+
+#storyHeader span {
+    /* Layout */
+    padding-top: 0.5em;
+}
+
+.storyVotes {
+    padding: 0em;
+}
+
+#storyHeader div:first-child div:first-child div:first-child > div {
+    flex-direction: column;
+    display: flex;
+}
+
+#storyHeader div:first-child div:first-child div:first-child > div i {
+    padding: 0em;
 }
 
 #storyHeader div:last-child img {
@@ -148,12 +170,12 @@
     background: var(--background-story-color);
 }
 
-#storyHeader div:first-child div:first-child i:first-child:hover {
+#storyHeader div:first-child div:first-child div:first-child i:first-child:hover {
     cursor: pointer;
     color:rgb(9, 190, 9);
 }
 
-#storyHeader div:first-child div:first-child i:nth-child(3):hover {
+#storyHeader div:first-child div:first-child div:first-child i:last-child:hover {
     cursor: pointer;
     color:rgb(255, 0, 0);
 }

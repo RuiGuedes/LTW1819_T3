@@ -20,12 +20,13 @@
       $votes = get_story_votes($story['storyID']);
       $storiesVotes[$story['storyID']] = $votes == null ? 0 : $votes;
       $votedStories[$story['storyID']] = get_user_vote($_SESSION['username'], $story['storyID']);
-    }
-    
+    } 
+
+    // Retrieves top 10 channels
     $channels = get_top_channels();
 
     draw_common($_SESSION['username'], ['stories.css', 'general_aside.css'], [], $filter);
     draw_feed(htmlentities_all($stories), $storiesVotes, $votedStories);
-    draw_general_aside(htmlentities_all($channels));
+    draw_general_aside(htmlentities_all($channels), display_messages());
     draw_footer();
 ?>

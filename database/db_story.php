@@ -55,9 +55,9 @@
      */
     function check_story_existence($storyID) {
         $db = Database::instance()->db();
-        $stmt = $db->prepare('SELECT * FROM Story WHERE $storyID = ?');
+        $stmt = $db->prepare('SELECT * FROM Story WHERE storyID = ?');
         $stmt->execute(array($storyID));
-        return $stmt->fetch()? true : false; // Return true if user exists
+        return $stmt->fetch()? true : false; // Return true if story exists
       }
 
     /**
@@ -85,6 +85,25 @@
         $db = Database::instance()->db();
         $stmt = $db->prepare('UPDATE Story SET storyPoints = (SELECT SUM(voteType) FROM Votes WHERE Votes.storyID = ?) WHERE Story.storyID = ?');
         $stmt->execute(array($storyID, $storyID));
+    }
+
+    /**
+     * Get's the number of comments of a certain story
+     */
+    function get_story_comments($storyID) {
+        $db = Database::instance()->db();
+        $stmt = $db->prepare('SELECT storyComments FROM Story WHERE storyID = ?');
+        $stmt->execute(array($storyID));
+        return $stmt->fetch()['storyComments'];
+    }
+
+    /**
+     * Update the number of comments of a certain story 
+     */
+    function update_story_comments($storyID, $comments) {
+        $db = Database::instance()->db();
+        $stmt = $db->prepare('UPDATE Story SET storyComments = ? WHERE storyID = ?');
+        $stmt->execute(array($comments, $storyID));
     }
 
 ?>

@@ -1,116 +1,123 @@
 :root {
     --background-color: rgb(231, 231, 231);
     --background-story-color: whitesmoke;
+    --aside-button-background-color-hover: rgb(3, 173, 192);
 
     --story-title-font: 'Montserrat', sans-serif;
     --story-header-font: 'Montserrat', sans-serif;
     --story-text-font: 'Montserrat', sans-serif;
-    --story-title-font-size: 2em;
-    --story-content-font-size: 1em;
-    --story-content-text-indent: 2em;
 
     --border-color: rgb(177, 177, 177);
 }
 
-#masterStories {
-    grid-area: content;
-    width: 100%;
-    height: 100%;
+#storyContent  {
+    /* Layout */
+    margin: 0em;
+    padding: 1em 1em 1em 1em;
+    max-height: 5em;
+    max-width: 100%;
+
+    /* Style */
     overflow: hidden;
+    font-family: var(--story-text-font);
+} 
+
+#storyContent > p {
+    /* Layout */
+    overflow: hidden;
+    position: relative;
+    line-height: 1.2em;
+    max-height: 4.8em; 
+    padding-right: 1em;
+    margin: 0em;
+    
+    /* Style */
+    text-align: justify;
 }
 
-#content {
+#comments {
     /* Layout */
     margin: 0%;
+    margin-bottom: 1em;
     width: 100%;
     max-height: 95%;
     overflow-y: auto;
     padding-right: 20px;
 }
 
-article {
+.childComment {
+    padding-left: 1em;
+}
+
+#comments article, textarea {
     /* Layout */
-    margin: 3.5em auto;
+    margin: 0.5em auto;
     width: 75%;
     height: auto;
+    background-color: red;
+    display: grid;
+
+    grid-template-columns: 100% 100%;
+    grid-template-rows: 35% 65%;
+
+    grid-template-areas:    "commentheader"
+                            "commentContent";
     
     /* Style */ 
-    border: solid var(--border-color) 1px;
+    border-radius: 15px;
+    border: solid var(--border-color) 2px;
     background-color: var(--background-story-color);
-}   
+}  
 
-#storyHeader div {
-    /* Layout */
-    display: flex;
+#comments article > header {
+    padding-top: 0.25em;
+    grid-area: commentheader;
+}
+
+#comments article > header div {
+    padding: 0em 0.1em;
     justify-content: space-between;
+    display: flex;
 }
 
-#storyHeader > div:first-child h3 {
-    /* Layout */
-    margin: 0em;
+#comments article > header span {
+    padding: 0.5em 0.2em 0em 0.2em;
 }
 
-#storyHeader > div:first-child > * {
-    /* Layout */
-    margin: 1em 1em 0.5em 1em;
-    
-    /* Style */
-    font-family: var(--story-header-font);
+#comments article > header i {
+    padding: 0em 0.3em 0em 0.2em;
 }
 
-#storyHeader > div:first-child > * > * > * {
-    /* Layout */
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-}
-
-#storyHeader > div:last-child {
-    /* Layout */
-    padding: 0em;
-    justify-content: flex-start;
+#comments article > header div:first-child div:first-child div:first-child div:first-child {
     flex-direction: column;
-    display: flex;    
+    display: flex;
 }
 
-#storyHeader div:last-child img {
-    /* Layout */
-    padding: 1em 1em 1em 1em;
-    width: auto;
-    height: 50%;
+#comments article > header div:first-child div:first-child div:first-child div:first-child i:first-child:hover {
+    cursor: pointer;
+    color:rgb(9, 190, 9);
 }
 
-#storyHeader div:last-child h1 {
-    /* Layout */
-    margin: 1em 1em 0em 1em;
-    width: auto;
-    height: auto;
-
-    /* Style */
-    font-family: var(--story-title-font);
-    font-weight: bold;
-    font-size: var(--story-title-font-size);
+#comments article > header div:first-child div:first-child div:first-child div:first-child i:last-child:hover {
+    cursor: pointer;
+    color:rgb(255, 0, 0);
 }
 
-p {
-    /* Layout */
+.reply:hover {
+    cursor: pointer;
+    color: var(--aside-button-background-color-hover);
+}
+
+.expand:hover {
+    cursor: pointer;
+    color: var(--aside-button-background-color-hover);
+}
+
+#comments article > p {
+    grid-area: commentContent;
+    padding: 1em;
     margin: 0em;
-    padding: 1em 1em 1em 1em;
-    height: auto;
-    width: auto;
 
-    /* Style */
-    text-align: justify;
-    text-indent: var(--story-content-text-indent);
-    font-size: var(--story-content-font-size);
-    font-family: var(--story-text-font);
-} 
-
-/* Aside not made yet */
-
-aside {
-    /* Layout */
-    grid-area: aside;
-    padding: 0em 0em 0em 4em;
-
-    border-left: solid var(--border-color);
+    text-indent: 1em;
 }
+

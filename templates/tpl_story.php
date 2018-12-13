@@ -1,75 +1,101 @@
-<?php function draw_story() { ?>
-    
+<?php function draw_story($story, $storiesVotes, $votedStories, $comments) { ?>
+
     <div id="masterStories"> 
-        <section id=content>
-            <article id=story>
+        <section id="stories">
+            <article id="<?= $story['storyID'] ?>">
                 <header id="storyHeader">
-                    <div>
+                    <div id="story_<?= $story['storyID'] ?>_votes">
                         <div>
-                            <a class="votes"><i class="fas fa-minus-circle"></i>15<i class="fas fa-plus-circle"></i></a>
-                            <h3>Channel Name</h3>
+                            <?php 
+                                if($votedStories[$story['storyID']] == 1) { ?>
+                                    <div class="votes">
+                                        <div>
+                                            <i id="voteUp" class="fas fa-chevron-up"></i>
+                                            <i class="fas fa-chevron-down"></i>
+                                        </div>
+                                        <span class="storyVotes"><?= htmlentities($storiesVotes[$story['storyID']]) ?></span>
+                                    </div>
+                                <?php }
+                                else if($votedStories[$story['storyID']] == -1) { ?>
+                                    <div class="votes">
+                                        <div>
+                                            <i class="fas fa-chevron-up"></i>
+                                            <i id="voteDown" class="fas fa-chevron-down"></i>
+                                        </div>
+                                        <span class="storyVotes"><?= htmlentities($storiesVotes[$story['storyID']]) ?></span>
+                                    </div>
+                                <?php }
+                                else { ?>
+                                    <div class="votes">
+                                        <div>
+                                            <i class="fas fa-chevron-up"></i>
+                                            <i class="fas fa-chevron-down"></i>
+                                        </div>
+                                        <span class="storyVotes"><?= htmlentities($storiesVotes[$story['storyID']]) ?></span>
+                                    </div>
+                                <?php }
+                            ?>
+                            <h3><?= $story['channelName'] ?></h3>
                         </div>
                         <div>
-                            <span class="author"><i class="fas fa-user-alt"></i>Dominic Woods</span>
-                            <a class="comments"><i class="fas fa-comments"></i>5</a>
-                            <span class="date"><i class="fas fa-clock"></i>15 min</span>
+                            <span class="author"><i class="far fa-user"></i><?= $story['storyAuthor'] ?></span>
+                            <span class="comments"><i class="far fa-comments"></i><?= $story['storyComments'] ?></span>
+                            <span class="date"><i class="far fa-clock"></i><?= data_converter($story['storyTime']) ?></span>
                         </div>
                     </div>
-                    <div>
-                        <h1>Title of the Story. It can be pretty big, as long as it doesn't take more than two lines !</h1>    
-                        <img src="../resources/images/thumb.jpg" alt="Story Image">
-                    </div>                   
+                    <div> 
+                        <h1><?= $story['storyTitle'] ?></h1> 
+                        <?php
+                            $imageID = $story['storyID'];
+                            if(glob("../resources/images/stories/$imageID.*")) { ?>
+                                <img src="../resources/images/stories/<?= $story['storyID'] ?>" alt="User Image"> 
+                            <?php }
+                        ?>                    
+                    </div>
                 </header>
-                <p>
-                    Etiam massa magna, condimentum eu facilisis sit amet, dictum ac purus. Curabitur semper nisl vel
-                    libero
-                    pulvinar ultricies. Proin dignissim dolor nec scelerisque bibendum. Maecenas a sem euismod,
-                    iaculis
-                    erat id, convallis arcu. Ut mollis, justo vitae suscipit imperdiet, eros dui laoreet enim,
-                    fermentum
-                    posuere felis arcu vel urna. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
-                    posuere
-                    cubilia Curae; Proin blandit ex sit amet suscipit commodo. Duis molestie ligula eu urna
-                    tincidunt
-                    tincidunt. Mauris posuere aliquet pellentesque. Fusce molestie libero arcu, ut porta massa
-                    iaculis
-                    sit
-                    amet. Fusce varius nisl vitae fermentum fringilla. Pellentesque a cursus lectus.
-                    Etiam massa magna, condimentum eu facilisis sit amet, dictum ac purus. Curabitur semper nisl vel
-                    libero
-                    pulvinar ultricies. Proin dignissim dolor nec scelerisque bibendum. Maecenas a sem euismod,
-                    iaculis
-                    erat id, convallis arcu. Ut mollis, justo vitae suscipit imperdiet, eros dui laoreet enim,
-                    fermentum
-                    posuere felis arcu vel urna. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
-                    posuere
-                    cubilia Curae; Proin blandit ex sit amet suscipit commodo. Duis molestie ligula eu urna
-                    tincidunt
-                    tincidunt. Mauris posuere aliquet pellentesque. Fusce molestie libero arcu, ut porta massa
-                    iaculis
-                    sit
-                    amet. Fusce varius nisl vitae fermentum fringilla. Pellentesque a cursus lectus.
-                    Etiam massa magna, condimentum eu facilisis sit amet, dictum ac purus. Curabitur semper nisl vel
-                    libero
-                    pulvinar ultricies. Proin dignissim dolor nec scelerisque bibendum. Maecenas a sem euismod,
-                    iaculis
-                    erat id, convallis arcu. Ut mollis, justo vitae suscipit imperdiet, eros dui laoreet enim,
-                    fermentum
-                    posuere felis arcu vel urna. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
-                    posuere
-                    cubilia Curae; Proin blandit ex sit amet suscipit commodo. Duis molestie ligula eu urna
-                    tincidunt
-                    tincidunt. Mauris posuere aliquet pellentesque. Fusce molestie libero arcu, ut porta massa
-                    iaculis
-                    sit
-                    amet. Fusce varius nisl vitae fermentum fringilla. Pellentesque a cursus lectus END.
-                </p>
-            </article>            
+                <div id="storyContent">
+                    <p><?= $story['storyContent'] ?></p>
+                </div>
+            </article> 
+
+            <section id="comments">
+                <?php
+                    foreach($comments as $comment) { ?>
+                        <div>
+                            <article>
+                                    <header>
+                                        <div id="comment_<?= htmlentities($comment['commentID']) ?>_votes">
+                                            <div>
+                                                <div>
+                                                    <div>
+                                                        <i class="fas fa-chevron-up"></i>
+                                                        <i class="fas fa-chevron-down"></i>
+                                                    </div>                                        
+                                                    <span class="storyVotes"><?= htmlentities($comment['commentPoints']) ?></span>  
+                                                </div>
+                                            <span class="author"><i class="far fa-user"></i><?= htmlentities($comment['commentAuthor']) ?></span>
+                                            </div>
+                                            <div>
+                                                <span class="reply"><i class="fas fa-reply"></i></i>Reply</span>
+                                                <span class="expand"><i class="fas fa-stream"></i></i>Expand</span>
+                                                <span class="date"><i class="far fa-clock"></i><?= data_converter($comment['commentTime']) ?></span>
+                                            </div>
+                                        </div>
+                                    </header>
+                                    <p><?= htmlentities($comment['commentContent']) ?></p>
+                                </article> 
+                        </div>
+                    <?php }
+                ?> 
+                <div>
+                    <form method="post" action="../actions/action_add_comment.php">
+                        <textarea name="content" id="" cols="30" rows="10"></textarea>
+                        <input type="hidden" name="storyID" value="<?= htmlentities($story['storyID']) ?>">
+                        <input type="submit" id="submitCommentForm" value="Comment">
+                    </form>                    
+                </div>
+            </section>  
+                  
         </section>
     </div>
-
-    <aside>
-        <section>
-        </section>
-    </aside>
 <?php } ?>
