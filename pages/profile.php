@@ -21,7 +21,7 @@
     $userStories = get_user_stories($username, $filter);
 
     // Stories number of votes
-    $storiesVotes; $votedStories;
+    $storiesVotes = []; $votedStories = [];
     foreach($userStories as $story) {
       $votes = get_story_votes($story['storyID']);
       $storiesVotes[$story['storyID']] = $votes == null ? 0 : $votes;

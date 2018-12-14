@@ -78,7 +78,7 @@
                 <i class="far fa-newspaper"></i><p><?= $userNumPosts ?> Stories</p>    
             </div>
             <div class="statistics">
-                <i class="fas fa-users"></i><p><?= $userNumSubs ?> Subscriptions</p>
+                <i class="fas fa-users"></i><a href="../pages/subscriptions.php?username=<?= $_GET['username']?>&show=subscriptions"><p><?= $userNumSubs ?> Subscriptions</p></a>
             </div>
         </div>
     </aside>

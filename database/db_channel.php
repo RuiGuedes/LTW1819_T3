@@ -13,13 +13,23 @@
     }
 
     /**
-     * Get's a certain channel
+     * Get a certain channel
      */
     function get_channel($channelName) {
         $db = Database::instance()->db();
         $stmt = $db->prepare('SELECT * FROM Channel WHERE name = ?');
         $stmt->execute(array($channelName));
         return $stmt->fetch();
+    }
+
+     /**
+     * Get all channels
+     */
+    function get_all_channels() {
+        $db = Database::instance()->db();
+        $stmt = $db->prepare('SELECT * FROM Channel');
+        $stmt->execute(array());
+        return $stmt->fetchall();
     }
 
     /**

@@ -10,14 +10,33 @@
     if (!isset($_SESSION['username']))
       die(header('Location: login.php'));
     
-    $subscriptions = get_user_subscriptions($_SESSION['username']);
+    $username = isset($_GET['username']) ? htmlentities($_GET['username']) : $_SESSION['username'];
+    $show = isset($_GET['show']) ? htmlentities($_GET['show']) : 'all';
+    $defaultFilter = 2;
 
-    $channels = get_top_channels();
+    if(!check_user_existence($username)) {
+      generate_error('Invalid user !');
+      die(header('Location: feed.php'));
+    }
 
-    $filter = isset($_GET['filter']) ? $_GET['filter'] : 2;
+    // Retrieves channels to be displayed
+    $channels = get_user_subscriptions($username);
+    if($show === 'all') {
+      $channels = get_all_channels();
+    }
+    else if($show === 'subscriptions'){
+      $channels = get_user_subscriptions($username);
+    }
+    else {
+      generate_error('Invalid show value ! Available show values: <all> OR <subscriptions>');
+      die(header('Location: feed.php'));
+    }
 
-    draw_common($_SESSION['username'], ['subscriptions.css', 'general_aside.css'], [], $filter);
-    draw_user_subscriptions(htmlentities_all($subscriptions));
-    draw_general_aside(htmlentities_all($channels), display_messages());
+    // Retrieves top 10 channels
+    $topChannels = get_top_channels();
+
+    draw_common($_SESSION['username'], ['subscriptions.css', 'general_aside.css'], [], $defaultFilter);
+    draw_user_subscriptions(htmlentities_all($channels));
+    draw_general_aside(htmlentities_all($topChannels), display_messages());
     draw_footer();
 ?>

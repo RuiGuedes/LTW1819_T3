@@ -10,6 +10,12 @@
     case 3:
         return 'storyID ASC';
     break;
+    case 4:
+        return 'storyComments DESC';
+    break;
+    case 5:
+        return 'storyComments ASC';
+    break;
     default:        
         return 'storyID DESC';
     break;
@@ -64,6 +70,5 @@ function htmlentities_all($data) {
             break;
         }
     }
-
     return $image;
 } ?>

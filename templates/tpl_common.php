@@ -32,7 +32,7 @@
                         <i class="fa fa-home"></i><a href="../pages/feed.php">Feed</a>
                     </div>
                     <div class="mainMenu">
-                        <i class="fa fa-th-list"></i><a href="../pages/subscriptions.php">Channels</a> <!-- Change to a specific channels page -->
+                        <i class="fa fa-th-list"></i><a href="../pages/subscriptions.php?show=subscriptions">Channels</a> 
                     </div>
                     <div class="mainMenu">
                         <i class="fa fa-user-alt"></i><a href="../pages/profile.php?username=<?= $_SESSION['username'] ?>">Profile</a>
@@ -64,6 +64,8 @@
                             <option <? echo $filter == 1 ? 'selected ' : '' ?>value="1">Less Voted</option>
                             <option <? echo $filter == 2 ? 'selected ' : '' ?>value="2">More Recent</option>
                             <option <? echo $filter == 3 ? 'selected ' : '' ?>value="3">Less Recent</option>
+                            <option <? echo $filter == 4 ? 'selected ' : '' ?>value="4">Most Commented</option>
+                            <option <? echo $filter == 5 ? 'selected ' : '' ?>value="5">Less Commented</option>
                         </select>
                     </form>
                 </div>
@@ -153,7 +155,7 @@
             if($messages !== '')
                 echo $messages;
         ?>
-        <form method="post" action="../pages/feed.php">
+        <form method="post" action="../pages/subscriptions.php?show=all">
             <button id="browseChannels" type="submit">Browse channels</button>
         </form>
     </aside>
