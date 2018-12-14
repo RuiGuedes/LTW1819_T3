@@ -17,14 +17,7 @@
                         <input id="uploadImage"type="file" name="image">
                         <input id="submitImage" type="submit" value="Upload">
                     </form>
-                    <?php
-                        if(glob("../resources/images/users/$username.*")) { ?>
-                            <img id="asideIMG" src="../resources/images/users/<?= $username ?>" alt="User Image"> 
-                        <?php }
-                        else { ?>
-                            <img id="asideIMG" src="../resources/images/default/defaultUser.jpg?>" alt="User Image"> 
-                        <?php }
-                    ?>
+                    <img id="asideIMG" src="../resources/images/<?= get_image('default/defaultUser.jpg', '../resources/images/users/', 'users/', sha1($username)) ?>" alt="User Image"> 
                     <div>
                         <i class="fas fa-camera"></i>             
                         <p>Update</p>

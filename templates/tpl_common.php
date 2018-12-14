@@ -44,15 +44,7 @@
             </header>
             <div id="toolBar">
                 <div id="info">
-                    <?php
-                        $imageID = $_SESSION['username'];
-                        if(glob("../resources/images/users/$imageID.*")) { ?>
-                            <img id="asideIMG" src="../resources/images/users/<?= $_SESSION['username'] ?>" alt="User Image"> 
-                        <?php }
-                        else { ?>
-                            <img id="asideIMG" src="../resources/images/default/defaultUser.jpg?>" alt="User Image"> 
-                        <?php }
-                    ?>
+                    <img id="asideIMG" src="../resources/images/<?= get_image('default/defaultUser.jpg', '../resources/images/users/', 'users/', sha1($_SESSION['username'])) ?>" alt="User Image"> 
                     <a id="user-name" href="../pages/profile.php?username=<?= $_SESSION['username'] ?>"><h5><?php echo $username ?></h5></a>
                 </div>
                 <div id="filters">
@@ -126,12 +118,12 @@
                 </div>
                 <div> 
                     <h1><?= $story['storyTitle'] ?></h1> 
-                    <?php
-                        $imageID = $story['storyID'];
-                        if(glob("../resources/images/stories/$imageID.*")) { ?>
-                            <img src="../resources/images/stories/<?= $story['storyID'] ?>" alt="User Image"> 
+                    <?php 
+                        $image = get_image('', '../resources/images/stories/', 'stories/', sha1($story['storyID']));
+                        if($image !== '') {
+                            ?> <img src="../resources/images/<?= $image ?>" alt="Story Image">
                         <?php }
-                    ?>                    
+                    ?>
                 </div>
             </header>
             <div id="storySinopse">
@@ -176,15 +168,7 @@
                 <input id="uploadImage"type="file" name="image">
                 <input id="submitImage" type="submit" value="Upload">
             </form>
-            <?php
-                $imageID = $channel['name'];
-                if(glob("../resources/images/channels/$imageID.*")) { ?>
-                    <img id="asideIMG" src="../resources/images/channels/<?= $channel['name'] ?>" alt="User Image"> 
-                <?php }
-                else { ?>
-                    <img id="asideIMG" src="../resources/images/default/defaultChannel.png?>" alt="User Image"> 
-                <?php }
-            ?>
+            <img id="asideIMG" src="../resources/images/<?= get_image('default/defaultChannel.png', '../resources/images/channels/', 'channels/', sha1($channel['name'])) ?>" alt="Channel Image"> 
             <div>
                 <i class="fas fa-camera"></i>             
                 <p>Update</p>
@@ -230,15 +214,7 @@
     ?>
     <aside> 
         <div id="channelPicture">
-            <?php
-                $imageID = $channel['name'];
-                if(glob("../resources/images/channels/$imageID.*")) { ?>
-                    <img id="asideIMG" src="../resources/images/channels/<?= $channel['name'] ?>" alt="User Image"> 
-                <?php }
-                else { ?>
-                    <img id="asideIMG" src="../resources/images/default/defaultChannel.png?>" alt="User Image"> 
-                <?php }
-            ?>
+            <img id="asideIMG" src="../resources/images/<?= get_image('default/defaultChannel.png', '../resources/images/channels/', 'channels/', sha1($channel['name'])) ?>" alt="Channel Image"> 
         </div>
         <h3 id="channelName"><?= $channel['name'] ?></h3>
         <div id="forms">

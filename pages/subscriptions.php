@@ -18,6 +18,6 @@
 
     draw_common($_SESSION['username'], ['subscriptions.css', 'general_aside.css'], [], $filter);
     draw_user_subscriptions(htmlentities_all($subscriptions));
-    draw_general_aside(htmlentities_all($channels));
+    draw_general_aside(htmlentities_all($channels), display_messages());
     draw_footer();
 ?>

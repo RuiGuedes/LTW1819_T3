@@ -16,16 +16,8 @@
                                     <p>Owner:</p><h1><?= $subscription['owner'] ?></h1>
                                 </div>
                             </div>
-                            <div>
-                                <?php
-                                    $imageID = $subscription['name'];
-                                    if(glob("../resources/images/channels/$imageID.*")) { ?>
-                                        <img id="asideIMG" src="../resources/images/channels/<?= $subscription['name'] ?>" alt="User Image"> 
-                                    <?php }
-                                    else { ?>
-                                        <img id="asideIMG" src="../resources/images/default/defaultChannel.png?>" alt="User Image"> 
-                                    <?php }
-                                ?>                     
+                            <div>     
+                                <img id="asideIMG" src="../resources/images/<?= get_image('default/defaultChannel.png', '../resources/images/channels/', 'channels/', sha1($subscription['name'])) ?>" alt="Channel Image">              
                                 <div id="channelDescription">
                                     <h1>Description:</h1><p><?= $subscription['description'] ?></p>
                                 </div>

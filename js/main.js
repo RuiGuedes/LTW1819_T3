@@ -171,7 +171,11 @@ if(postUploader != null) {
 
 if(uploader != null) {
   uploader.addEventListener('change', function() {
-    submit.click()
+    if(postUploader != null) {
+      postUploader.getElementsByTagName('p')[0].textContent = 'File uploaded'
+    }
+    if(submit != null)
+      submit.click()
   })
 }
 

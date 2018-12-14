@@ -29,20 +29,14 @@
     }
 
     // Delete previous image if exists
-    if(file_exists($imgInfo['directory'] . $id . '.' . 'jpg')) {
-        unlink($imgInfo['directory'] . $id . '.' . 'jpg');
-    }
-    
-    if(file_exists($imgInfo['directory'] . $id . '.' . 'png')) {
-        unlink($imgInfo['directory'] . $id . '.' . 'png');
-    }
-    
-    if(file_exists($imgInfo['directory'] . $id . '.' . 'gif')) {
-        unlink($imgInfo['directory'] . $id . '.' . 'gif');
+    for($index = 0; $index < count($imgInfo['availableExtensions']); $index++) {
+        if(file_exists($imgInfo['directory'] . sha1($id) . '.' . $imgInfo['availableExtensions'][$index])) {
+            unlink($imgInfo['directory'] . sha1($id) . '.' . $imgInfo['availableExtensions'][$index]);
+        }
     }
 
     // Generate filenames for original
-    $originalFileName = $imgInfo['directory'] . $id . '.' . $imgInfo['extension'];    
+    $originalFileName = $imgInfo['directory'] . sha1($id) . '.' . $imgInfo['extension'];    
 
     // Move the uploaded file to its final destination
     move_uploaded_file($_FILES['image']['tmp_name'], $originalFileName);

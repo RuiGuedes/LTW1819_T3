@@ -38,6 +38,7 @@ function data_converter($storyTime) {
 }
 
 function htmlentities_all($data) {
+    /* Applies htmlentities to every element on data */
     foreach($data as $k => $v) {
         switch(gettype($v)) {
             case 'array':
@@ -51,3 +52,18 @@ function htmlentities_all($data) {
     return $data;
 }
 ?> 
+
+<?php function get_image($default, $directory, $folder, $element) {
+    /* Retrieves image relative to a certain element */
+    $image = $default;
+    $extensions = ['jpg', 'png', 'gif'];
+
+    for($index = 0; $index < count($extensions); $index++) {
+        if(file_exists($directory . $element . '.' . $extensions[$index])) {
+            $image = $folder . $element . '.' . $extensions[$index];
+            break;
+        }
+    }
+
+    return $image;
+} ?>
