@@ -22,6 +22,21 @@
     }
 }
 
+function search_query_converter($value) {
+    /* Convert search filter elements to their respective value */
+    switch($value) {
+    case 0:
+        return 'channelName';
+    break;
+    case 1:
+        return 'storyAuthor';
+    break;
+    default:
+        return 'storyTitle';
+    break;
+    }
+}
+
 function data_converter($storyTime) {
     /* Converts time in order to be properly displayed */
     $newStoryTime = new DateTime(date('Y-m-d H:i:s'));

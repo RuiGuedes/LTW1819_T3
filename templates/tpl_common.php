@@ -70,7 +70,14 @@
                     </form>
                 </div>
                 <div id="search">
-                    <input type="search" name="Search" placeholder="Search ...">
+                    <form method="get" action="<?= $_SERVER['PHP_SELF']?>">
+                        <select name="searchFilter" id="searchFilterID"> 
+                            <option <? echo $filter == 0 ? 'selected ' : '' ?>value="0">Channel</option>
+                            <option <? echo $filter == 1 ? 'selected ' : '' ?>value="1">Author</option>
+                            <option <? echo $filter == 2 ? 'selected ' : '' ?>value="2">Story</option>
+                        </select>
+                        <input type="search" name="search" placeholder="Search ...">
+                    </form>
                 </div>
             </div>
 <? } ?>

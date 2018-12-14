@@ -11,10 +11,15 @@
     if (!isset($_SESSION['username']))
       die(header('Location: login.php'));
 
+    // Variables
     $filter = isset($_GET['filter']) ? $_GET['filter'] : 2;
+    $searchFilter = isset($_GET['searchFilter']) ? $_GET['searchFilter'] : 2;
     $stories = get_user_channel_stories($_SESSION['username'], $filter);
 
-    // Stories number of votes and check user vote type
+    // Get stories
+    $stories = isset($_GET['search']) ? get_search_stories($filter, $searchFilter, $_GET['search']) : get_user_channel_stories($_SESSION['username'], $filter);
+    
+     // Stories number of votes and check user vote type
     $storiesVotes; $votedStories;
     foreach($stories as $story) {
       $votes = get_story_votes($story['storyID']);
@@ -22,6 +27,7 @@
       $votedStories[$story['storyID']] = get_user_story_vote($_SESSION['username'], $story['storyID']);
     } 
 
+    
     // Retrieves top 10 channels
     $channels = get_top_channels();
 

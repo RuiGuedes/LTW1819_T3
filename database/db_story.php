@@ -106,4 +106,14 @@
         $stmt->execute(array($comments, $storyID));
     }
 
+    /**
+     * Get all stories that matches the searched content
+     */
+    function get_search_stories($filter, $searchFilter, $content) {
+        $db = Database::instance()->db();
+        $stmt = $db->prepare('SELECT * FROM Story WHERE ' . search_query_converter($searchFilter) . ' LIKE ? ORDER BY ' . orderBy($filter));
+        $stmt->execute(array('%' . $content . '%'));
+        return $stmt->fetchAll(); 
+    }
+
 ?>
