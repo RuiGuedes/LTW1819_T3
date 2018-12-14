@@ -1,6 +1,7 @@
 <?php 
     include_once('../includes/session.php');
     include_once('../templates/tpl_common.php');
+    include_once('../templates/tpl_stories.php');
     include_once('../templates/tpl_profile.php');
     include_once('../database/db_user.php');
     include_once('../database/db_story.php');
@@ -33,7 +34,7 @@
     $userNumSubs = get_user_num_subscriptions($_GET['username']);
 
     draw_common($_SESSION['username'], ['stories.css', 'profile_aside.css', 'channel_aside.css'], [], $filter);
-    draw_profile(htmlentities_all($userStories), $storiesVotes, $votedStories);
+    draw_stories(htmlentities_all($userStories), $storiesVotes, $votedStories);
     draw_profile_aside($username, htmlentities($biography), display_messages(), $userPoints, $userNumPosts, $userNumSubs);
     draw_footer();
 ?>

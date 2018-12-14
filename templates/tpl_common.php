@@ -71,79 +71,19 @@
                 </div>
                 <div id="search">
                     <form method="get" action="<?= $_SERVER['PHP_SELF']?>">
+                        <input type="hidden" name="filter" value="asd">
                         <select name="searchFilter" id="searchFilterID"> 
                             <option <? echo $filter == 0 ? 'selected ' : '' ?>value="0">Channel</option>
                             <option <? echo $filter == 1 ? 'selected ' : '' ?>value="1">Author</option>
                             <option <? echo $filter == 2 ? 'selected ' : '' ?>value="2">Story</option>
                         </select>
-                        <input type="search" name="search" placeholder="Search ...">
+                        <input type="search" id="searchField" name="search" placeholder="Search ...">
                     </form>
                 </div>
             </div>
 <? } ?>
 
-<?php function draw_stories($stories, $storiesVotes, $votedStories) {
-    foreach($stories as $story) { ?> 
-        <article id="<?= $story['storyID'] ?>" class="storyArticle">
-            <header id="storyHeader">
-                <div id="story_<?= $story['storyID'] ?>_votes" >
-                    <div>
-                        <?php 
-                            if($votedStories[$story['storyID']] == 1) { ?>
-                                <div class="votes">
-                                    <div>
-                                        <i id="voteUp" class="fas fa-chevron-up"></i>
-                                        <i class="fas fa-chevron-down"></i>
-                                    </div>
-                                    <span class="storyVotes"><?= htmlentities($storiesVotes[$story['storyID']]) ?></span>
-                                </div>
-                            <?php }
-                            else if($votedStories[$story['storyID']] == -1) { ?>
-                                <div class="votes">
-                                    <div>
-                                        <i class="fas fa-chevron-up"></i>
-                                        <i id="voteDown" class="fas fa-chevron-down"></i>
-                                    </div>
-                                    <span class="storyVotes"><?= htmlentities($storiesVotes[$story['storyID']]) ?></span>
-                                </div>
-                            <?php }
-                            else { ?>
-                                <div class="votes">
-                                    <div>
-                                        <i class="fas fa-chevron-up"></i>
-                                        <i class="fas fa-chevron-down"></i>
-                                    </div>
-                                    <span class="storyVotes"><?= htmlentities($storiesVotes[$story['storyID']]) ?></span>
-                                </div>
-                            <?php }
-                        ?>
-                        <h3><?= $story['channelName'] ?></h3>
-                    </div>
-                    <div>
-                        <span class="author"><i class="far fa-user"></i><?= $story['storyAuthor'] ?></span>
-                        <span class="comments"><i class="far fa-comments"></i><?= $story['storyComments'] ?></span>
-                        <span class="date"><i class="far fa-clock"></i><?= data_converter($story['storyTime']) ?></span>
-                    </div>
-                </div>
-                <div> 
-                    <h1><?= $story['storyTitle'] ?></h1> 
-                    <?php 
-                        $image = get_image('', '../resources/images/stories/', 'stories/', sha1($story['storyID']));
-                        if($image !== '') {
-                            ?> <img src="../resources/images/<?= $image ?>" alt="Story Image">
-                        <?php }
-                    ?>
-                </div>
-            </header>
-            <div id="storySinopse">
-                <p><?= $story['storyContent'] ?></p>
-            </div>
-        </article>
-    <?php } 
-} ?>
-
-<?php function draw_general_aside($channels, $messages) {
-    ?>
+<?php function draw_general_aside($channels, $messages) { ?>
     <aside>
         <div>
             <h1>Top 10 channels</h1>
@@ -168,101 +108,7 @@
     </aside>
 <?php } ?> 
 
-<?php function draw_channel_aside($channel, $channelStories, $channelFollowers, $channelOwner, $status) {
-    ?>
-    <aside> 
-        <div id="asidePicture">
-            <form action="../actions/action_upload_image.php" method="post" enctype="multipart/form-data" style="display: none;">
-                <input type="hidden" name="imageID" value="<?= $channel['name'] ?>">
-                <input id="uploadImage"type="file" name="image">
-                <input id="submitImage" type="submit" value="Upload">
-            </form>
-            <img id="asideIMG" src="../resources/images/<?= get_image('default/defaultChannel.png', '../resources/images/channels/', 'channels/', sha1($channel['name'])) ?>" alt="Channel Image"> 
-            <div>
-                <i class="fas fa-camera"></i>             
-                <p>Update</p>
-            </div>
-        </div>
-        <h3 id="channelName"><?= $channel['name'] ?></h3>
-        <div id="forms">
-            <form>
-                <?php
-                    if($status) {
-                      ?> <input id="subscribeButton" class="buttons" type="button" value="Unsubscribe"> <?php
-                    }                        
-                    else { 
-                        ?><input id="subscribeButton" class="buttons" type="button" value="Subscribe"> <?php
-                    }
-                ?>
-            </form> 
-            <form method="get" action="../pages/post.php">
-                <input type="hidden" name="channelName" value="<?= $channel['name'] ?>">
-                <input id="addPost" class="buttons" type="submit" value="Add post">
-            </form> 
-        </div>
-        <div id="description">
-            <p>Description<button id="editDescription" type="button"><i class="fas fa-pen"></i></button></p>
-            <p id="descriptionContent"><?=htmlentities($channel['description'])?></p>
-        </div>
-        <div id="statistics">
-            <p>Channel Statistics</p>
-            <div class="statistics">
-                <i class="fas fa-user-lock"></i><p><?= $channelOwner ?></p>
-            </div>
-            <div class="statistics">
-                <i class="far fa-newspaper"></i><p><?= count($channelStories) ?> Stories</p>    
-            </div>
-            <div class="statistics">
-                <i class="fas fa-users"></i><p><?= $channelFollowers ?> Followers</p>
-            </div>
-        </div>
-    </aside>
-<?php } ?>
-
-<?php function draw_post_aside($channel, $channelStories, $channelFollowers, $channelOwner, $status) {
-    ?>
-    <aside> 
-        <div id="channelPicture">
-            <img id="asideIMG" src="../resources/images/<?= get_image('default/defaultChannel.png', '../resources/images/channels/', 'channels/', sha1($channel['name'])) ?>" alt="Channel Image"> 
-        </div>
-        <h3 id="channelName"><?= $channel['name'] ?></h3>
-        <div id="forms">
-            <form>
-                <?php
-                    if($status) {
-                      ?> <input class="buttons" type="button" value="Unsubscribe" disabled> <?php
-                    }                        
-                    else { 
-                        ?><input class="buttons" type="button" value="Subscribe" disabled> <?php
-                    }
-                ?>
-            </form> 
-            <form method="get" action="../pages/post.php">
-                <input type="hidden" name="channelName" value="<?= $channel['name'] ?>">
-                <input class="buttons" type="submit" value="Add post" disabled>
-            </form> 
-        </div>
-        <div id="description">
-            <p>Description</p>
-            <p id="descriptionContent"><?=htmlentities($channel['description'])?></p>
-        </div>     
-        <div id="statistics">
-            <p>Channel Statistics</p>
-            <div class="statistics">
-                <i class="fas fa-user-lock"></i><p><?= $channelOwner ?></p>
-            </div>
-            <div class="statistics">
-                <i class="far fa-newspaper"></i><p><?= count($channelStories) ?> Stories</p>    
-            </div>
-            <div class="statistics">
-                <i class="fas fa-users"></i><p><?= $channelFollowers ?> Followers</p>
-            </div>
-        </div>
-    </aside>
-<?php } ?>
-
-<?php function draw_footer() {
-    ?>
+<?php function draw_footer() { ?>
         </body>
     </html>
 <?php } ?>

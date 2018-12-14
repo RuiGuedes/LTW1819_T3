@@ -2,6 +2,8 @@
     --background-color: rgb(231, 231, 231);
     --background-story-color: whitesmoke;
 
+    --hover-font-color: rgb(3, 173, 192);
+
     --story-title-font: 'Montserrat', sans-serif;
     --story-header-font: 'Montserrat', sans-serif;
     --story-text-font: 'Montserrat', sans-serif;
@@ -50,7 +52,6 @@
 #storyHeader > div:first-child h3 {
     /* Layout */
     margin: 0em;
-    padding-top: 0.25em;
 }
 
 #storyHeader > div:first-child > * {
@@ -63,12 +64,11 @@
 
 #storyHeader > div:first-child > * > * > * {
     /* Layout */
-    padding-left: 0.5em;
-    padding-right: 0.5em;
+    padding: 0em 0.5em;
 }
 
 #storyHeader > div:first-child {
-    /* Layout */
+    /* Style */
     border-bottom: solid var(--border-color) 1px;
 }
 
@@ -82,12 +82,24 @@
 
 #storyHeader i {
     /* Layout */
+    padding-top: 0.25em;
+
+    /* Style */
     font-size: 1.2em;
 }
 
-#storyHeader span {
+#storyHeader a , span {
     /* Layout */
-    padding-top: 0.5em;
+    margin: auto 0em;
+}
+
+#storyHeader a:hover {
+    /* Style */
+    color: var(--hover-font-color);
+}
+
+a {
+    color: black;
 }
 
 .storyVotes {

@@ -2,7 +2,7 @@
     include_once('../includes/session.php');
     include_once('../includes/functions.php');
     include_once('../templates/tpl_common.php');
-    include_once('../templates/tpl_feed.php');
+    include_once('../templates/tpl_stories.php');
     include_once('../database/db_channel.php');
     include_once('../database/db_user.php');
     include_once('../database/db_story.php');
@@ -26,13 +26,12 @@
       $storiesVotes[$story['storyID']] = $votes == null ? 0 : $votes;
       $votedStories[$story['storyID']] = get_user_story_vote($_SESSION['username'], $story['storyID']);
     } 
-
     
     // Retrieves top 10 channels
     $channels = get_top_channels();
 
     draw_common($_SESSION['username'], ['stories.css', 'general_aside.css'], [], $filter);
-    draw_feed(htmlentities_all($stories), $storiesVotes, $votedStories);
+    draw_stories(htmlentities_all($stories), $storiesVotes, $votedStories);
     draw_general_aside(htmlentities_all($channels), display_messages());
     draw_footer();
 ?>

@@ -22,12 +22,24 @@ for (let index = 0; index < asideChannel.length; index++) {
   })
 }
 
-// Filter control
+// Filter control - Search secondary filter retrieve
 let filter = document.getElementById('filterID')
+let searchForm = document.getElementById('searchFilterID').parentElement
+let searchField = document.getElementById('searchField')
 
 filter.addEventListener('change', function() {  
   filter.parentElement.submit()
 })
+
+searchField.onsearch = function(event){
+  event.preventDefault()
+  searchForm.getElementsByTagName('input')[0].value = filter.value
+  searchForm.submit()
+}
+
+searchForm.addEventListener('submit', function(event) {
+  event.preventDefault()
+}) 
 
 // Channel / User description
 let description = document.getElementById('description')

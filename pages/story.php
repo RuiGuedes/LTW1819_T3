@@ -26,16 +26,13 @@
     $votes = get_story_votes($storyID);
     $storyVotes[$storyID] = $votes == null ? 0 : $votes;
     $votedStory[$storyID] = get_user_story_vote($_SESSION['username'], $storyID);
-    
-    // Comments info
-
 
     // Retrieves top 10 channels
     $channels = get_top_channels();
 
     // Retrieve main comments
     $comments = get_parent_comments($storyID);
-    $commentsVotes;
+    $commentVotes = []; $votedComments = [];
     foreach($comments as $comment) {
       $votes = get_comment_votes($comment['commentID']);
       $commentVotes[$comment['commentID']] = $votes == null ? 0 : $votes;

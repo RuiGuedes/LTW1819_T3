@@ -17,16 +17,12 @@
     max-width: 100%;
 
     /* Style */
-    overflow: hidden;
     font-family: var(--story-text-font);
 } 
 
 #storyContent > p {
     /* Layout */
-    overflow: hidden;
-    position: relative;
     line-height: 1.2em;
-    max-height: 4.8em; 
     padding-right: 1em;
     margin: 0em;
     
