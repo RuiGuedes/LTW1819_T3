@@ -23,15 +23,9 @@ html, body {
 
 body {
     /* Layout */
-    margin: 0em;
-    display: grid;
-
-    grid-template-columns: 100%;
-    grid-template-rows: 50% 50%;
-
-    grid-template-areas: "header"
-                         "form"
-    ;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
     /* Style */
     background-color: var(--background-color);
@@ -40,23 +34,27 @@ body {
 #registerHeader {
     /* Layout */
     margin: 0em auto;
-    justify-content: center;
+    width: 90%;
     display: flex;
-    grid-area: header;
+    justify-content: center;
+    align-items: center;
 }
 
-#registerHeader > a img {
+#registerHeader > a {
     /* Layout */
-    padding-top: 2em;
-    width: 20em;
-    height: 20em;
+    width: 20%;
+    max-width: 12em;
+}
 
+#registerHeader img {
+    /* Layout */
+    width: 100%;
 }
 
 #registerHeader > h1 {
     /* Layout */
-    margin: 0em auto;
-    padding: 1em 0em 0em 0.5em;
+    margin: 0em;
+    padding: .25em;
     text-align: center;
 
     /* Style */
@@ -64,18 +62,13 @@ body {
     font-family: var(--site-name-font);
 }
 
-#form {
-    margin: 0em auto;
-    padding-top: 1em; 
-    justify-content: center;
+form {
+    margin: 0em 2em;
+    padding-top: 1em;
     display: flex;
-    grid-area: form;
-}
-
-#form > form {
-    /* Layout */
-    margin: 0em auto;
-    /* padding: 2em 4em 0em 4em; */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 #input {
@@ -83,14 +76,17 @@ body {
     flex-direction: column; 
     justify-content: center;
     display: flex;
+    width: 100%;
 }
 
 #input > * {
     /* Layout */
+    margin: 0em auto;
     margin-bottom: 0.5em;
     padding: 0em;
     padding-left: 0.5em;
-    width: 22.5em;
+    width: 90%;
+    max-width: 22.5em;
 
     /* Style */
     outline: none;
@@ -106,8 +102,6 @@ body {
     /* Layout */
     margin: auto;
     padding: 1.5em 0em;
-    justify-content: center;
-    display: flex;
 }
 
 #button > * {
@@ -127,4 +121,62 @@ body {
     background-color: var(--background-button-color);
     border-color: var(--border-color);
     cursor: pointer;
+}
+
+@media (max-width: 1000px) and (min-height: 800px) {
+    #registerHeader {
+        flex-direction: column;
+    }
+
+    #registerHeader > h1{
+        padding-top: 0em;
+    }
+
+    #registerHeader > a {
+        width: 70%;
+    }
+
+    #input > * {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 600px) {
+    #registerHeader > h1 {
+        font-size: 4em;
+    }
+
+    #registerHeader > a {
+        width: 50%;
+        max-width: 7em;
+    }
+
+    #input > * {
+        font-size: 1em;
+    } 
+}
+
+@media (max-height: 800px) and (min-width: 600px) {
+    #registerHeader > a {
+        width: 50%;
+        max-width: 7em;
+    }
+
+    #input > * {
+        font-size: 1.5em;
+    } 
+}
+
+@media (max-height: 450px) {
+    #registerHeader > h1 {
+        font-size: 3em;
+    }
+
+    #input > * {
+        font-size: 1em;
+    }
+
+    #registerHeader > a {
+        max-width: 4em;
+    }
 }

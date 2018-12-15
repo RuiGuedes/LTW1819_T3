@@ -14,20 +14,18 @@
                 <a href="login.php"><img src="../resources/images/default/logo.png" alt="Site Logo"></a>
                 <h1>Nescio</h1>
             </header>
-            <div id="form">
-                <form>
-                    <?= $messages ?>
-                    <div id="input">
-                        <input type="email" name="email" placeholder="Email:" required="true" value=<?=$email?>>
-                        <input type="text" name="username" placeholder="Username:" required="true" value=<?=$username?>>
-                        <input type="password" name="password" placeholder="Password:" required="true">
-                        <input type="password" name="passwordCheck" placeholder="Confirm Password:" required="true">
-                    </div>
-                    <div id="button">
-                        <button type="submit" formaction="../actions/action_register.php" formmethod="POST" value="send">Register</button>
-                    </div>
-                </form>
-            </div>
+            <form>
+                <?=$messages?>
+                <div id="input">
+                    <input type="email" name="email" placeholder="Email:" required="true" value=<?=$email?>>
+                    <input type="text" name="username" placeholder="Username:" required="true" value=<?=$username?>>
+                    <input type="password" name="password" placeholder="Password:" required="true">
+                    <input type="password" name="passwordCheck" placeholder="Confirm Password:" required="true">
+                </div>
+                <div id="button">
+                    <button type="submit" formaction="../actions/action_register.php" formmethod="POST" value="send">Register</button>
+                </div>
+            </form>
         </body>
     </html>
 

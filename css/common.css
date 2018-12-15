@@ -92,19 +92,13 @@ body {
 #menu {
     /* Layout */
     grid-area: menu;
-    height: 100%;
-
-    /* Style */
-    background-color: var(--background-menu-color);
-}
-
-#menu {
-    /* Layout */
+    height: 100vh;
     margin: 0%;
     flex-direction: column;
     display: flex;
 
     /* Style */
+    background-color: var(--background-menu-color);
     font-size: 1.5em;
     color: var(--menu-icons-color);
 }
@@ -325,4 +319,14 @@ a {
 #messages .success {
     /* Style */
     color: var(--success-fg-color);
+}
+
+/* Responsive Design */
+@media (max-width: 1000px) {
+    body {
+        grid-template-columns: auto 1fr;
+    }
+    aside {
+        display: none;
+    }
 }

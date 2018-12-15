@@ -20,15 +20,11 @@ html, body {
     max-height: 100%;
 }
 
-body {  
+body {
     /* Layout */
     margin: 0em;
-    display: grid;
-
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 100%;
-
-    grid-template-areas: "header form";
+    display: flex;
+    justify-content: space-between;
 
     /* Style */ 
     background-color: var(--background-color);
@@ -36,11 +32,10 @@ body {
 
 body > header {
     /* Layout */
-    grid-area: header; 
+    display: flex;
     flex-direction: column;
     justify-content: center;
-
-    display: flex;
+    width: 50%;
 }
 
 body > header img {
@@ -48,8 +43,8 @@ body > header img {
     margin: 0em auto;
     /* padding-bottom: 10em; */
     margin-bottom: 2.5em;
-    width: 30em;
-    height: 30em;
+    width: 80%;
+    max-width: 30em;
 }
 
 body > header h1 {
@@ -62,26 +57,29 @@ body > header h1 {
     font-family: var(--site-name-font);
 }
 
-#form {
+form {
     /* Layout */
-    grid-area: form;
     flex-direction: column;
     justify-content: center;
     display: flex;
-    margin: 0em 7.5em;
+    padding: 0em .5em;
+    margin: 0 auto;
+    max-width: 90%;
 }
 
 #input {
     /* Layout */
+    display: flex;
     flex-direction: column;
     justify-content: center;
-    display: flex;
+    width: 100%;
 }
 
 #input > * {
     /* Layout */
     margin-bottom: 0.5em;
     padding: 0em;
+    max-width: 20.5em;
 
     /* Style */
     outline: none;
@@ -128,5 +126,67 @@ body > header h1 {
     cursor: pointer;
 }
 
+@media (max-width: 1000px), (max-height: 900px) {
+    body {
+        flex-direction: column;
+        justify-content: center;
+    }
 
+    body > header {
+        width: 100%;
+    }
 
+    #input > * {
+        font-size: 2em;
+    }
+}
+
+@media (max-width: 1000px) {
+    body > header img {
+        max-width: 20em;
+        margin-bottom: 0;
+    }
+}
+
+@media (max-width: 700px) {
+    #input > * {
+        font-size: 2em;
+    }
+}
+
+@media (max-width: 450px) {
+    body > header > h1 {
+        font-size: 6em;
+    }
+
+    #buttons > * {
+        font-size: .5em;
+    }
+}
+
+@media (max-height: 900px) {
+    body > header {
+        width: 100%;
+        flex-direction: initial;
+        align-items: center;
+    }
+    
+    body > header > h1 {
+        font-size: 4em;
+        margin: .25em;
+    }
+
+    body > header img {
+        width: 20%;
+        max-width: 5em;
+        margin: 0em;
+    }
+}
+
+@media (max-width: 1000px) and (max-height: 900px) {
+    body > header {
+        width: 100%;
+        flex-direction: initial;
+        align-items: center;
+    }
+}

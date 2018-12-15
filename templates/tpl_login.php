@@ -15,19 +15,17 @@
                 <img src="../resources/images/default/logo.png" alt="Site Logo">
                 <h1>Nescio</h1>
             </header>
-            <div id="form">
-                <?= $messages ?>
-                <form>
-                    <div id="input">                        
-                        <input type="text" name="username" required="true" placeholder="Username" value=<?=$username?>>
-                        <input type="password" name="password" placeholder="Password" required="true">
-                    </div>
-                    <div id="buttons">
-                        <input type="button" value="Register" onclick="window.location.href='register.php'">
-                        <button type="submit" formaction="../actions/action_login.php" formmethod="POST" value="send">Login</button>
-                    </div>
-                </form>
-            </div>
+            <?=$messages?>
+            <form>
+                <div id="input">                        
+                    <input type="text" name="username" required="true" placeholder="Username" value=<?=$username?>>
+                    <input type="password" name="password" placeholder="Password" required="true">
+                </div>
+                <div id="buttons">
+                    <input type="button" value="Register" onclick="window.location.href='register.php'">
+                    <button type="submit" formaction="../actions/action_login.php" formmethod="POST" value="send">Login</button>
+                </div>
+            </form>
         </body>
     </html>
 <?php } ?>
