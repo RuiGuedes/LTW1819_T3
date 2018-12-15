@@ -1,5 +1,4 @@
-<?php function draw_post($channelName) {
-    ?>
+<?php function draw_post($channelName) { ?>
     <div id="form">
         <form method="post" enctype="multipart/form-data" action="../actions/action_add_new_post.php">
             <div id="input">
@@ -19,31 +18,15 @@
     </div>
 <?php } ?>
 
-<?php function draw_post_aside($channel, $channelStories, $channelFollowers, $channelOwner, $status) { ?>
+<?php function draw_post_aside($channel, $channelStories, $channelFollowers, $channelOwner) { ?>
     <aside> 
         <div id="channelPicture">
             <img id="asideIMG" src="../resources/images/<?= get_image('default/defaultChannel.png', '../resources/images/channels/', 'channels/', sha1($channel['name'])) ?>" alt="Channel Image"> 
         </div>
         <h3 id="channelName"><?= $channel['name'] ?></h3>
-        <div id="forms">
-            <form>
-                <?php
-                    if($status) {
-                      ?> <input class="buttons" type="button" value="Unsubscribe" disabled> <?php
-                    }                        
-                    else { 
-                        ?><input class="buttons" type="button" value="Subscribe" disabled> <?php
-                    }
-                ?>
-            </form> 
-            <form method="get" action="../pages/post.php">
-                <input type="hidden" name="channelName" value="<?= $channel['name'] ?>">
-                <input class="buttons" type="submit" value="Add post" disabled>
-            </form> 
-        </div>
         <div id="description">
             <p>Description</p>
-            <p id="descriptionContent"><?=htmlentities($channel['description'])?></p>
+            <p id="descriptionContent"><?= $channel['description'] ?></p>
         </div>     
         <div id="statistics">
             <p>Channel Statistics</p>
@@ -51,7 +34,7 @@
                 <i class="fas fa-user-lock"></i><p><?= $channelOwner ?></p>
             </div>
             <div class="statistics">
-                <i class="far fa-newspaper"></i><p><?= count($channelStories) ?> Stories</p>    
+                <i class="far fa-newspaper"></i><p><?= $channelStories ?> Stories</p>    
             </div>
             <div class="statistics">
                 <i class="fas fa-users"></i><p><?= $channelFollowers ?> Followers</p>

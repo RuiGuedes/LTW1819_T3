@@ -59,6 +59,16 @@
     }
 
     /**
+     * Get's user stories order by parameters set on filter
+     */
+    function get_user_search_stories($username, $filter, $searchFilter, $content) {
+      $db = Database::instance()->db();
+      $stmt = $db->prepare('SELECT * FROM Story WHERE storyAuthor = ? AND ' . search_query_converter($searchFilter) . ' LIKE ? ORDER BY ' . orderBy($filter));
+      $stmt->execute(array($username, '%' . $content . '%'));
+      return $stmt->fetchAll(); 
+    }
+
+    /**
      * Get's user subscribed channel stories order by parameters set on filter
      */
     function get_user_channel_stories($username, $filter) {

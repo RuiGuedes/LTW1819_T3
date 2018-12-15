@@ -71,6 +71,10 @@
                 if(isset($_GET['username'])) {
                     ?> <input type="hidden" name="username" value="<?= htmlentities($_GET['username']) ?>">
                 <?php }
+                if(isset($_GET['searchFilter']) && isset($_GET['search'])) { ?> 
+                    <input type="hidden" name="searchFilter" value="<?= htmlentities($_GET['searchFilter']) ?>">
+                    <input type="hidden" name="search" value="<?= htmlentities($_GET['search']) ?>">
+                <?php }
             ?>
             <select name="filter" id="filterID"> 
                 <option <? echo $filter == 0 ? 'selected ' : '' ?>value="0">Most Voted</option>

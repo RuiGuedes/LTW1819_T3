@@ -9,17 +9,21 @@
     if (!isset($_SESSION['username']))
       die(header('Location: login.php'));
 
-    // Checks channel existence
+    // Variables
     $channelName = isset($_GET['channelName']) ? $_GET['channelName'] : '';
+    $defaultFilter = 2;
 
-    if(!check_channel_existence($channelName)) 
+    // Checks channel existence
+    if(!check_channel_existence($channelName)) {
+      generate_error('Invalid channel ! Try again.');
       die(header('Location: feed.php'));
+    }
 
     // Retrieves channel information
     $channel = get_channel($channelName);
 
     // Retrieves channel stories order by the default filter value (2)
-    $channelStories = get_channel_stories($channelName, 2);
+    $postedStories = count(get_channel_stories($channelName, 2));
 
     // Number of followers relative to the present channel
     $channelFollowers = count(get_channel_followers($channelName));
@@ -27,11 +31,9 @@
     // Retrieve channel Owner
     $channelOwner = get_channel_owner($channelName);
 
-    // Checks user subscription to a certain channel
-    $status = check_user_subscription($_SESSION['username'], $channelName);
-
-    draw_common($_SESSION['username'], ['post.css', 'channel_aside.css'], []);
-    draw_post($channelName);
-    draw_post_aside($channel, $channelStories, $channelFollowers, $channelOwner, $status);
+    // Generate HTML
+    draw_common(htmlentities($_SESSION['username']), ['post.css', 'channel_aside.css'], [], $defaultFilter, $defaultFilter);
+    draw_post(htmlentities($channelName));
+    draw_post_aside(htmlentities_all($channel), htmlentities($postedStories), htmlentities($channelFollowers), htmlentities($channelOwner));
     draw_footer();
 ?>

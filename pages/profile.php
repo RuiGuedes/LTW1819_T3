@@ -10,16 +10,22 @@
     if (!isset($_SESSION['username']))
       die(header('Location: login.php'));
 
-    // Checks user existence
+    // Variables
     $username = isset($_GET['username']) ? $_GET['username'] : '';
+    $filter = isset($_GET['filter']) ? $_GET['filter'] : 2;
+    $searchFilter = isset($_GET['searchFilter']) ? $_GET['searchFilter'] : 2;
 
-    if(!check_user_existence($username)) 
+    // Checks user existence
+    if(!check_user_existence($username)) {
+      generate_error('Invalid user ! Try again.');
       die(header('Location: profile.php?username='. $_SESSION['username']));
+    }
 
+    // Retrieves user biography
     $biography = get_user_biography($username);
 
-    $filter = isset($_GET['filter']) ? $_GET['filter'] : 2;
-    $userStories = get_user_stories($username, $filter);
+    // Retrieves user stories in a certain order
+    $userStories = isset($_GET['search']) ? get_user_search_stories($username, $filter, $searchFilter, $_GET['search']) : get_user_stories($username, $filter);
 
     // Stories number of votes
     $storiesVotes = []; $votedStories = [];
@@ -29,12 +35,14 @@
       $votedStories[$story['storyID']] = get_user_story_vote($username, $story['storyID']);
     }
     
-    $userPoints = get_user_points($_GET['username']);
-    $userNumPosts = get_user_num_posted_stories($_GET['username']);
-    $userNumSubs = get_user_num_subscriptions($_GET['username']);
+    // Retrieve user statistics
+    $userPoints = get_user_points($username);
+    $userNumPosts = get_user_num_posted_stories($username);
+    $userNumSubs = get_user_num_subscriptions($username);
 
-    draw_common($_SESSION['username'], ['stories.css', 'profile_aside.css', 'channel_aside.css'], [], $filter);
-    draw_stories(htmlentities_all($userStories), $storiesVotes, $votedStories);
-    draw_profile_aside($username, htmlentities($biography), display_messages(), $userPoints, $userNumPosts, $userNumSubs);
+    // Generate HTML
+    draw_common(htmlentities($_SESSION['username']), ['stories.css', 'profile_aside.css', 'channel_aside.css'], [], htmlentities($filter), htmlentities($searchFilter));
+    draw_stories(htmlentities_all($userStories), htmlentities_all($storiesVotes), htmlentities_all($votedStories));
+    draw_profile_aside(htmlentities($username), htmlentities($biography), display_messages(), htmlentities($userPoints), htmlentities($userNumPosts), htmlentities($userNumSubs));
     draw_footer();
 ?>

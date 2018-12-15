@@ -48,6 +48,6 @@
     // Generate HTML
     draw_common(htmlentities($_SESSION['username']), ['stories.css', 'channel_aside.css'], [], $filter, $searchFilter);
     draw_stories(htmlentities_all($channelStories), htmlentities_all($storiesVotes), htmlentities_all($votedStories));
-    draw_channel_aside(htmlentities_all($channel), htmlentities(count($channelStories)), htmlentities($channelFollowers), htmlentities($channelOwner), htmlentities($status));
+    draw_channel_aside(htmlentities_all($channel), htmlentities(count(get_channel_stories($channelName, $filter))), htmlentities($channelFollowers), htmlentities($channelOwner), htmlentities($status));
     draw_footer();
 ?>
