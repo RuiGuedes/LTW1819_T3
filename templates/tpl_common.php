@@ -36,7 +36,7 @@
                 <i class="fa fa-home"></i><a href="../pages/feed.php">Feed</a>
             </div>
             <div class="mainMenu">
-                <i class="fa fa-th-list"></i><a href="../pages/subscriptions.php?show=subscriptions">Channels</a> 
+                <i class="fa fa-th-list"></i><a href="../pages/show_channels.php?show=subscriptions">Channels</a> 
             </div>
             <div class="mainMenu">
                 <i class="fa fa-user-alt"></i><a href="../pages/profile.php?username=<?= $username ?>">Profile</a>

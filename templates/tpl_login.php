@@ -16,7 +16,7 @@
                 <h1>Nescio</h1>
             </header>
             <div id="form">
-                <?=$messages?>
+                <?= $messages ?>
                 <form>
                     <div id="input">                        
                         <input type="text" name="username" required="true" placeholder="Username" value=<?=$username?>>

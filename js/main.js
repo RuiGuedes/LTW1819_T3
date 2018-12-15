@@ -1,12 +1,12 @@
 'use strict'
 
 //Channel referencing - Articles
-let subscription = document.getElementsByClassName('subscriptionArticle')
+let channel = document.getElementsByClassName('channelArticle')
 
-for (let index = 0; index < subscription.length; index++) {
-  subscription[index].addEventListener('click', function() {
+for (let index = 0; index < channel.length; index++) {
+  channel[index].addEventListener('click', function() {
         let submit = document.getElementById('submitChannelName')
-        submit.value = subscription[index].id
+        submit.value = channel[index].id
         submit.click()
   })
 }

@@ -16,7 +16,7 @@
             </header>
             <div id="form">
                 <form>
-                    <?=$messages?>
+                    <?= $messages ?>
                     <div id="input">
                         <input type="email" name="email" placeholder="Email:" required="true" value=<?=$email?>>
                         <input type="text" name="username" placeholder="Username:" required="true" value=<?=$username?>>

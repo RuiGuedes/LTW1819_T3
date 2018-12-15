@@ -5,8 +5,7 @@
             <form method="get" action="../pages/channel.php">
                 <ul>
                     <?php 
-                        foreach($channels as $channel) {
-                            ?>
+                        foreach($channels as $channel) { ?>
                             <li id="<?= $channel['channelName'] ?>" class="asideChannelList"><?= $channel['channelName'] ?></li>
                         <?php } 
                     ?>                    
@@ -14,11 +13,9 @@
                 <input type="submit" id="submitAsideChannelName" name="channelName" visibility="hidden" style="display: none;">
             </form>
         </div>
-        <?php 
-            if($messages !== '')
-                echo $messages;
-        ?>
-        <form method="post" action="../pages/subscriptions.php?show=all">
+        <?= $messages ?>
+        <form method="get" action="../pages/show_channels.php">
+            <input type="hidden" name="show" value="all">
             <button id="browseChannels" type="submit">Browse channels</button>
         </form>
     </aside>
