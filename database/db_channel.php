@@ -60,6 +60,16 @@
     }
 
     /**
+     * Get's all channel stories order by a certain filter
+     */
+    function get_channel_search_stories($channelName, $filter, $searchFilter, $content) {
+        $db = Database::instance()->db();
+        $stmt = $db->prepare('SELECT * FROM Story JOIN Channel ON Story.channelName = Channel.name WHERE Story.channelName = ? AND ' . search_query_converter($searchFilter) . ' LIKE ? ORDER BY ' . orderBy($filter));
+        $stmt->execute(array($channelName, '%' . $content . '%'));
+        return $stmt->fetchall();
+    }
+
+    /**
      * Get a channel owner
      */
      function get_channel_owner($channelName){

@@ -20,7 +20,7 @@
     // Get stories
     $stories = isset($_GET['search']) ? get_search_stories($filter, $searchFilter, $_GET['search']) : get_user_channel_stories($username, $filter);
     
-     // Stories number of votes and check user vote type
+    // Stories number of votes and check user vote type
     $storiesVotes = []; $votedStories = [];
     foreach($stories as $story) {
       $votes = get_story_votes($story['storyID']);

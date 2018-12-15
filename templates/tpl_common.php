@@ -88,6 +88,14 @@
     <div id="search">
         <form method="get" action="<?= $_SERVER['PHP_SELF']?>">
             <input type="hidden" name="filter">
+            <?php 
+                if(isset($_GET['channelName'])) {
+                    ?> <input type="hidden" name="channelName" value="<?= htmlentities($_GET['channelName']) ?>">
+                <?php } 
+                if(isset($_GET['username'])) {
+                    ?> <input type="hidden" name="username" value="<?= htmlentities($_GET['username']) ?>">
+                <?php }
+            ?>
             <select name="searchFilter" id="searchFilterID"> 
                 <option <? echo $searchFilter == 0 ? 'selected ' : '' ?>value="0">Channel</option>
                 <option <? echo $searchFilter == 1 ? 'selected ' : '' ?>value="1">Author</option>

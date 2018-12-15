@@ -1,4 +1,4 @@
-<?php function draw_channel_aside($channel, $channelStories, $channelFollowers, $channelOwner, $status) { ?>
+<?php function draw_channel_aside($channel, $postedStories, $channelFollowers, $channelOwner, $status) { ?>
     <aside> 
         <div id="asidePicture">
             <form action="../actions/action_upload_image.php" method="post" enctype="multipart/form-data" style="display: none;">
@@ -31,7 +31,7 @@
         </div>
         <div id="description">
             <p>Description<button id="editDescription" type="button"><i class="fas fa-pen"></i></button></p>
-            <p id="descriptionContent"><?=htmlentities($channel['description'])?></p>
+            <p id="descriptionContent"><?= $channel['description'] ?></p>
         </div>
         <div id="statistics">
             <p>Channel Statistics</p>
@@ -39,7 +39,7 @@
                 <i class="fas fa-user-lock"></i><p><?= $channelOwner ?></p>
             </div>
             <div class="statistics">
-                <i class="far fa-newspaper"></i><p><?= count($channelStories) ?> Stories</p>    
+                <i class="far fa-newspaper"></i><p><?= $postedStories ?> Stories</p>    
             </div>
             <div class="statistics">
                 <i class="fas fa-users"></i><p><?= $channelFollowers ?> Followers</p>

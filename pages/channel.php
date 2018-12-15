@@ -11,23 +11,25 @@
     if (!isset($_SESSION['username']))
       die(header('Location: login.php'));
 
-    // Checks channel existence
+    // Variables
     $channelName = isset($_GET['channelName']) ? $_GET['channelName'] : '';
-    
-    if(!check_channel_existence($channelName)) 
+    $filter = isset($_GET['filter']) ? $_GET['filter'] : 2;
+    $searchFilter = isset($_GET['searchFilter']) ? $_GET['searchFilter'] : 2;
+
+    // Checks channel existence
+    if(!check_channel_existence($channelName)) {
+      generate_error('Invalid channel ! Try again.');
       die(header('Location: feed.php'));
+    } 
 
     // Retrieves channel information
-    $channel = htmlentities_all(get_channel($channelName));
-
-    // Checks filter value in order to order results from the next query
-    $filter = isset($_GET['filter']) ? $_GET['filter'] : 2;
+    $channel = get_channel($channelName);
 
     // Retrieves channel stories order by the value presente on filter variable
-    $channelStories = htmlentities_all(get_channel_stories($channelName, $filter));
+    $channelStories = isset($_GET['search']) ? get_channel_search_stories($channelName, $filter, $searchFilter, $_GET['search']) : get_channel_stories($channelName, $filter);
 
-    // Stories number of votes
-    $storiesVotes; $votedStories;
+    // Stories number of votes and check user vote type
+    $storiesVotes = []; $votedStories = [];
     foreach($channelStories as $story) {
       $votes = get_story_votes($story['storyID']);
       $storiesVotes[$story['storyID']] = $votes == null ? 0 : $votes;
@@ -43,8 +45,9 @@
     // Checks user subscription to a certain channel
     $status = check_user_subscription($_SESSION['username'], $channelName);
 
-    draw_common($_SESSION['username'], ['stories.css', 'channel_aside.css'], [], $filter);
-    draw_stories($channelStories, $storiesVotes, $votedStories);
-    draw_channel_aside($channel, $channelStories, $channelFollowers, $channelOwner, $status);
+    // Generate HTML
+    draw_common(htmlentities($_SESSION['username']), ['stories.css', 'channel_aside.css'], [], $filter, $searchFilter);
+    draw_stories(htmlentities_all($channelStories), htmlentities_all($storiesVotes), htmlentities_all($votedStories));
+    draw_channel_aside(htmlentities_all($channel), htmlentities(count($channelStories)), htmlentities($channelFollowers), htmlentities($channelOwner), htmlentities($status));
     draw_footer();
 ?>
