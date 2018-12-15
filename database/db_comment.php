@@ -97,5 +97,4 @@
         $stmt = $db->prepare('UPDATE Comment SET commentPoints = (SELECT SUM(voteType) FROM CommentVotes WHERE CommentVotes.commentID = ?) WHERE Comment.commentID = ?');
         $stmt->execute(array($commentID, $commentID));
     }
-
 ?>

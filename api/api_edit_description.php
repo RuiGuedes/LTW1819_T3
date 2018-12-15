@@ -9,9 +9,6 @@
         die(header('Location: ../pages/login.php'));
     }
 
-    // TODO CSRF protection
-
-
     if (isset($_POST['username'])) {
         user_edit_description($_POST['username']);
     }

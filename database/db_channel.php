@@ -99,5 +99,4 @@
         $stmt->execute(array($channelName));
         return $stmt->fetchall();
       }
-
 ?>

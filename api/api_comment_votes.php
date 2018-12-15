@@ -5,7 +5,7 @@
 
     // Verify if user is logged in
     if (!isset($_SESSION['username'])) {
-        $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Session expired, please login!');
+        generate_error('Session expired, please login!');
         die(header('Location: ../pages/login.php'));
     }
 

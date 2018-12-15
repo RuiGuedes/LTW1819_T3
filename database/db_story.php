@@ -115,5 +115,4 @@
         $stmt->execute(array('%' . $content . '%'));
         return $stmt->fetchAll(); 
     }
-
 ?>

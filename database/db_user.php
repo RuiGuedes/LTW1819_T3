@@ -183,6 +183,4 @@
       $stmt->execute(array($username));
       return $stmt->fetch()['Subs']; 
     }
-
-
 ?>
