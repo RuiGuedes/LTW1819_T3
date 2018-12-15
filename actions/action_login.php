@@ -11,13 +11,11 @@
     die(header('Location: ../pages/login.php'));
   }
 
-  if (validate_login($username, $password)) { // WARNING: temp admin to keep current test account
+  if (validate_login($username, $password)) {
     $_SESSION['username'] = $username;
     header('Location: ../pages/feed.php');
-  } else {
-    // Error Message -> Invalid login credentials
+  } else {  // Error Message -> Invalid login credentials
     generate_error('Invalid username and password combination!');
     header("Location: ../pages/login.php?username=" . $username);
   }
-
 ?>

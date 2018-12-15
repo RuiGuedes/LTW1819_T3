@@ -13,11 +13,13 @@
         die(header("Location: ../pages/register.php?email=" . $email));
     }
 
+    // Verifies if password fields match
     if ($password !== $passwordCheck) {
         generate_error('Password confirmation failed - The entered passwords aren\'t the same!');
         die(header("Location: ../pages/register.php?email=" . $email . "&username=" . $username));
     }
     
+    // Tries to insert the new user. Generates error if not possible
     try {
         insert_user($email, $username, $password);
         $_SESSION['username'] = $username;

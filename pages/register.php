@@ -5,5 +5,5 @@
     $email    = isset($_GET['email'])    ? $_GET['email']    : '';
     $username = isset($_GET['username']) ? $_GET['username'] : '';
 
-    draw_register(htmlentities($email), $username, display_messages());
+    draw_register(htmlentities($email), htmlentities($username), display_messages());
 ?>

@@ -1,11 +1,9 @@
-<?php function draw_login($username, $messages) {
-    ?>
-    
+<?php function draw_login($username, $messages) { ?>
     <!DOCTYPE html>
     <html>
         <head>
             <meta charset="utf-8" />
-            <title>Site Name</title>
+            <title>Nescio</title>
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <link rel="stylesheet" type="text/css" media="screen" href="../css/common.css" />
             <link rel="stylesheet" type="text/css" media="screen" href="../css/login.css" />
@@ -20,9 +18,9 @@
             <div id="form">
                 <?=$messages?>
                 <form>
-                    <div id="input">
-                        <input type="text" name="username" placeholder="Username" value=<?=$username?> required="true">
-                        <input type="password" name="password" placeholder="Password" value="admin" required="true">
+                    <div id="input">                        
+                        <input type="text" name="username" required="true" placeholder="Username" value=<?=$username?>>
+                        <input type="password" name="password" placeholder="Password" required="true">
                     </div>
                     <div id="buttons">
                         <input type="button" value="Register" onclick="window.location.href='register.php'">
@@ -32,5 +30,4 @@
             </div>
         </body>
     </html>
-
 <?php } ?>
