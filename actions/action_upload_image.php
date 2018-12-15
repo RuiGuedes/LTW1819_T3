@@ -3,6 +3,12 @@
     include_once('../database/db_user.php');
     include_once('../database/db_channel.php');
 
+    // Verify if user is logged in
+    if (!isset($_SESSION['username'])) {
+        generate_error('Session expired, please login!');
+        die(header('Location: ../pages/login.php'));
+    }
+
     // Get image ID
     $id = isset($_POST['imageID']) ? $_POST['imageID'] : die(header("Location: ../pages/feed.php"));
 

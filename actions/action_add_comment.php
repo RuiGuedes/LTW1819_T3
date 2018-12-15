@@ -7,7 +7,7 @@
 
     // Verify if user is logged in
     if (!isset($_SESSION['username'])) {
-        $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Session expired, please login!');
+        generate_error('Session expired, please login!');
         die(header('Location: ../pages/login.php'));
     }
 
@@ -25,8 +25,10 @@
         update_story_comments($storyID, $commentVotes);
     }
     else {
+        generate_error('Invalid story ! Try again.');
         die(header('Location: ../pages/feed.php')); 
     }
     
+    // Redirects back to story page
     header('Location: ../pages/story.php?storyID=' . $storyID);
 ?>

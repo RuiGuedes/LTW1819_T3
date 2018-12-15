@@ -34,31 +34,29 @@
                                     </div>
                                 <?php }
                             ?>
-                            <h3><?= $story['channelName'] ?></h3>
+                            <a href="../pages/channel.php?channelName=<?= $story['channelName'] ?>"><h3><?= $story['channelName'] ?></h3></a>
                         </div>
                         <div>
-                            <span class="author"><i class="far fa-user"></i><?= $story['storyAuthor'] ?></span>
-                            <span class="comments"><i class="far fa-comments"></i><?= $story['storyComments'] ?></span>
+                            <a class="author" href="../pages/profile.php?username=<?= $story['storyAuthor'] ?>"><i class="far fa-user"></i><?= $story['storyAuthor'] ?></a>
+                            <a class="comments" href="../pages/story.php?storyID=<?= $story['storyID'] ?>#comments"><i class="far fa-comments"></i><?= $story['storyComments'] ?></a>
                             <span class="date"><i class="far fa-clock"></i><?= data_converter($story['storyTime']) ?></span>
                         </div>
                     </div>
                     <div> 
                         <h1><?= $story['storyTitle'] ?></h1> 
-                        <?php
-                            $imageID = $story['storyID'];
-                            if(glob("../resources/images/stories/$imageID.*")) { ?>
-                                <img src="../resources/images/stories/<?= $story['storyID'] ?>" alt="User Image"> 
+                        <?php 
+                            $image = get_image('', '../resources/images/stories/', 'stories/', sha1($story['storyID']));
+                            if($image !== '') {
+                                ?> <img src="../resources/images/<?= $image ?>" alt="Story Image">
                             <?php }
-                        ?>                    
+                        ?>                  
                     </div>
                 </header>
                 <div id="storyContent">
                     <p><?= $story['storyContent'] ?></p>
                 </div>
             </article> 
-            <?php 
-                comment_section($story['storyID'], $comments, $commentVotes, $votedComments); 
-            ?>
+            <?php comment_section($story['storyID'], $comments, $commentVotes, $votedComments) ?>
         </section>
     </div>
 <?php } ?>

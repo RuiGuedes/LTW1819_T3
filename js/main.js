@@ -191,7 +191,7 @@ if(uploader != null) {
   })
 }
 
-/* Story referencing */
+// Story referencing
 let story = document.getElementsByClassName('storyArticle')
 
 for (let index = 0; index < story.length; index++) {
