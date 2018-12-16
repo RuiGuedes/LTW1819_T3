@@ -42,23 +42,8 @@ body {
     background-size: 100% 100%;
 }
 
-#dynamicBar {
-    width: 3.5em;
-    transition: 1s;
-}
-
-#dynamicBar:hover {
-    width: 13.5em;
-}
-
-#dynamicBar:hover #header h1{
-    opacity: 1;
-    visibility: visible;
-}
-
-#dynamicBar:hover #menu .mainMenu a{
-    opacity: 1;
-    visibility: visible;
+#mobileMenu {
+    display: none;
 }
 
 #header {
@@ -70,14 +55,14 @@ body {
     background-color: var(--background-header-color);
 }
 
-#header > img {
+#header img {
     /* Layout */
     max-width: 3em;
     max-height: 3em;
     padding: 0.45em 0.5em 0.5em 0.5em;
 }
 
-#header > h1 {
+#header h1 {
     /* Layout */
     margin: 0em;
     padding: 0.45em 0.5em 0em 0em; 
@@ -206,7 +191,7 @@ body {
 #filters > form > select {
     /* Layout */
     margin: 0.5em;
-    padding: 0.5em 1em;
+    padding: .3em;
     width: 90%;
 
     /* Style */
@@ -249,7 +234,7 @@ body {
 #search > form > select {
     /* Layout */
     border-radius: 15px;
-    width: 30%;
+    width: 35%;
     padding: 0em 0.25em;
     
     /* Style */
@@ -364,6 +349,89 @@ a {
     }
 }
 
-@media (max-width: 550px) {
+@media (min-width: 550px) {
+    #dynamicBar {
+        width: 3.5em;
+        transition: 1s;
+    }
     
+    #dynamicBar:hover {
+        width: 13.5em;
+    }
+    
+    #dynamicBar:hover #header h1 {
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    #dynamicBar:hover #menu .mainMenu a {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+@media (max-width: 550px) {
+    /* Toolbar */
+    #toolbar > #search *, #toolbar > #filters * {
+        margin: auto;
+        padding: 0em;
+        font-size: 1em;
+    }
+
+    #filters > form > select {
+        width: 100%;
+    }
+
+    #toolbar {
+        display: grid;
+
+        grid-template-columns:  auto 1fr;
+        grid-template-rows:     1fr 1fr;
+        grid-template-areas:    "info filters"
+                                "info search";
+    }
+
+    #info {
+        grid-area: info;
+    }
+    #filters {
+        grid-area: filters;
+
+    }
+    #search {
+        grid-area: search;
+    }
+
+    /* Dynamic Bar */
+    body {
+        grid-template-areas:    "header toolBar"
+                                "content content"
+    }
+    #dynamicBar {
+        width: 3.5em;
+    }
+    #menu {
+        display: none;
+        align-items: center;
+    }
+
+    #mobileMenu:checked + #dynamicBar #menu {
+        grid-area: content;
+        display: flex;
+        width: 100vw;
+    }
+
+    #mobileMenu:checked + #dynamicBar #menu .mainMenu a {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    #mobileMenu:checked + header + div + div {
+        display: none;
+    }
+
+    /* Other */
+    #storyHeader *{
+        font-size: .87em;
+    }
 }
