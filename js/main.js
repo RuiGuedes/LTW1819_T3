@@ -129,8 +129,8 @@ for(let index = 0; index < votesLength; index++) {
 
 function voteHandler(rootID, voteType, type) {
   // Variables 
-  let userName = document.getElementById('user-name').textContent
-
+  let userName = document.getElementById('user-name').getElementsByTagName('h5')[0].textContent
+  
   // Ajax - Update vote status
   let request = new XMLHttpRequest()  
   request.open("post", "../api/api_" + voteType + "_votes.php", true)
@@ -274,7 +274,6 @@ function commentReplyHandler(commentSection, index) {
       document.getElementsByClassName('comments')[0].childNodes[1].textContent = storyNumComments + 1
       document.getElementsByClassName('expand')[index].click()
 
-      set_buttons_custom_listener(root)
       remove_comment_text_area()
       storyComment.style.visibility = 'visible'
     })
@@ -305,8 +304,6 @@ function commentExpandHandler(commentSection) {
     return
   }
 
-  let userName = document.getElementById('user-name').lastChild.textContent
-
   // Ajax - Expand comment section
   let request = new XMLHttpRequest() 
   request.open("post", "../api/api_comments_expand.php", true)
@@ -325,7 +322,7 @@ function commentExpandHandler(commentSection) {
     
     set_buttons_custom_listener(root)
   })
-  request.send(encodeForAjax({parentID: parent_id, username: userName}))
+  request.send(encodeForAjax({parentID: parent_id}))
 }
 
 // Remove comment text area relative to another comment
@@ -378,7 +375,9 @@ function get_comment_html(comment, voteType) {
     newChild += '<i class="fas fa-chevron-up"></i><i class="fas fa-chevron-down"></i>'
   }
 
-  newChild += '</div><span class="storyVotes">' + comment['commentPoints'] + '</span></div><span class="author"><i class="far fa-user"></i>' + comment['commentAuthor']
+  let votes = comment['commentPoints'] === null ? 0 : comment['commentPoints'];
+
+  newChild += '</div><span class="storyVotes">' + votes + '</span></div><span class="author"><i class="far fa-user"></i>' + comment['commentAuthor']
   newChild += '</span></div><div><span class="reply"><i class="fas fa-reply"></i></i>Reply</span><span class="expand"><i class="fas fa-stream"></i></i>Expand</span><span class="date">'
   newChild += '<i class="far fa-clock"></i>' + comment['commentTime'] + '</span></div></div></header> <p>' + comment['commentContent'] + '</p></article>'
 
