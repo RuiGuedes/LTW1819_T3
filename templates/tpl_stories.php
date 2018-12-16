@@ -1,5 +1,10 @@
 <?php function draw_stories($stories, $storiesVotes, $votedStories) { ?>
     <div id="masterStories">
+        <?php 
+                if(empty($stories)) { ?>
+                    <h1 id="NoStories">No stories available</h1>
+                <?php }
+        ?> 
         <form method="get" action="../pages/story.php">
             <section id="stories">  <?php
                 foreach($stories as $story) { ?> 

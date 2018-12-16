@@ -1,11 +1,13 @@
 :root {
     --background-color: rgb(231, 231, 231);
-    --background-story-color: whitesmoke;
+    --background-story-color: rgba(255, 255, 255, 0.5);
 
     --story-title-font: 'Montserrat', sans-serif;
     --story-header-font: 'Montserrat', sans-serif;
     --story-text-font: 'Montserrat', sans-serif;
-
+    --story-hover: rgb(248, 248, 248);
+    
+    --hover-font-color: rgb(3, 173, 192);
     --border-color: rgb(177, 177, 177);
 }
 
@@ -33,14 +35,15 @@
     
     /* Style */ 
     border-radius: 15px;
-    border: solid var(--border-color) 2px;
-    background-color: var(--background-story-color);
-    transition: 0.1s;
+    border: solid rgb(225, 225, 225) 1px;
+    background-color: rgba(255, 255, 255, 0.5);
+    transition: 0.25s;
 }   
 
 #channels > form article:hover {
-    border-style: inset;
+    /* Style */ 
     cursor: pointer;
+    background-color: rgb(248, 248, 248);
 }
 
 #channelHeader > div:first-child {
@@ -103,6 +106,16 @@
     /* Layout */
     justify-content: flex-start;
     display: flex;    
+}
+
+a {
+    /* Style */
+    color: black;
+}
+
+a:hover {
+    /* Style */
+    color: var(--hover-font-color);
 }
 
 #channelHeader > div > img {

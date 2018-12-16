@@ -95,6 +95,12 @@ aside {
     font-size: var(--aside-upload-icon-size);
 }
 
+#asidePicture > div > p { 
+    /* Style */
+    margin: 0em;
+    padding-top: 0.25em;
+}
+
 #asidePicture:hover #asideIMG {
     /* Style */
     opacity: 0.25;

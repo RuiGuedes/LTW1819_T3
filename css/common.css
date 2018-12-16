@@ -1,8 +1,8 @@
 :root {
     --background-color: rgb(231, 231, 231);
-    --background-header-color: rgb(3, 173, 192);
-    --background-menu-color: rgb(53, 140, 151);
-    --background-toolBar-color: rgb(245, 243, 243);
+    --background-header-color: rgba(45, 45, 45, 0.75);
+    --background-menu-color: rgba(0, 0, 0, 0.5);
+    --background-toolBar-color: rgb(248, 248, 248);
 
     --site-name-color: white; 
     --site-name-font: 'Exo', sans-serif;
@@ -15,6 +15,8 @@
     --toolBar-info-font-size: 1.5em;
     --toolBar-filter-font-size: 1em;   
 
+    --text-color: black;
+    --hover-color: rgb(3, 173, 192);
     --border-color: rgb(177, 177, 177);
 
     --messages-font: 'Montserrat', sans-serif;
@@ -36,7 +38,8 @@ body {
                             "menu   content aside";
 
     /* Style */
-    background-color: var(--background-color);
+    background-image: url("../resources/images/default/background.jpg");
+    background-size: 100% 100%;
 }
 
 #dynamicBar {
@@ -71,13 +74,13 @@ body {
     /* Layout */
     max-width: 3em;
     max-height: 3em;
-    padding: 0.5em 0.5em 0.5em 0.55em;
+    padding: 0.45em 0.5em 0.5em 0.5em;
 }
 
 #header > h1 {
     /* Layout */
     margin: 0em;
-    padding: 0.5em 0.5em 0em 0em; 
+    padding: 0.45em 0.5em 0em 0em; 
     height: 1.5em;
     display: flex;
 
@@ -98,9 +101,9 @@ body {
     display: flex;
 
     /* Style */
+    color: var(--menu-icons-color);
     background-color: var(--background-menu-color);
     font-size: 1.5em;
-    color: var(--menu-icons-color);
 }
 
 #menu div {
@@ -113,6 +116,8 @@ body {
 #menu .mainMenu a{
     /* Layout */
     padding-top: 0.25em;
+
+    /* Style */
     font-family: var(--menu-font);
     color: var(--menu-color);
     opacity: 0;
@@ -140,6 +145,7 @@ body {
     grid-area: toolBar;
 
     /* Style */
+    border-bottom: solid var(--border-color) 1px;
     background-color: var(--background-toolBar-color);
     font-family: var(--toolBar-font);
 }
@@ -163,7 +169,6 @@ body {
     height: 2.5em;
 
     /* Style */
-    border: solid var(--border-color) 1px;
     border-radius: 50%;
 }
 
@@ -174,7 +179,12 @@ body {
     /* Style */
     font-size: var(--toolBar-info-font-size);
     font-family: var(--toolBar-font);
-    color: black;
+    color: var(--text-color);
+}
+
+#info > a h5:hover {
+    /* Style */
+    color: var(--hover-color);
 }
 
 #filters > a h5 {
@@ -208,7 +218,7 @@ body {
 
 #filters > form > select:hover {
     /* Style */
-    background-color: var(--background-header-color);
+    background-color: var(--hover-color);
     cursor: pointer;
 }
 
@@ -220,11 +230,11 @@ body {
 
 #search > form > input {
     /* Layout */
-    border-radius: 15px;
     width: 20em;
     padding: 0em 0.25em;
     
     /* Style */
+    border-radius: 15px;
     outline: none;
     font-size: 1.2em;
     text-indent: 0.25em;
@@ -233,15 +243,21 @@ body {
 
 #search > form > select {
     /* Layout */
-    border-radius: 15px;
     width: 6em;
     padding: 0em 0.25em;
     
     /* Style */
+    border-radius: 15px;
     outline: none;
     font-size: 1.2em;
     text-indent: 0.25em;
     font-style: italic;
+}
+
+#search > form > select:hover {
+    /* Style */
+    cursor: pointer;
+    background-color: var(--hover-color);
 }
 
 a {
@@ -264,7 +280,7 @@ a {
 
 #editDescription:hover, #applyDescription:hover {
     /* Style */
-    color: var(--aside-button-background-color-hover);
+    color: var(--hover-color);
 }
 
 #description textarea {

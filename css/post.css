@@ -24,19 +24,29 @@
     --border-color: rgb(177, 177, 177);
 }
 
+#form > h1 {
+    margin: 0em;
+    justify-content: center;
+    display: flex;
+    font-family: var(--aside-channel-font);
+    font-size: 500%;
+}
+
 #form {
     margin: 0em;
     justify-content: center;
+    flex-direction: column;
     display: flex;
     grid-area: content;
 }
 
 #form > form {
     /* Layout */
-    margin: 5em;
+    margin: 5em auto;
     padding: 3em;
     height: 30em;
     width: 50em;
+    
 }
 
 #input {

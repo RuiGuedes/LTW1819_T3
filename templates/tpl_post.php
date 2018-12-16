@@ -1,5 +1,6 @@
 <?php function draw_post($channelName) { ?>
     <div id="form">
+        <h1>Add post</h1>
         <form method="post" enctype="multipart/form-data" action="../actions/action_add_new_post.php">
             <div id="input">
                 <input type="hidden" name="channelName" value="<?= $channelName ?>">

@@ -233,6 +233,18 @@ aside {
     text-align: center;
 }
 
+#statistics a > p {
+    /* Layout */
+    margin: 0em 5%;
+    width: 100%;
+    height: 20%;
+}
+
+#statistics a:hover {
+    /* Style */ 
+    color: var(--aside-button-background-color-hover);
+}
+
 #statistics div {
     /* Layout */
     margin: 0.25em auto;

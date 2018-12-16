@@ -8,8 +8,10 @@
     include_once('../database/db_channel.php');
   
     // Verify if user is logged in
-    if (!isset($_SESSION['username']))
-      die(header('Location: login.php'));
+    if (!isset($_SESSION['username'])) {
+      generate_error('Session expired, please login!');
+      die(header('Location: ../pages/login.php'));
+    }
     
     // Variables
     $username = isset($_GET['username']) ? htmlentities($_GET['username']) : $_SESSION['username'];

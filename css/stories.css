@@ -1,21 +1,36 @@
 :root {
     --background-color: rgb(231, 231, 231);
-    --background-story-color: whitesmoke;
+    --background-story-color: rgba(255, 255, 255, 0.5);
 
     --hover-font-color: rgb(3, 173, 192);
 
     --story-title-font: 'Montserrat', sans-serif;
     --story-header-font: 'Montserrat', sans-serif;
     --story-text-font: 'Montserrat', sans-serif;
+    --story-hover: rgb(248, 248, 248);
 
-    --border-color: rgb(177, 177, 177);
+    --border-color: rgb(54, 54, 54);
 }
 
 #masterStories {
+    /* Layout */
     grid-area: content;
     width: 100%;
     height: 100%;
     overflow: hidden;
+}
+
+#NoStories {
+    /* Layout */
+    margin: 0em;
+    padding: 12.5% 0em;
+    justify-content: center;
+    display: flex;
+
+    /* Style */ 
+    font-style: italic;
+    font-family: var(--story-title-font);
+    font-size: 500%;
 }
 
 #stories {
@@ -35,12 +50,14 @@
     
     /* Style */ 
     border-radius: 15px;
-    border: solid var(--border-color) 2px;
-    background-color: var(--background-story-color);
+    border: solid rgb(225, 225, 225) 1px;
+    background-color: rgba(250, 250, 250, 0.5);
+    transition: 0.25s;
 }  
 
 #stories > article:hover {
     cursor: pointer;
+    background-color: var(--story-hover);
 }
 
 #storyHeader div {
@@ -118,7 +135,6 @@ a {
 #storyHeader div:last-child img {
     /* Layout */
     margin: auto;
-    /* padding: 0em 1em;    */
     width: 95%;
 }
 
@@ -166,7 +182,7 @@ a {
     position: absolute;
 
     /* Style */
-    content: '...';
+    /* content: '...'; */
 }
 
 #storySinopse > p:after {
@@ -179,7 +195,7 @@ a {
 
     /* Style */
     content: '';
-    background: var(--background-story-color);
+    /* background: rgba(255, 255, 255, 0.5); */
 }
 
 #storyHeader div:first-child div:first-child div:first-child i:first-child:hover {

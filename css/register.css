@@ -71,6 +71,10 @@ form {
     justify-content: center;
 }
 
+#messages {
+    padding-bottom: 1em;
+}
+
 #input {
     /* Layout */
     flex-direction: column; 

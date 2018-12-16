@@ -6,10 +6,10 @@
     include_once('../includes/functions.php');
 
     // Verify if user is logged in
-    if (!isset($_SESSION['username'])) {
+    /* if (!isset($_SESSION['username'])) {
         generate_error('Session expired, please login!');
         die(header('Location: ../pages/login.php'));
-    }
+    } */
 
     // Needed variables to insert new comment
     $parentID = isset($_POST['parentID']) ? $_POST['parentID'] : die(header('Location: ../pages/feed.php'));
@@ -29,7 +29,7 @@
     // Retrieve user comment type
     $votedComments;
     for($index = 0; $index < count($comments); $index++) {
-        $votedComments[$comments[$index]['commentID']] = get_user_comment_vote($_SESSION['username'], $comments[$index]['commentID']);
+        $votedComments[$comments[$index]['commentID']] = get_user_comment_vote($_POST['username'], $comments[$index]['commentID']);
     }
 
     $encode[0] = $comments;

@@ -231,10 +231,15 @@ function commentReplyHandler(commentSection, index) {
     }
     root = root.parentElement
   }
+
+  // Remove story reply section
+  let storyComment = document.getElementById('submitCommentForm').parentElement
+  storyComment.style.visibility = 'hidden'
   
   // In case of hitting reply again
   if(root.getElementsByTagName('form').length > 0) {
     root.getElementsByTagName('form')[0].remove()
+    storyComment.style.visibility = 'visible'
     return
   }
 
@@ -242,7 +247,7 @@ function commentReplyHandler(commentSection, index) {
   remove_comment_text_area()
 
   // Allow user to comment a specific comment
-  let textArea = '<form id="newCommentTextArea"> <textarea name="" cols="30" rows="10" placeholder="Write your comment here ..."></textarea> <input type="submit" name="storyID" value="Comment"></form>'
+  let textArea = '<form id="newCommentTextArea"> <textarea name="" cols="30" rows="5" placeholder="Write your reply ..."></textarea> <input type="submit" name="storyID" value="Reply"></form>'
   root.innerHTML += textArea
 
   // Reset buttons due to a new html
@@ -260,6 +265,7 @@ function commentReplyHandler(commentSection, index) {
     if(comment_content == '')
       return;
 
+
     // Ajax
     let request = new XMLHttpRequest() 
     request.open("post", "../api/api_comments_reply.php", true)
@@ -267,8 +273,10 @@ function commentReplyHandler(commentSection, index) {
     request.addEventListener('load', () => {
       document.getElementsByClassName('comments')[0].childNodes[1].textContent = storyNumComments + 1
       document.getElementsByClassName('expand')[index].click()
+
       set_buttons_custom_listener(root)
       remove_comment_text_area()
+      storyComment.style.visibility = 'visible'
     })
     request.send(encodeForAjax({commentContent: comment_content, storyID: story_id, parentID: parent_id}))
   })
@@ -297,6 +305,8 @@ function commentExpandHandler(commentSection) {
     return
   }
 
+  let userName = document.getElementById('user-name').lastChild.textContent
+
   // Ajax - Expand comment section
   let request = new XMLHttpRequest() 
   request.open("post", "../api/api_comments_expand.php", true)
@@ -315,7 +325,7 @@ function commentExpandHandler(commentSection) {
     
     set_buttons_custom_listener(root)
   })
-  request.send(encodeForAjax({parentID: parent_id}))
+  request.send(encodeForAjax({parentID: parent_id, username: userName}))
 }
 
 // Remove comment text area relative to another comment
@@ -345,13 +355,13 @@ function set_buttons_custom_listener(root) {
   let voteDownClass = root.getElementsByClassName('fas fa-chevron-down')
   let votesLengthClass = voteDownClass.length
 
-for(let index = 0; index < votesLengthClass; index++) {
-  let storyID = Number(voteDownClass[index].parentElement.parentElement.parentElement.parentElement.id.match('[0-9]\+')[0])
-  let voteType = voteDownClass[index].parentElement.parentElement.parentElement.parentElement.id.match('story|comment')[0]
-  
-  voteDownClass[index].addEventListener('click', function() {voteHandler(storyID, voteType, -1)})
-  voteUpClass[index].addEventListener('click', function() {voteHandler(storyID, voteType, 1)})
-}
+  for(let index = 0; index < votesLengthClass; index++) {
+    let storyID = Number(voteDownClass[index].parentElement.parentElement.parentElement.parentElement.id.match('[0-9]\+')[0])
+    let voteType = voteDownClass[index].parentElement.parentElement.parentElement.parentElement.id.match('story|comment')[0]
+    
+    voteDownClass[index].addEventListener('click', function() {voteHandler(storyID, voteType, -1)})
+    voteUpClass[index].addEventListener('click', function() {voteHandler(storyID, voteType, 1)})
+  }
 }
 
 // Retrieve the html of certain comment

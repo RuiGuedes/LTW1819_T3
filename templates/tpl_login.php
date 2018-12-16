@@ -15,8 +15,9 @@
                 <img src="../resources/images/default/logo.png" alt="Site Logo">
                 <h1>Nescio</h1>
             </header>
-            <?=$messages?>
+            
             <form>
+                <?=$messages?>
                 <div id="input">                        
                     <input type="text" name="username" required="true" placeholder="Username" value=<?=$username?>>
                     <input type="password" name="password" placeholder="Password" required="true">
