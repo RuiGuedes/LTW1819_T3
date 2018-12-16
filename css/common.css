@@ -150,15 +150,17 @@ body {
     align-items: inherit;
 }
 
-#info {
+#info > a {
     /* Layout */
     display: flex;
-    margin: 0em;
+    align-items: center;
+    margin: 0em 1em;
 }
 
-#info > img {
+#info img {
     /* Layout */
-    margin: 0em 1em;
+    margin: 0em;
+    margin-right: .5em;
     width: 2.5em;
     height: 2.5em;
 
@@ -167,7 +169,7 @@ body {
     border-radius: 50%;
 }
 
-#info > a h5 {
+#info h5 {
     /* Layout */
     margin: 0em;
 
@@ -195,7 +197,7 @@ body {
     /* Layout */
     margin: 0.5em;
     padding: 0.5em 1em;
-    
+    width: 90%;
 
     /* Style */
     outline: none;
@@ -216,12 +218,14 @@ body {
     /* Layout */
     padding-top: 1em;
     padding-right: 1em;
+    display: flex;
 }
 
 #search > form > input {
     /* Layout */
     border-radius: 15px;
-    width: 20em;
+    width: 70%;
+    max-width: 20em;
     padding: 0em 0.25em;
     
     /* Style */
@@ -234,7 +238,7 @@ body {
 #search > form > select {
     /* Layout */
     border-radius: 15px;
-    width: 6em;
+    width: 30%;
     padding: 0em 0.25em;
     
     /* Style */
@@ -329,4 +333,19 @@ a {
     aside {
         display: none;
     }
+}
+
+@media (max-width: 850px) {
+    #filters > h5, #user-name > h5 {
+        display: none;
+    }
+
+    #info > a {
+        margin-right: 0em;
+        margin-left: .5em;
+    }
+}
+
+@media (max-width: 550px) {
+    
 }
