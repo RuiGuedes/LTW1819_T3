@@ -21,6 +21,7 @@
         </head>
 
         <body>
+            <input type="checkbox" id= "mobileMenu">
             <?php draw_dynamic_bar($username) ?>
             <?php draw_tool_bar($username, $filter, $searchFilter) ?>
 <?php } ?>
@@ -28,7 +29,9 @@
 <?php function draw_dynamic_bar($username) { ?>
     <header id="dynamicBar">
         <div id="header">
-            <img src="../resources/images/default/logo.png" alt="Logo">
+            <label class="kadaneIsLife" for="mobileMenu">
+                <img src="../resources/images/default/logo.png" alt="Logo">
+            </label>
             <h1>Nescio</h1>
         </div>
         <nav id="menu">
