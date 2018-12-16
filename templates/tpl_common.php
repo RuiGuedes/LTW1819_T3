@@ -52,8 +52,10 @@
 <?php function draw_tool_bar($username, $filter, $searchFilter) { ?>
     <div id="toolBar">
         <div id="info">
-            <img id="asideIMG" src="../resources/images/<?= get_image('default/defaultUser.jpg', '../resources/images/users/', 'users/', sha1($username)) ?>" alt="User Image"> 
-            <a id="user-name" href="../pages/profile.php?username=<?= $username ?>"><h5><?= $username ?></h5></a>
+            <a id="user-name" href="../pages/profile.php?username=<?= $username ?>">
+                <img id="asideIMG" src="../resources/images/<?= get_image('default/defaultUser.jpg', '../resources/images/users/', 'users/', sha1($username)) ?>" alt="User Image"> 
+                <h5><?= $username ?></h5>
+            </a>
         </div>
         <?php draw_story_filter($filter) ?>
         <?php draw_search_filter($searchFilter) ?>
