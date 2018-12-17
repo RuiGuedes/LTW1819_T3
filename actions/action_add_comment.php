@@ -12,7 +12,7 @@
     }
 
     // Needed variables to insert new comment
-    $commentContent = htmlentities($_POST['content']);
+    $commentContent = $_POST['content'];
     $commentAuthor = $_SESSION['username'];
     $commentTime = date('Y-m-d H:i:s');
     $storyID = $_POST['storyID'];

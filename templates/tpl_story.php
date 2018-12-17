@@ -12,7 +12,7 @@
                                             <i id="voteUp" class="fas fa-chevron-up"></i>
                                             <i class="fas fa-chevron-down"></i>
                                         </div>
-                                        <span class="storyVotes"><?= htmlentities($storyVotes[$story['storyID']]) ?></span>
+                                        <span class="storyVotes"><?= $storyVotes[$story['storyID']] ?></span>
                                     </div>
                                 <?php }
                                 else if($voteType[$story['storyID']] == -1) { ?>
@@ -21,7 +21,7 @@
                                             <i class="fas fa-chevron-up"></i>
                                             <i id="voteDown" class="fas fa-chevron-down"></i>
                                         </div>
-                                        <span class="storyVotes"><?= htmlentities($storyVotes[$story['storyID']]) ?></span>
+                                        <span class="storyVotes"><?= $storyVotes[$story['storyID']] ?></span>
                                     </div>
                                 <?php }
                                 else { ?>
@@ -30,7 +30,7 @@
                                             <i class="fas fa-chevron-up"></i>
                                             <i class="fas fa-chevron-down"></i>
                                         </div>
-                                        <span class="storyVotes"><?= htmlentities($storyVotes[$story['storyID']]) ?></span>
+                                        <span class="storyVotes"><?= $storyVotes[$story['storyID']] ?></span>
                                     </div>
                                 <?php }
                             ?>
@@ -38,7 +38,7 @@
                         </div>
                         <div>
                             <a class="author" href="../pages/profile.php?username=<?= $story['storyAuthor'] ?>"><i class="far fa-user"></i><?= $story['storyAuthor'] ?></a>
-                            <a class="comments" href="../pages/story.php?storyID=<?= $story['storyID'] ?>#comments"><i class="far fa-comments"></i><?= $story['storyComments'] ?></a>
+                            <a class="comments" href="../pages/story.php?storyID=<?= $story['storyID'] ?>"><i class="far fa-comments"></i><?= $story['storyComments'] ?></a>
                             <span class="date"><i class="far fa-clock"></i><?= data_converter($story['storyTime']) ?></span>
                         </div>
                     </div>
@@ -68,7 +68,7 @@
                 <div>
                     <article>
                             <header>
-                                <div id="comment_<?= htmlentities($comment['commentID']) ?>_votes">
+                                <div id="comment_<?= $comment['commentID'] ?>_votes">
                                     <div>
                                         <?php 
                                             if($votedComments[$comment['commentID']] == 1) { ?>
@@ -77,7 +77,7 @@
                                                         <i id="voteUp" class="fas fa-chevron-up"></i>
                                                         <i class="fas fa-chevron-down"></i>
                                                     </div>
-                                                    <span class="storyVotes"><?= htmlentities($commentVotes[$comment['commentID']]) ?></span>
+                                                    <span class="storyVotes"><?= $commentVotes[$comment['commentID']] ?></span>
                                                 </div>
                                             <?php }
                                             else if($votedComments[$comment['commentID']] == -1) { ?>
@@ -86,7 +86,7 @@
                                                         <i class="fas fa-chevron-up"></i>
                                                         <i id="voteDown" class="fas fa-chevron-down"></i>
                                                     </div>
-                                                    <span class="storyVotes"><?= htmlentities($commentVotes[$comment['commentID']]) ?></span>
+                                                    <span class="storyVotes"><?= $commentVotes[$comment['commentID']] ?></span>
                                                 </div>
                                             <?php }
                                             else { ?>
@@ -95,11 +95,11 @@
                                                         <i class="fas fa-chevron-up"></i>
                                                         <i class="fas fa-chevron-down"></i>
                                                     </div>
-                                                    <span class="storyVotes"><?= htmlentities($commentVotes[$comment['commentID']]) ?></span>
+                                                    <span class="storyVotes"><?= $commentVotes[$comment['commentID']] ?></span>
                                                 </div>
                                             <?php }
                                         ?>
-                                    <span class="author"><i class="far fa-user"></i><?= htmlentities($comment['commentAuthor']) ?></span>
+                                    <span class="author"><i class="far fa-user"></i><?= $comment['commentAuthor'] ?></span>
                                     </div>
                                     <div>
                                         <span class="reply"><i class="fas fa-reply"></i></i>Reply</span>
@@ -108,7 +108,7 @@
                                     </div>
                                 </div>
                             </header>
-                            <p><?= htmlentities($comment['commentContent']) ?></p>
+                            <p><?= $comment['commentContent'] ?></p>
                         </article> 
                 </div>
             <?php }
