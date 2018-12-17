@@ -11,6 +11,12 @@
         die(header('Location: ../pages/login.php'));
     }
 
+    // Legitimates request
+    if ($_SESSION['csrf'] !== $_POST['csrf']) {
+        generate_error('Request does not appear to be legitimate!');
+        die(header('Location: ../actions/action_logout.php'));
+    }
+
     // Needed variables to insert new comment
     $parentID = isset($_POST['parentID']) ? $_POST['parentID'] : die(header('Location: ../pages/feed.php'));
     

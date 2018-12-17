@@ -11,7 +11,3 @@ Rui Jorge Leão Guedes
 João Fernando da Costa Meireles Barbosa
 * Student Number: 201604156
 * E-Mail: up201604156@fe.up.pt
-
-André Filipe de Soveral Torres Lopes dos Santos
-* Student Number: 200505634
-* E-Mail: up200505634@fe.up.pt

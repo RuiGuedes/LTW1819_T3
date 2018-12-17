@@ -4,7 +4,8 @@
             if($username == $_SESSION['username']) { ?>
                 <div id="asidePicture">
                     <form action="../actions/action_upload_image.php" method="post" enctype="multipart/form-data" style="display: none;">
-                        <input type="hidden" name="imageID" value="<?= htmlentities($_SESSION['username']) ?>">
+                        <input type="hidden" name="csrf" value="<?= $_SESSION['csrf'] ?>">
+                        <input type="hidden" name="imageID" value="<?= $_SESSION['username'] ?>">
                         <input id="uploadImage"type="file" name="image">
                         <input id="submitImage" type="submit" value="Upload">
                     </form>
@@ -26,6 +27,7 @@
         <form id="forms">
             <?php 
                 if($username === $_SESSION['username']) { ?>
+                    <input type="hidden" name="csrf" value="<?= $_SESSION['csrf'] ?>">
                     <input type="hidden" name="username" value="<?= htmlentities($_GET['username']) ?>">
                     <input type="text" name="channelName" placeholder="Channel Name" required="true" maxlength="18">
                     <button id="newChannel" type="submit" formaction="../actions/action_add_new_channel.php" formmethod="post">Create</button>

@@ -75,6 +75,7 @@
     <div id="filters">
         <h5>Filter:</h5>
         <form method="get" action="<?= $_SERVER['PHP_SELF']?>">
+            <input type="hidden" name="csrf" value="<?= $_SESSION['csrf'] ?>">
             <?php 
                 if(isset($_GET['channelName'])) {
                     ?> <input type="hidden" name="channelName" value="<?= htmlentities($_GET['channelName']) ?>">
