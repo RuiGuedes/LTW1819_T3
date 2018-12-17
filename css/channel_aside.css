@@ -226,7 +226,7 @@ aside {
     font-size: var(--aside-statistics-font-size); 
 }
 
-.statistics > p {
+.statistics p {
     /* Layout */
     margin: 0em;
     padding: 0em 1em;

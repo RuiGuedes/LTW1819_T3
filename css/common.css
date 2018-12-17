@@ -505,3 +505,17 @@ a {
         font-size: .9em;
     }
 }
+
+@media (max-height: 550px) {
+    #form {
+        margin: 0em 1em;
+    }
+
+    #form > h1 {
+        display: none;
+    }
+
+    #form * {
+        font-size: .9em;
+    }
+}

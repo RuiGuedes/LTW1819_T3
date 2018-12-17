@@ -45,7 +45,7 @@
         <div id="statistics">
             <p>Channel Statistics</p>
             <div class="statistics">
-                <i class="fas fa-user-lock"></i><p><?= $channelOwner ?></p>
+                <i class="fas fa-user-lock"></i><a href="../pages/profile.php?username=<?=$channelOwner?>"><p><?= $channelOwner ?></p></a>
             </div>
             <div class="statistics">
                 <i class="far fa-newspaper"></i><p><?= $postedStories ?> Stories</p>    
