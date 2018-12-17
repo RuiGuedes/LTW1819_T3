@@ -30,7 +30,14 @@
             </form> 
         </div>
         <div id="description">
-            <p>Description<button id="editDescription" type="button"><i class="fas fa-pen"></i></button></p>
+            <?php 
+                if($channelOwner === $_SESSION['username']) { ?>
+                    <p>Description<button id="editDescription" type="button"><i class="fas fa-pen"></i></button></p> 
+                <?php }
+                else { ?>
+                    <p>Description</p> 
+                <?php }
+            ?>
             <p id="descriptionContent"><?= $channel['description'] ?></p>
         </div>
         <div id="statistics">
