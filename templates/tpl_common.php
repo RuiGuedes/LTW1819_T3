@@ -21,9 +21,12 @@
         </head>
 
         <body>
+            <input type="checkbox" id= "mobileAside">
             <input type="checkbox" id= "mobileMenu">
-            <?php draw_dynamic_bar($username) ?>
-            <?php draw_tool_bar($username, $filter, $searchFilter) ?>
+            <?php 
+                draw_dynamic_bar($username);
+                draw_tool_bar($username, $filter, $searchFilter);
+            ?>
 <?php } ?>
 
 <?php function draw_dynamic_bar($username) { ?>
@@ -60,8 +63,11 @@
                 <h5><?= $username ?></h5>
             </a>
         </div>
-        <?php draw_story_filter($filter) ?>
-        <?php draw_search_filter($searchFilter) ?>
+        <?php 
+            draw_story_filter($filter);
+            draw_search_filter($searchFilter);
+        ?>
+        <label id="asideButton" for="mobileAside"></label>
     </div>
 <? } ?>
 

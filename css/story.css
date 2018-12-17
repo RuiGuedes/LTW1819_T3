@@ -33,7 +33,7 @@
 #comments article, textarea {
     /* Layout */
     margin: 0.5em auto;
-    width: 75%;
+    width: 90%;
     height: auto;
     background-color: red;
     display: grid;

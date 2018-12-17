@@ -1,7 +1,7 @@
 :root {
     --background-color: rgb(231, 231, 231);
     --background-header-color: rgba(70, 70, 70, 0.75);
-    --background-menu-color: rgba(87, 87, 87, 0.5);
+    --background-menu-color: rgba(87, 87, 87, .5);
     --background-toolBar-color: rgb(248, 248, 248);
 
     --site-name-color: white; 
@@ -42,7 +42,7 @@ body {
     background-size: 100% 100%;
 }
 
-#mobileMenu {
+#mobileMenu, #mobileAside {
     display: none;
 }
 
@@ -94,11 +94,11 @@ body {
 #menu div {
     /* Layout */
     padding: 0.5em 0.5em;
-    height: 1.5em;
+    max-height: 1.5em;
     display: flex;
 }
 
-#menu .mainMenu a{
+#menu .mainMenu a {
     /* Layout */
     padding-top: 0.25em;
 
@@ -327,12 +327,46 @@ a {
 }
 
 /* Responsive Design */
-@media (max-width: 1000px) {
+@media (max-width: 1000px), (max-height: 550px) {
     body {
-        grid-template-columns: auto 1fr;
+        grid-template-columns:  auto 1fr;
+        grid-template-areas:    "header toolBar"
+                                "menu   content"
     }
     aside {
         display: none;
+    }
+
+    #asideButton {
+        /* Layout */
+        position: absolute;
+        top: 4em;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 10em;
+        height: 3em;
+        z-index: 1;
+
+        /* Style */
+        background-color: var(--background-toolBar-color);
+        border: solid var(--border-color) 1px;
+        border-top: none;
+        border-radius: 0px 0px 15px 15px;
+    }
+
+    #mobileAside:checked + input + header + div + div {
+        display: none;
+    }
+
+    #mobileAside:checked + input + header + div + div + aside {
+        /* Layout */
+        grid-area: content;
+        display: grid;
+        margin-top: 4em;
+
+        /* Style */
+        border-left: none;
     }
 }
 
@@ -347,7 +381,8 @@ a {
     }
 }
 
-@media (min-width: 550px) {
+@media (min-width: 550px) and (min-height: 500px) {
+    /* Dynamic bar */
     #dynamicBar {
         width: 3.5em;
         transition: 1s;
@@ -365,6 +400,44 @@ a {
     #dynamicBar:hover #menu .mainMenu a {
         opacity: 1;
         visibility: visible;
+    }
+    
+    /* Aside Button */
+    #asideButton {
+        left: 4em;
+    }
+}
+
+@media (max-width: 550px), (max-height: 500px) {
+    /* Dynamic Bar */
+    body {
+        grid-template-columns:  auto 1fr;
+        grid-template-areas:    "header toolBar"
+                                "content content"
+    }
+    #dynamicBar {
+        width: 3.5em;
+    }
+    #menu {
+        display: none;
+    }
+
+    #mobileMenu:checked + #dynamicBar #menu {
+        position: relative;
+        grid-area: content;
+        display: flex;
+        width: 8em;
+        height: auto;
+        z-index: 2;
+    }
+
+    #mobileMenu:checked + #dynamicBar #menu .mainMenu a {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    #menu div {
+        padding: .3em;
     }
 }
 
@@ -400,36 +473,25 @@ a {
         grid-area: search;
     }
 
-    /* Dynamic Bar */
-    body {
-        grid-template-areas:    "header toolBar"
-                                "content content"
-    }
-    #dynamicBar {
-        width: 3.5em;
-    }
-    #menu {
-        display: none;
-        align-items: center;
-    }
-
-    #mobileMenu:checked + #dynamicBar #menu {
-        grid-area: content;
-        display: flex;
-        width: 100vw;
-    }
-
-    #mobileMenu:checked + #dynamicBar #menu .mainMenu a {
-        opacity: 1;
-        visibility: visible;
-    }
-
-    #mobileMenu:checked + header + div + div {
-        display: none;
-    }
-
     /* Other */
-    #storyHeader *{
+    #storyHeader * {
         font-size: .87em;
+    }
+
+    #channelHeader > div:first-child p, #comments article > header div {
+        font-size: .8em;
+    }
+
+    #channelHeader > div:first-child h1 {
+        font-size: .6em;
+    }
+
+    #channelHeader > div:last-child {
+        flex-direction: column;    
+    }
+
+    #comments article > p {
+        padding: .5em;
+        font-size: .9em;
     }
 }

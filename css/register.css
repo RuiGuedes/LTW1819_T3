@@ -51,7 +51,7 @@ body {
     width: 100%;
 }
 
-#registerHeader > h1 {
+#registerHeader h1 {
     /* Layout */
     margin: 0em;
     padding: .25em;
@@ -132,7 +132,7 @@ form {
         flex-direction: column;
     }
 
-    #registerHeader > h1{
+    #registerHeader h1{
         padding-top: 0em;
     }
 
@@ -146,7 +146,7 @@ form {
 }
 
 @media (max-width: 600px) {
-    #registerHeader > h1 {
+    #registerHeader h1 {
         font-size: 4em;
     }
 
@@ -172,7 +172,7 @@ form {
 }
 
 @media (max-height: 450px) {
-    #registerHeader > h1 {
+    #registerHeader h1 {
         font-size: 3em;
     }
 

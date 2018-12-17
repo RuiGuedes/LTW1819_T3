@@ -9,7 +9,7 @@
 
     // Input Filtering (Email must be encoded instead)
     if (!preg_match("/^[a-zA-Z0-9]+$/", $username)) {
-        generate_error('username must contain alphanumeric characters only!');
+        generate_error('Username must contain alphanumeric characters only!');
         die(header("Location: ../pages/register.php?email=" . $email));
     }
 
