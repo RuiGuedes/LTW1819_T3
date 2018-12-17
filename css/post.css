@@ -17,7 +17,7 @@
     --aside-button-background-color-hover: rgb(3, 173, 192);
 
     --input-font: 'Montserrat', sans-serif;
-    --input-font-size: 2em;
+    --input-font-size: 1em;
 
     --button-background-color: rgb(3, 173, 192);
     
@@ -29,24 +29,16 @@
     justify-content: center;
     display: flex;
     font-family: var(--aside-channel-font);
-    font-size: 500%;
+    font-size: 4em;
 }
 
 #form {
-    margin: 0em;
+    margin: 0em 1em;
+    margin-top: 4em;
     justify-content: center;
     flex-direction: column;
     display: flex;
     grid-area: content;
-}
-
-#form > form {
-    /* Layout */
-    margin: 5em auto;
-    padding: 3em;
-    height: 30em;
-    width: 50em;
-    
 }
 
 #input {
@@ -99,7 +91,6 @@
 
 #storyContent {
     /* Layout */
-    height: 10em;
     padding: 0.5em;
 }
 
@@ -115,6 +106,7 @@
     padding: 1em;
 
     /* Style */
+    cursor: pointer;
     outline: none;
     border: solid var(--border-color) 2px;
     border-radius: 10px;

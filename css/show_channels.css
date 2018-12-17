@@ -30,7 +30,7 @@
 #channels > form article {
     /* Layout */
     margin: 3.5em auto;
-    width: 75%;
+    width: 90%;
     height: auto;
     
     /* Style */ 
@@ -50,7 +50,6 @@
     /* Layout */
     justify-content: space-between;
     display: flex;
-    padding-bottom: 0.5em;
 
     border-bottom: solid var(--border-color) 2px;
 }
@@ -62,50 +61,35 @@
     padding-right: 1em;
 }
 
-#channelHeader > div:first-child div:first-child p {
+#channelHeader > div:first-child p {
     /* Layout */
     margin: 0em;
-    padding: 0.5em 0em 0em 0.5em;
-    width: 15em;
-    padding-top: 0.5em;
+    padding: 0em 0.5em;
 
     /* Style */
     font-weight: bold;
-    font-size: 1.5em;
-    font-family: var(--story-text-font);
-}
-
-#channelHeader > div:first-child div:last-child p {
-    /* Layout */
-    margin: 0em;
-    padding: 0.5em 0em 0em 0em;
-    width: 3em;
-    padding-top: 0.5em;
-    padding-right: 1em;
-
-    /* Style */
-    font-weight: bold;
-    font-size: 1.5em;
+    font-size: 1.3em;
     font-family: var(--story-text-font);
 }
 
 #channelHeader > div:first-child h1 {
     /* Layout */
     margin: 0em;
-    padding: 0.5em 0em 0em 0em;
-    width: 100%;
+    margin-top: .25em;
+    padding: 0em;
+    width: auto;
     height: auto;
 
     /* Style */
     font-family: var(--story-title-font);
-    font-size: 1.5em;
+    font-size: 1em;
     font-style: italic;
 }
 
 #channelHeader > div:last-child {
     /* Layout */
-    justify-content: flex-start;
-    display: flex;    
+    display: flex;
+    align-items: center;    
 }
 
 a {
@@ -133,8 +117,7 @@ a:hover {
 #channelDescription  {
     /* Layout */
     margin: 0em;
-    padding: 1em 1em 1em 1em;
-    max-width: 100%;
+    padding: 1em;
 
     /* Style */
     font-family: var(--story-text-font);

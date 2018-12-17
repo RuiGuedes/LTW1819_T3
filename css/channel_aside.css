@@ -23,18 +23,19 @@
 
 aside {
     /* Layout */
-    display: grid;
-    max-height: 100%;
     grid-area: aside;
+    display: flex;
+    flex-direction: column;
+    min-height: 80em;
 
-    grid-template-columns: 100%;
+/*     grid-template-columns: 100%;
     grid-template-rows: 30% 5% 7.5% 28.5% auto;
 
     grid-template-areas:    "picture"
                             "name"
                             "forms"
                             "description"
-                            "statistics";
+                            "statistics"; */
 
     /* Style */
     border-left: solid var(--border-color);
@@ -46,7 +47,6 @@ aside {
     margin: 0em;
     padding: 5%;
     position: relative;
-    grid-area: picture;
 
     /* Style */
     border-radius: 50%;
@@ -58,7 +58,6 @@ aside {
     margin: 0em;
     padding: 5%;
     position: relative;
-    grid-area: picture;
 
     /* Style */
     border-radius: 50%;
@@ -68,8 +67,8 @@ aside {
 #asideIMG {
     /* Layout */
     margin: 0em;
-    width: 55%;
-    height: 100%;
+    width: 15em;
+    height: 15em;
 
     /* Style */
     border-radius: 50%;
@@ -116,7 +115,6 @@ aside {
 #channelName {
     /* Layout */
     margin: 0em;
-    grid-area: name;
 
      /* Style */
     text-align: center;
@@ -128,7 +126,6 @@ aside {
     /* Layout */
     padding-top: 5%;
     display: flex;
-    grid-area: forms;
     justify-content: center;
 }
 
@@ -144,7 +141,6 @@ aside {
 #description {
     /* Layout */
     margin: 0em auto;
-    grid-area: description;
 }
 
 #description p:first-child {
@@ -167,12 +163,12 @@ aside {
     margin: 0em 5%;
     padding: 2.5%;
     width: 90%;
-    height: 20%;
     
     /* Style */ 
     text-indent: 1em;
     text-align: start;
     overflow: hidden;
+    word-wrap: break-word;
     text-overflow: ellipsis;
     font-family: var(--aside-text-font);
 }
@@ -180,7 +176,6 @@ aside {
 #statistics {
     /* Layout */
     justify-content: center;
-    grid-area: statistics;
 }
 
 #statistics > p {
@@ -231,7 +226,7 @@ aside {
     font-size: var(--aside-statistics-font-size); 
 }
 
-.statistics > p {
+.statistics p {
     /* Layout */
     margin: 0em;
     padding: 0em 1em;

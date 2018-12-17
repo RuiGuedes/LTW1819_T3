@@ -23,6 +23,8 @@ aside {
     /* Layout */
     grid-area: aside;
     padding: 3em;
+    display: flex;
+    flex-direction: column;
 
     border-left: solid var(--border-color);
 }
@@ -48,10 +50,14 @@ aside > div h1 {
     font-family: var(--story-text-font);
 }
 
+aside > div > form {
+    margin: 0em auto;
+    width: 90%;
+}
+
 aside > div > form > ul {
     /* Layout */
     margin: 0em;
-    padding: 0em 4em;
     list-style-type: decimal;
 }
 

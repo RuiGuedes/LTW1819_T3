@@ -11,7 +11,7 @@
                     <i class="fas fa-camera"></i>             
                     <p>Upload story picture</p>
                 </div>
-                <textarea id="storyContent" name="content" placeholder="Content" cols="30" rows="10" required="true"></textarea>
+                <textarea id="storyContent" name="content" placeholder="Content" rows="10" required="true"></textarea>
             </div>
             <div id="button">
                 <button type="submit">Add post</button>

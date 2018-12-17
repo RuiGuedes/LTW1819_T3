@@ -27,7 +27,8 @@
     justify-content: center;
     display: flex;
 
-    /* Style */ 
+    /* Style */
+    text-align: center;
     font-style: italic;
     font-family: var(--story-title-font);
     font-size: 500%;
@@ -45,7 +46,7 @@
 #stories > article {
     /* Layout */
     margin: 3.5em auto;
-    width: 75%;
+    width: 90%;
     height: auto;
     
     /* Style */ 
@@ -165,7 +166,6 @@ a {
 #storySinopse > p {
     /* Layout */
     overflow: hidden;
-    position: relative;
     line-height: 1.2em;
     max-height: 4.8em; 
     padding-right: 1em;

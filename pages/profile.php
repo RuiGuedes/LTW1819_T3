@@ -43,7 +43,7 @@
     $userNumSubs = get_user_num_subscriptions($username);
 
     // Generate HTML
-    draw_common(htmlentities($_SESSION['username']), ['stories.css', 'profile_aside.css', 'channel_aside.css'], [], htmlentities($filter), htmlentities($searchFilter));
+    draw_common(htmlentities($_SESSION['username']), ['stories.css', 'profile_aside.css'], [], htmlentities($filter), htmlentities($searchFilter));
     draw_stories(htmlentities_all($userStories), htmlentities_all($storiesVotes), htmlentities_all($votedStories));
     draw_profile_aside(htmlentities($username), htmlentities($biography), display_messages(), htmlentities($userPoints), htmlentities($userNumPosts), htmlentities($userNumSubs));
     draw_footer();
