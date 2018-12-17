@@ -25,11 +25,11 @@
 }
 
 #form > h1 {
-    margin: 0em;
+    margin: auto 0em;
     justify-content: center;
     display: flex;
     font-family: var(--aside-channel-font);
-    font-size: 500%;
+    font-size: 5em;
 }
 
 #form {
@@ -42,10 +42,10 @@
 
 #form > form {
     /* Layout */
-    margin: 5em auto;
+    margin: auto;
     padding: 3em;
-    height: 30em;
-    width: 50em;
+    height: 50%;
+    width: 90%;
     
 }
 
@@ -99,7 +99,7 @@
 
 #storyContent {
     /* Layout */
-    height: 10em;
+    height: 70%;
     padding: 0.5em;
 }
 
@@ -115,6 +115,7 @@
     padding: 1em;
 
     /* Style */
+    cursor: pointer;
     outline: none;
     border: solid var(--border-color) 2px;
     border-radius: 10px;

@@ -23,6 +23,8 @@ aside {
     /* Layout */
     grid-area: aside;
     padding: 3em;
+    display: flex;
+    flex-direction: column;
 
     border-left: solid var(--border-color);
 }

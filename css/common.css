@@ -156,6 +156,7 @@ body {
     height: 2.5em;
 
     /* Style */
+    object-fit: cover;
     border-radius: 50%;
 }
 
@@ -362,11 +363,17 @@ a {
     #mobileAside:checked + input + header + div + div + aside {
         /* Layout */
         grid-area: content;
-        display: grid;
+        display: flex;
         margin-top: 4em;
+        overflow-y: scroll;
 
         /* Style */
         border-left: none;
+    }
+
+    #asideIMG {
+        width: 5em;
+        height: 5em;
     }
 }
 
@@ -376,8 +383,11 @@ a {
     }
 
     #info > a {
-        margin-right: 0em;
-        margin-left: .5em;
+        margin: 0em .5em;
+    }
+
+    #info img {
+        margin: 0em;
     }
 }
 

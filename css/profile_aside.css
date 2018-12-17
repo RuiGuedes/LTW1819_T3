@@ -27,11 +27,11 @@
 
 aside {
     /* Layout */
-    display: grid;
-    max-height: 100%;
     grid-area: aside;
-
-    grid-template-columns: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 80em;
+/*     grid-template-columns: 100%;
     grid-template-rows: 30% 5% 2.5% 7.5% 28.5% auto;
 
     grid-template-areas:    "picture"
@@ -39,7 +39,7 @@ aside {
                             "messages"
                             "forms"
                             "description"
-                            "statistics";
+                            "statistics"; */
 
     /* Style */
     border-left: solid var(--border-color);
@@ -51,7 +51,6 @@ aside {
     margin: 0em;
     padding: 5%;
     position: relative;
-    grid-area: picture;
 
     /* Style */
     border-radius: 50%;
@@ -63,7 +62,6 @@ aside {
     margin: 0em;
     padding: 5%;
     position: relative;
-    grid-area: picture;
 
     /* Style */
     border-radius: 50%;
@@ -73,8 +71,8 @@ aside {
 #asideIMG {
    /* Layout */
    margin: 0em;
-   width: 55%;
-   height: 100%;
+   width: 15em;
+   height: 15em;
 
    /* Style */
    border-radius: 50%;
@@ -123,7 +121,6 @@ aside {
 #username {
     /* Layout */
     margin: 0em;
-    grid-area: name;
 
      /* Style */
     text-align: center;
@@ -135,7 +132,6 @@ aside {
     /* Layout */
     padding-top: 4%;
     display: flex;
-    grid-area: forms;
     justify-content: center;
 }
 
@@ -182,7 +178,6 @@ aside {
 #description {
     /* Layout */
     margin: 0em;
-    grid-area: description;
     overflow:hidden;
 }
 
@@ -206,7 +201,6 @@ aside {
     margin: 0em 5%;
     padding: 2.5%;
     width: 90%;
-    height: 20%;
     
     /* Style */ 
     text-indent: 1em;
@@ -220,7 +214,6 @@ aside {
 #statistics {
     /* Layout */
     justify-content: center;
-    grid-area: statistics;
 }
 
 #statistics > p {
@@ -233,13 +226,6 @@ aside {
     text-align: center;
 }
 
-#statistics a > p {
-    /* Layout */
-    margin: 0em 5%;
-    width: 100%;
-    height: 20%;
-}
-
 #statistics a:hover {
     /* Style */ 
     color: var(--aside-button-background-color-hover);
@@ -250,3 +236,19 @@ aside {
     margin: 0.25em auto;
     justify-content: center;
 }
+
+.statistics {
+    /* Layout */
+    margin: 1em auto 0em auto;   
+    display: flex;
+
+    /* Style */
+    font-size: var(--aside-statistics-font-size); 
+}
+
+.statistics p {
+    /* Layout */
+    margin: 0em;
+    padding: 0em 1em;
+    height: 1em;
+} 
