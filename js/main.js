@@ -61,6 +61,7 @@ let editDescriptionHandler = function() {
 
     let userName = document.getElementById('username')
     let channelName = document.getElementById('channelName')
+    let token = document.getElementById('filters').getElementsByTagName('form')[0].getElementsByTagName('input')[0].value
 
     let request = new XMLHttpRequest()
     request.open("post", "../api/api_edit_description.php", true)
@@ -73,8 +74,8 @@ let editDescriptionHandler = function() {
       editDescriptionButton = document.getElementById('editDescription')
       editDescriptionButton.addEventListener('click', editDescriptionHandler)
     })
-    if (userName) request.send(encodeForAjax({username: userName.textContent, description: newContent}))
-    else          request.send(encodeForAjax({channelname: channelName.textContent, description: newContent}))
+    if (userName) request.send(encodeForAjax({username: userName.textContent, description: newContent, csrf: token}))
+    else          request.send(encodeForAjax({channelname: channelName.textContent, description: newContent, csrf: token}))
   })
 }
 
@@ -89,6 +90,7 @@ let subscriptionHandler = function() {
     let statistics = document.getElementsByClassName('statistics')
     let value = subscribeButton.value
     let followers = Number(statistics[2].innerHTML.match('[0-9]\+')[0])
+    let token = subscribeButton.parentElement.getElementsByTagName('input')[0].value
   
     if (value == 'Subscribe') {
       followers++
@@ -100,12 +102,12 @@ let subscriptionHandler = function() {
     }
 
     let request = new XMLHttpRequest()  
-    let userName = document.getElementById('user-name').textContent
+    let userName = document.getElementById('user-name').getElementsByTagName('h5')[0].textContent
     let channelname = document.getElementById('channelName').textContent
-
+    
     request.open("post", "../api/api_subscribe_channel.php", true)
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
-    request.send(encodeForAjax({username: userName, channelName: channelname}))
+    request.send(encodeForAjax({username: userName, channelName: channelname, csrf: token}))
 
     subscribeButton.value = value
     statistics[2].innerHTML = '<i class="fas fa-users"></i><p>' + followers + ' Followers</p>'
@@ -130,6 +132,7 @@ for(let index = 0; index < votesLength; index++) {
 function voteHandler(rootID, voteType, type) {
   // Variables 
   let userName = document.getElementById('user-name').getElementsByTagName('h5')[0].textContent
+  let token = document.getElementById('filters').getElementsByTagName('form')[0].getElementsByTagName('input')[0].value
   
   // Ajax - Update vote status
   let request = new XMLHttpRequest()  
@@ -147,7 +150,7 @@ function voteHandler(rootID, voteType, type) {
     newVoteDown[0].addEventListener('click', function() {voteHandler(rootID, voteType, -1)})
     newVoteUp[0].addEventListener('click', function() {voteHandler(rootID, voteType, 1)})
   })
-  request.send(encodeForAjax({username: userName, rootid: rootID, voteType: type}))
+  request.send(encodeForAjax({username: userName, rootid: rootID, voteType: type, csrf: token}))
 }
 
 // Retrieves vote new inner html
@@ -260,11 +263,11 @@ function commentReplyHandler(commentSection, index) {
     // New comment variables
     let comment_content = document.getElementById('newCommentTextArea').getElementsByTagName('textarea')[0].value
     let story_id = document.getElementById('stories').childNodes[1].id
+    let token = document.getElementById('filters').getElementsByTagName('form')[0].getElementsByTagName('input')[0].value
 
     // Invalid comment - no content
     if(comment_content == '')
       return;
-
 
     // Ajax
     let request = new XMLHttpRequest() 
@@ -277,7 +280,7 @@ function commentReplyHandler(commentSection, index) {
       remove_comment_text_area()
       storyComment.style.visibility = 'visible'
     })
-    request.send(encodeForAjax({commentContent: comment_content, storyID: story_id, parentID: parent_id}))
+    request.send(encodeForAjax({commentContent: comment_content, storyID: story_id, parentID: parent_id, csrf: token}))
   })
 }
 
@@ -285,6 +288,7 @@ function commentExpandHandler(commentSection) {
   // Variables
   let parent_id
   let root = commentSection
+  let token = document.getElementById('filters').getElementsByTagName('form')[0].getElementsByTagName('input')[0].value
 
   // Retrieve root comment
   for(let i = 1; i <= 5; i++) {
@@ -322,7 +326,7 @@ function commentExpandHandler(commentSection) {
     
     set_buttons_custom_listener(root)
   })
-  request.send(encodeForAjax({parentID: parent_id}))
+  request.send(encodeForAjax({parentID: parent_id, csrf: token}))
 }
 
 // Remove comment text area relative to another comment

@@ -117,6 +117,7 @@
             <form method="post" action="../actions/action_add_comment.php">
                 <textarea name="content" cols="30" rows="5" required placeholder="Write a story related comment ..."></textarea>
                 <input type="hidden" name="storyID" value="<?= htmlentities($storyID) ?>">
+                <input type="hidden" name="csrf" value="<?= $_SESSION['csrf'] ?>">
                 <input type="submit" id="submitCommentForm" value="Comment">
             </form>                    
         </div>

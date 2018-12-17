@@ -3,6 +3,7 @@
         <div id="asidePicture">
             <form action="../actions/action_upload_image.php" method="post" enctype="multipart/form-data" style="display: none;">
                 <input type="hidden" name="imageID" value="<?= $channel['name'] ?>">
+                <input type="hidden" name="csrf" value="<?= $_SESSION['csrf'] ?>">
                 <input id="uploadImage"type="file" name="image">
                 <input id="submitImage" type="submit" value="Upload">
             </form>
@@ -15,6 +16,7 @@
         <h3 id="channelName"><?= $channel['name'] ?></h3>
         <div id="forms">
             <form>
+                <input type="hidden" name="csrf" value="<?= $_SESSION['csrf'] ?>">
                 <?php
                     if($status) {
                       ?> <input id="subscribeButton" class="buttons" type="button" value="Unsubscribe"> <?php

@@ -9,6 +9,12 @@
         die(header('Location: ../pages/login.php'));
     }
 
+    // Legitimates request
+    if ($_SESSION['csrf'] !== $_POST['csrf']) {
+        generate_error('Request does not appear to be legitimate!');
+        die(header('Location: ../actions/action_logout.php'));
+    }
+
     // Variables
     $username = $_POST['username'];
     $storyID = $_POST['rootid'];
