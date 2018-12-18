@@ -1,18 +1,27 @@
 <?php function draw_channel_aside($channel, $postedStories, $channelFollowers, $channelOwner, $status) { ?>
     <aside> 
-        <div id="asidePicture">
-            <form action="../actions/action_upload_image.php" method="post" enctype="multipart/form-data" style="display: none;">
-                <input type="hidden" name="imageID" value="<?= $channel['name'] ?>">
-                <input type="hidden" name="csrf" value="<?= $_SESSION['csrf'] ?>">
-                <input id="uploadImage"type="file" name="image">
-                <input id="submitImage" type="submit" value="Upload">
-            </form>
-            <img id="asideIMG" src="../resources/images/<?= get_image('default/defaultChannel.png', '../resources/images/channels/', 'channels/', sha1($channel['name'])) ?>" alt="Channel Image"> 
-            <div>
-                <i class="fas fa-camera"></i>             
-                <p>Update</p>
-            </div>
-        </div>
+        <?php 
+            if($channelOwner === $_SESSION['username']) { ?>
+                <div id="asidePicture">
+                    <form action="../actions/action_upload_image.php" method="post" enctype="multipart/form-data" style="display: none;">
+                        <input type="hidden" name="imageID" value="<?= $channel['name'] ?>">
+                        <input type="hidden" name="csrf" value="<?= $_SESSION['csrf'] ?>">
+                        <input id="uploadImage"type="file" name="image">
+                        <input id="submitImage" type="submit" value="Upload">
+                    </form>
+                    <img id="asideIMG" src="../resources/images/<?= get_image('default/defaultChannel.png', '../resources/images/channels/', 'channels/', sha1($channel['name'])) ?>" alt="Channel Image"> 
+                    <div>
+                        <i class="fas fa-camera"></i>             
+                        <p>Update</p>
+                    </div>
+                </div>
+            <?php }
+            else { ?>
+                <div id="channelPicture">
+                    <img id="asideIMG" src="../resources/images/<?= get_image('default/defaultChannel.png', '../resources/images/channels/', 'channels/', sha1($channel['name'])) ?>" alt="Channel Image"> 
+                </div>
+            <?php }
+        ?>
         <h3 id="channelName"><?= $channel['name'] ?></h3>
         <div id="forms">
             <form>
