@@ -356,11 +356,11 @@ a {
         border-radius: 0px 0px 15px 15px;
     }
 
-    #mobileAside:checked + input + header + div + div {
+    #mobileAside:checked + input + header + div + label + div {
         display: none;
     }
 
-    #mobileAside:checked + input + header + div + div + aside {
+    #mobileAside:checked + input + header + div + label + div + aside {
         /* Layout */
         grid-area: content;
         display: flex;

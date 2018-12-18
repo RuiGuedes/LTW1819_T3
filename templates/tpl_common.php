@@ -67,8 +67,8 @@
             draw_story_filter($filter);
             draw_search_filter($searchFilter);
         ?>
-        <label id="asideButton" for="mobileAside"></label>
     </div>
+    <label id="asideButton" for="mobileAside"></label>
 <? } ?>
 
 <?php function draw_story_filter($filter) { ?>
