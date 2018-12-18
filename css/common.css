@@ -209,6 +209,10 @@ body {
     cursor: pointer;
 }
 
+#search {
+    grid-area: toolBar;
+}
+
 #search > form {
     /* Layout */
     padding-top: 1em;

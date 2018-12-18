@@ -141,6 +141,8 @@ aside {
 #description {
     /* Layout */
     margin: 0em auto;
+    max-height: 25%;
+    overflow-y: hidden;
 }
 
 #description p:first-child {
@@ -175,6 +177,7 @@ aside {
 
 #statistics {
     /* Layout */
+    margin: 15% 0em;
     justify-content: center;
 }
 
@@ -192,6 +195,11 @@ aside {
     /* Layout */
     margin: 0.25em auto;
     justify-content: center;
+}
+
+#statistics a:hover {
+    /* Style */ 
+    color: var(--aside-button-background-color-hover);
 }
 
 .buttons {
